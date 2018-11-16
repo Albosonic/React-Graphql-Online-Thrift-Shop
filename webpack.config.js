@@ -12,18 +12,25 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css'],    
+  },
   mode: 'development',
   module: {    
-    rules: [
+    rules: [      
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader"
         }
-      }
-    ]
-  },
+      }      
+    ]    
+  },  
   watch: true
 };
 

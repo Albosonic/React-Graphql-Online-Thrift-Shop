@@ -1,0 +1,3 @@
+export const ADD_ARTICLE = "ADD_ARTICLE";
+
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO";

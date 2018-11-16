@@ -1,21 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
+import { Provider }  from 'react-redux';
+import store from '../redux/store/index';
 
-import RegForm from './forms/registration.js'
+import RegForm from './forms/Registration';
+import List from './lists/list';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  render() {
-    return (
-      <div>
-        <RegForm></RegForm>
-      </div>
-    )
-  }
+const App = () => {
+  return (
+    <div>
+      <RegForm></RegForm>
+      <List></List>
+   </div>     
+  )
 }
 
 export default App;
 
-ReactDOM.render(<App/>, document.getElementById('app'))
+render(<Provider store={store}><App/></Provider>, document.getElementById('app'))
