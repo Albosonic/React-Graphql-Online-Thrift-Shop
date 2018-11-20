@@ -1,6 +1,4 @@
 const User = require('../models/user-info');
-// const bodyParser = require('body-parser');
-const colors = require('colors');
 
 module.exports = {
   insertUser: (req, res) => {
