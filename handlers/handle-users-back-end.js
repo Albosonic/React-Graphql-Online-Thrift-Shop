@@ -1,8 +1,7 @@
 const User = require('../models/user-info');
 
 module.exports = {
-  insertUser: (req, res) => {
-    console.log(req.body)
+  insertUser: (req, res) => {    
     let user = new User(req.body);
     user.save(err=> {
       if(err) {
