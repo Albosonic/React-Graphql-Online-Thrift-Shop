@@ -20,7 +20,7 @@ class RegForm extends React.Component {
   }
   handleChange(e) {
     const name = e.target.name;
-    this.setState({[name]: e.target.value});    
+    this.setState({[name]: e.target.value});
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -46,7 +46,7 @@ class RegForm extends React.Component {
 
         <label>
           Password:
-          <input onChange={ this.handleChange } type="text" name="passowrd" />
+          <input onChange={ this.handleChange } type="text" name="password" />
         </label>
         <input type="submit" value="Submit"/>
       </form>
