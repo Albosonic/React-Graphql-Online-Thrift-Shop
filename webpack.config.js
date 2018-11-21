@@ -9,7 +9,8 @@ var APP_DIR = path.resolve(__dirname, 'client/src/app');
 const config = {
   entry: APP_DIR + '/app.js',
   output: {
-    path: BUILD_DIR,
+    path: BUILD_DIR,    
+    path:path.join(__dirname, '/client'),
     filename: 'bundle.js'
   },
   resolve: {
@@ -19,8 +20,8 @@ const config = {
   module: {    
     rules: [      
       {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.scss$/,
+        use: [ 'style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.js$/,

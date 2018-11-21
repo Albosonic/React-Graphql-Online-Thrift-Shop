@@ -3,7 +3,7 @@ import axios from 'axios';
 import store from '../../redux/store';
 import { updateUserInfo } from '../../redux/actions';
 
-import './Registration.css';
+import './Registration.scss';
 
 const createNewUser = (user) => {
   console.log('user:', user)
