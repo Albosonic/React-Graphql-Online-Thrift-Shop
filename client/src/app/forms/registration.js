@@ -26,30 +26,33 @@ class RegForm extends React.Component {
     e.preventDefault();
     createNewUser(this.state);
   }
+
   render() {
     return (
-      <form className="reg-form" onSubmit={this.handleSubmit}>
-        <label>
-          First Name:
-          <input onChange={ this.handleChange } type="text" name="firstName" />
-        </label>
+      <div className="reg-form-container">
+        <form className="reg-form" onSubmit={this.handleSubmit}>
+          <label className="input-field firstname">
+            First Name:
+            <input onChange={ this.handleChange } type="text" name="firstName" />
+          </label>
 
-        <label>
-          Last Name:
-          <input onChange={ this.handleChange } type="text" name="lastName" />
-        </label>
+          <label className="input-field lastname">
+            Last Name:
+            <input onChange={ this.handleChange } type="text" name="lastName" />
+          </label>
 
-        <label>
-          email:
-          <input onChange={ this.handleChange } type="text" name="email" />
-        </label>
+          <label className="input-field email">
+            email:
+            <input onChange={ this.handleChange } type="text" name="email" />
+          </label>
 
-        <label>
-          Password:
-          <input onChange={ this.handleChange } type="text" name="password" />
-        </label>
-        <input type="submit" value="Submit"/>
-      </form>
+          <label className="input-field password">
+            Password:
+            <input onChange={ this.handleChange } type="text" name="password" />
+          </label>
+          <input className="submit-button" type="submit" value="Submit"/>
+        </form>
+      </div>
     )
   }
 }
