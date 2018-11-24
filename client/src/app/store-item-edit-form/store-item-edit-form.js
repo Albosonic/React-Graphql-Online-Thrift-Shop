@@ -2,6 +2,7 @@ import React from 'react';
 import { types, subTypes } from './options';
 
 import './store-item-edit-form.scss';
+import DropImage from '../drop-image/drop-image';
 
 class StoreItemEditForm extends React.Component {
   constructor(props) {
@@ -12,12 +13,10 @@ class StoreItemEditForm extends React.Component {
       itemDescription: '',
       hide: false
     };
-    this.dropArea = React.createRef();
     this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
     this.handleItemSubTypeChange = this.handleItemSubTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.generateOptions = this.generateOptions.bind(this);
-    this.addDropEvents = this.addDropEvents.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.returnOptionHandler = this.returnOptionHandler.bind(this);
   }
@@ -39,7 +38,7 @@ class StoreItemEditForm extends React.Component {
       this.setState({showEditDescription: true});
     } else {
       this.setState({showEditDescription: false});
-    }    
+    }
   }
 
   handleDescriptionChange(e) {
@@ -80,13 +79,7 @@ class StoreItemEditForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();    
-  }
-
-  addDropEvents() { // image uploader  should be it's own component ==!!!==
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-      this.dropArea.addEventListener(eventName, preventDefaults, false)
-    })
+    e.preventDefault();
   }
 
   render() {
@@ -99,17 +92,13 @@ class StoreItemEditForm extends React.Component {
           {  this.state.showEditDescription &&
           <label className="description-edit-container">
               Enter a brief description:
-              <textarea 
-                className="description" 
-                type="text" 
-                placeholder="please enter a brief description" 
-                onChange={ this.handleDescriptionChange }/> 
+              <textarea
+                className="description"
+                type="text"
+                placeholder="please enter a brief description"
+                onChange={ this.handleDescriptionChange }/>
           </label> }
-          <div ref={ this.dropArea } className="drop-area">
-            <input type="file" id="file-elem" multiple accept="image/*"></input>
-            <label class="button" for="fileElem">drag and drop img files here.</label>
-          </div>
-          <input className="submit-button" type="submit" value="Submit" />
+          <DropImage/>
         </form>
       </div>
     )

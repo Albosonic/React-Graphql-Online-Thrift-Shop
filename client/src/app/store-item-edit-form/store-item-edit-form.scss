@@ -41,20 +41,6 @@
       resize: none;
       width: 250px;
       height: 100px;
-    }
-    .drop-area {
-      border: 2px dashed #ccc;
-      border-radius: 20px;
-      width: 480px;
-      font-family: sans-serif;
-      margin: 100px auto;
-      padding: 20px;
-      #file-elem {
-        display: none;
-      }
-      .drop-area.highlight {
-        border-color: purple;
-      }
-    }
+    }    
   }
 }
