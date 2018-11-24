@@ -12,15 +12,17 @@ class StoreItemEditForm extends React.Component {
       itemDescription: '',
       hide: false
     };
+    this.dropArea = React.createRef();
     this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
     this.handleItemSubTypeChange = this.handleItemSubTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.generateOptions = this.generateOptions.bind(this);
+    this.addDropEvents = this.addDropEvents.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.returnOptionHandler = this.returnOptionHandler.bind(this);
   }
 
-  handleItemTypeChange(e) {
+  handleItemTypeChange(e) { // can probably consolidate these
     let value = e.target.value;
     this.setState({itemType: value});
     if(value) {
@@ -30,7 +32,7 @@ class StoreItemEditForm extends React.Component {
     }
   }
 
-  handleItemSubTypeChange(e) {
+  handleItemSubTypeChange(e) { // can probably consolidate these
     let value = e.target.value;
     this.setState({itemSubType: value})
     if(value) {
@@ -78,8 +80,13 @@ class StoreItemEditForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    console.log(this.state);
+    e.preventDefault();    
+  }
+
+  addDropEvents() { // image uploader  should be it's own component ==!!!==
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      this.dropArea.addEventListener(eventName, preventDefaults, false)
+    })
   }
 
   render() {
@@ -97,7 +104,11 @@ class StoreItemEditForm extends React.Component {
                 type="text" 
                 placeholder="please enter a brief description" 
                 onChange={ this.handleDescriptionChange }/> 
-            </label>}
+          </label> }
+          <div ref={ this.dropArea } className="drop-area">
+            <input type="file" id="file-elem" multiple accept="image/*"></input>
+            <label class="button" for="fileElem">drag and drop img files here.</label>
+          </div>
           <input className="submit-button" type="submit" value="Submit" />
         </form>
       </div>
