@@ -17,11 +17,12 @@ mongoose.connect('mongodb://localhost:27017/clothes', { useNewUrlParser: true })
 app.use(express.static('client'));
 app.set('client', path.join(__dirname, 'client'));
 
-
 app.use(bodyParser.urlencoded({ extended: false })) 
 app.use(bodyParser.json())
 
 app.post('/users', appHandlers.postNewUser);
+// all in app routes defuault to react router...
+app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));
 
 app.listen(port, function() {
   console.log('react app running...'.underline.cyan);

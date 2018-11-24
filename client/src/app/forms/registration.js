@@ -5,8 +5,7 @@ import { updateUserInfo } from '../../redux/actions';
 
 import './Registration.scss';
 
-const createNewUser = (user) => {
-  console.log('user:', user)
+const createNewUser = (user) => {  
   store.dispatch(updateUserInfo(user));
   axios.post('/users', user).then(resp => console.log(resp));
 }
@@ -35,12 +34,10 @@ class RegForm extends React.Component {
             First Name:
             <input onChange={ this.handleChange } type="text" name="firstName" />
           </label>
-
           <label className="input-field lastname">
             Last Name:
             <input onChange={ this.handleChange } type="text" name="lastName" />
           </label>
-
           <label className="input-field email">
             email:
             <input onChange={ this.handleChange } type="text" name="email" />

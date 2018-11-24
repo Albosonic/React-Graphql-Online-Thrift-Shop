@@ -9,16 +9,15 @@ var APP_DIR = path.resolve(__dirname, 'client/src/app');
 const config = {
   entry: APP_DIR + '/app.js',
   output: {
-    path: BUILD_DIR,    
-    path:path.join(__dirname, '/client'),
+    path: BUILD_DIR,
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css'],    
+    extensions: ['.js', '.jsx', '.css'],
   },
   mode: 'development',
-  module: {    
-    rules: [      
+  module: {
+    rules: [
       {
         test: /\.scss$/,
         use: [ 'style-loader', 'css-loader', 'sass-loader']
@@ -29,9 +28,18 @@ const config = {
         use: {
           loader: "babel-loader"
         }
-      }      
-    ]    
-  },  
+      },
+      {
+        test: /\.(gif|jpe?g|png|svg)$/,
+        use: {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[name].[ext]',            
+          },
+        },
+      }
+    ]
+  },
   watch: true
 };
 

@@ -1,0 +1,26 @@
+.my-store-container {
+  border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right:0;
+  position: absolute;
+  align-items:center;
+  .store-view-container {
+    border: 2px solid blue;
+    width: 100%;
+    max-width: 800px;
+    margin-top: 60px;
+    height: 100%;
+    .hero-upload-container {
+      border: 2px solid green;
+      height: 300px;      
+      margin: auto 0;      
+      .hero {
+        background-image: url('/images/denim-background.png') 
+      }
+    }
+  }
+}
