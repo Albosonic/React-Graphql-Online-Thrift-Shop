@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "test",
-    "start": "webpack --progress --colors & nodemon index.js"
+    "start": "webpack --progress --colors --mode development & nodemon index.js"
   },
   "repository": {
     "type": "git",

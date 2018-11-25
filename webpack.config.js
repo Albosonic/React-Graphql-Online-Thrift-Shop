@@ -1,27 +1,22 @@
+const webpack = require('webpack');
+const path = require('path');
+const loader = require('babel-loader');
 
-var webpack = require('webpack');
-var path = require('path');
-var loader = require('babel-loader');
-
-var BUILD_DIR = path.resolve(__dirname, 'client/src/public');
-var APP_DIR = path.resolve(__dirname, 'client/src/app');
+const BUILD_DIR = path.resolve(__dirname, 'client/dist');
+const APP_DIR = path.resolve(__dirname, 'client/src/app/index.js');
+const PUBLIC_PATH = path.resolve(__dirname, 'client/public');
 
 const config = {
-  entry: APP_DIR + '/app.js',
+  entry: { main: APP_DIR },
   output: {
     path: BUILD_DIR,
-    filename: 'bundle.js'
+    filename: 'main.js'
   },
   resolve: {
     extensions: ['.js', '.jsx', '.css'],
   },
-  mode: 'development',
   module: {
     rules: [
-      {
-        test: /\.scss$/,
-        use: [ 'style-loader', 'css-loader', 'sass-loader']
-      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -30,14 +25,10 @@ const config = {
         }
       },
       {
-        test: /\.(gif|jpe?g|png|svg)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'images/[name].[ext]',            
-          },
-        },
-      }
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [ 'style-loader', 'css-loader', 'sass-loader']
+      },
     ]
   },
   watch: true
