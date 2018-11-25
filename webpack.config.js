@@ -1,12 +1,15 @@
-const webpack = require('webpack');
+const webpack = require('webpack'); //do I still need this?
 const path = require('path');
-const loader = require('babel-loader');
+const loader = require('babel-loader'); //do I still need this?
+
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== 'production'
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const BUILD_DIR = path.resolve(__dirname, 'client/dist');
 const APP_DIR = path.resolve(__dirname, 'client/src/app/index.js');
 const PUBLIC_PATH = path.resolve(__dirname, 'client/public');
+const devMode = process.env.NODE_ENV !== 'production'; // whats going on here?
 
 const config = {
   entry: { main: APP_DIR },
@@ -35,6 +38,16 @@ const config = {
           'sass-loader',
         ],
       }
+    ]
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: true // set to true if you want JS source maps
+      }),
+      new OptimizeCSSAssetsPlugin({})
     ]
   },
   plugins: [
