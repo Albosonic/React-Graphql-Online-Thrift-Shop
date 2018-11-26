@@ -4,7 +4,7 @@ import './header.scss';
 class Header extends React.Component {
   render () {
     return (
-      <div className="header-container">
+      <div className="header-container">        
         <div className="logo-container">
           <p className="logo">Mom Jeans</p>
         </div>
