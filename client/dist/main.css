@@ -52,7 +52,12 @@
     .my-store-container .store-view-container .hero-upload-container {
       border: 2px solid green;
       height: 300px;
-      margin: auto 0; }
+      margin: auto 0;
+      overflow: scroll; }
+      .my-store-container .store-view-container .hero-upload-container .hero {
+        width: 100%;
+        max-width: 800px;
+        height: auto; }
 
 .item-container {
   border: 1px solid grey;
