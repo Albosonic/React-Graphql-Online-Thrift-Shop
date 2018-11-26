@@ -28,7 +28,13 @@ class StoreItem extends React.Component {
             <img className="item-img" src={ storeItem.img } onClick={ ()=> handleItemClick(storeItem.img) }/>
           </div>
         </div>
-        <span className="edit-icon" onClick={ this.handleEditClick }></span>
+        <div className="description-container">
+          <h4 className="description-title">Decription</h4>
+          <p className="description">{ storeItem.description }</p>
+        </div>
+        <div className="edit-icon-container">
+          <span className="edit-icon" onClick={ this.handleEditClick }></span>
+        </div>
       </div>
     )
   }

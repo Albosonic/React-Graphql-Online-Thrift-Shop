@@ -7,6 +7,7 @@
     justify-content: space-between;    
     width: 100%;
     max-width: 100px;
+    align-items: center;
     .dress {
       background: url('../../../../public/images/dress.png') repeat 0 0;
       background-size: 100% 100%;    
@@ -28,12 +29,30 @@
       }
     }
   }
-  .edit-icon {
-    background: url('../../../../public/images/edit-item.png');
-    height: 27px;
-    width: 27px;
-    background-size: 100%;
-    background-repeat: no-repeat;    
-    margin: 10px;
+  .description-container {    
+    font-size: 12px;
+    width: 100%;
+    max-width: 300px;
+    display: table-cell;
+    text-align: center;
+    .description-title {
+      text-decoration: underline;
+      margin: 2px;
+    }
+    .description {
+      margin: 0;
+    }
+  }
+  .edit-icon-container {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .edit-icon {
+      background: url('../../../../public/images/edit-item.png');
+      height: 27px;
+      width: 27px;
+      background-size: 100%;
+      background-repeat: no-repeat;          
+    }
   }
 }
