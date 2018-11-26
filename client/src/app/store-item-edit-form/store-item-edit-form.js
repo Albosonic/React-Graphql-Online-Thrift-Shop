@@ -56,8 +56,8 @@ class StoreItemEditForm extends React.Component {
       <label className="item-type-edit-container">
         Select item {titleFragment}type:
         <select className="item-type-selector" onChange={ changeHandler }>
-          <option value="">--Please choose an option--</option>
-          { options.map((type, i) => <option key={i} value={type}>{type}</option>) }
+          <option className="option" value="">--Please choose an option--</option>
+          { options.map((type, i) => <option className="option" key={i} value={type}>{type}</option>) }
         </select>
       </label>
     )
@@ -89,7 +89,7 @@ class StoreItemEditForm extends React.Component {
           <h1 className="title">Store Item Edit</h1>
           { this.generateOptions(types, 'primary') }
           { this.state.showSubTypes && this.generateOptions(this.state.itemType, 'secondary') }
-          {  this.state.showEditDescription &&
+          { this.state.showEditDescription &&
           <label className="description-edit-container">
               Enter a brief description:
               <textarea

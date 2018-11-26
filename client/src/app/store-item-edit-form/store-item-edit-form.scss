@@ -1,18 +1,16 @@
 
 .item-edit-form-container {
-  height: 100%;
+  height: 650px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: 2px solid red;
+  justify-content: center;  
   top: 0;
   left: 0;
   bottom: 0;
   right:0;
   position: absolute;
-  margin-top: 60px;
-  .item-edit-form {
-    border: 2px solid red;
+  margin-top: 90px;
+  .item-edit-form {    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,14 +25,28 @@
     .item-type-edit-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin: 15px;
+      align-items: center;      
+      height: 60px;
+      margin-top: 15px;
+      .item-type-selector {
+        margin-top: 15px;
+        height: 27px;
+        border: 1px solid darkgray;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 3px;        
+        -webkit-appearance: none;
+      }      
+      select:focus {
+        outline: 0;
+      }        
     }
     .description-edit-container {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      margin: 15px;
+      align-items: center;      
+      height: 125px;
+      margin-top: 15px;
     }
     .description {
       margin: 15px;
