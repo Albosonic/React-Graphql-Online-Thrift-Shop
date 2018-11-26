@@ -46,19 +46,46 @@
     border: 2px solid blue;
     width: 100%;
     max-width: 800px;
-    margin-top: 60px;
-    height: 100%; }
+    margin-top: 70px;
+    height: 100%;
+    overflow: scroll; }
     .my-store-container .store-view-container .hero-upload-container {
       border: 2px solid green;
       height: 300px;
       margin: auto 0; }
-      .my-store-container .store-view-container .hero-upload-container .hero {
-        background-image: url("/images/denim-background.png"); }
 
 .item-container {
   border: 1px solid grey;
   display: flex;
   justify-content: space-between; }
+  .item-container .left-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100px; }
+    .item-container .left-container .dress {
+      background: url(505d1c86c5b053a7a313a82cf7fef250.png) repeat 0 0;
+      background-size: 100% 100%;
+      height: 50px;
+      width: 50px; }
+    .item-container .left-container .item-img-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .item-container .left-container .item-img-container .img-text {
+        font-size: 9px;
+        text-decoration: underline;
+        margin: 4px; }
+      .item-container .left-container .item-img-container .item-img {
+        width: 25px;
+        height: 25px; }
+  .item-container .edit-icon {
+    background: url(5b33a213ed1e886d2e83bfdf473dfdeb.png);
+    height: 27px;
+    width: 27px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 10px; }
 
 .item-edit-form-container {
   height: 650px;

@@ -43,6 +43,7 @@ class DropImage extends React.Component {
       this.setState({imgFileData: [...this.state.imgFileData, reader.result]})
       this.setState({showPreviewImg: true});
       this.setState({hideText: 'hide'})
+      console.log('==>', this.state.imgFileData)
     }
   }
   renderPreviewImgs() {

@@ -9,19 +9,26 @@ class StoreItem extends React.Component {
     this.state = {
       itemEdit: false
     };
-    this.handleEditClick = this.handleEditClick.bind(this);    
+    this.handleEditClick = this.handleEditClick.bind(this);
   }
-  
-  handleEditClick() {        
-    store.dispatch(ToggleStoreItemEditMode(!this.state.itemEdit))    
+
+  handleEditClick() {
+    store.dispatch(ToggleStoreItemEditMode(!this.state.itemEdit))
   }
 
   render() {
     const { storeItem } = this.props;
+    const { handleItemClick } = this.props;
     return (
       <div className="item-container">
-        <p className="store-item">{ storeItem }</p>
-        <span className="edit-icon" onClick={ this.handleEditClick }>edit icon</span>
+        <div className="left-container">
+          <span className={ storeItem.type }></span>
+          <div className="item-img-container">
+            <p className="img-text">Image</p>
+            <img className="item-img" src={ storeItem.img } onClick={ ()=> handleItemClick(storeItem.img) }/>
+          </div>
+        </div>
+        <span className="edit-icon" onClick={ this.handleEditClick }></span>
       </div>
     )
   }
