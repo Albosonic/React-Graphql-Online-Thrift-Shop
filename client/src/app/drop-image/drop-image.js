@@ -46,10 +46,23 @@ class DropImage extends React.Component {
       console.log('==>', this.state.imgFileData)
     }
   }
-  renderPreviewImgs() {
-    return this.state.imgFileData.map((fileData, i) => {
-      return <img width="100px" height="100px" src={fileData} key={i}/>
-    })
+  renderPreviewImgs(fileData) { // not actually using the reader?
+    let mediaTypeImg = /image\/png/.test(fileData);
+    if(mediaTypeImg) {
+      return fileData.map((fileData, i) => {
+        return <img width="100px" height="100px" src={ fileData } key={i}/>
+      })
+    } else {
+      return fileData.map((fileData, i) => {
+        return (
+          <video width="100px" height="100px" width="400" key={i} controls autoPlay>
+            <source src={ fileData } type="video/mp4"/>
+            <source src={ fileData } type="video/ogg"/>
+            <source src={ fileData } type="video/mov"/>
+          </video>
+        )
+      })
+    }
   }
 
   render() {
@@ -61,7 +74,7 @@ class DropImage extends React.Component {
         onDragLeave={ this.handleOnDragLeave }
         onDrop={ this.handleOnDrop }
         >
-        { this.state.showPreviewImg && this.renderPreviewImgs() }
+        { this.state.showPreviewImg && this.renderPreviewImgs(this.state.imgFileData) }
         <input type="file" id="file-elem" multiple accept="image/*"></input>
         <label className={`drop-text ${this.state.hideText}`} htmlFor="fileElem">drag and drop img files here.</label>
       </div>

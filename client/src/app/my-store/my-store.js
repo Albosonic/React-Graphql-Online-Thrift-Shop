@@ -39,7 +39,7 @@ class MyStore extends React.Component {
     return (
       <div className="my-store-container">
         <div className="store-view-container">
-          <div className="hero-upload-container">            
+          <div className="hero-upload-container">          
             {
               this.state.currentHeroImg &&
               <img className="hero" src={ this.state.currentHeroImg }></img>
