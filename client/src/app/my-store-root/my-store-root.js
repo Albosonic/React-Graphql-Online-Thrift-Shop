@@ -9,13 +9,12 @@ import { connect } from "react-redux";
 import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 
 class MyStoreRoot extends React.Component {
-  render() {
-    return <StoreItemEditForm/>
-    // if(!store.getState().storeItemEditMode) {      
-    //   return <MyStore/>
-    // } else {
-    //   return <StoreItemEditForm/>
-    // }
+  render() {    
+    if(!store.getState().storeItemEditMode) {      
+      return <MyStore/>
+    } else {
+      return <StoreItemEditForm/>
+    }
   }
 }
 

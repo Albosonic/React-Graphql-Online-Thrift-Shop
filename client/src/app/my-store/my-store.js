@@ -18,7 +18,7 @@ class MyStore extends React.Component {
           <div className="hero-upload-container">
             <span className="hero"></span>
           </div>
-          {this.renderStoreItems()}
+          { this.renderStoreItems() }
         </div>
       </div>
     )
