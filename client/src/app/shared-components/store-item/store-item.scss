@@ -1,5 +1,5 @@
 .item-container {
-  border: 1px solid grey;
+  border-top: 1px solid grey;
   display: flex;
   justify-content: space-between;
   .left-container {
@@ -55,4 +55,7 @@
       background-repeat: no-repeat;          
     }
   }
+}
+.item-container.last-item {
+  border-bottom: 1px solid gray;
 }

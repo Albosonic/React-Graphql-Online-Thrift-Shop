@@ -22,7 +22,15 @@ class MyStore extends React.Component {
   renderStoreItems() {
     const view = 'my-store';
     return items.map((item, i) => {
-      return <StoreItem key={ i } storeItem={ item } handleItemClick={ this.handleItemClick } view={ view }/>
+      return (
+        <StoreItem 
+          key={ i }
+          storeItem={ item } 
+          handleItemClick={ this.handleItemClick } 
+          length={ items.length } 
+          view={ view } 
+          index={ i } />
+      )
     })
   }
 

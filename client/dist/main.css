@@ -54,7 +54,7 @@
       border-bottom: 1px solid gray; }
 
 .item-container {
-  border: 1px solid grey;
+  border-top: 1px solid grey;
   display: flex;
   justify-content: space-between; }
   .item-container .left-container {
@@ -100,6 +100,9 @@
       width: 27px;
       background-size: 100%;
       background-repeat: no-repeat; }
+
+.item-container.last-item {
+  border-bottom: 1px solid gray; }
 
 .activities-container {
   border: 1px solid gray;

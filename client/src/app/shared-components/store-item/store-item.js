@@ -20,11 +20,10 @@ class StoreItem extends React.Component {
   }
 
   render() {
-    const { storeItem } = this.props;
-    const { handleItemClick } = this.props;
-    const { view } = this.props;
+    const { storeItem, handleItemClick, view, index, length} = this.props;
+    let itemContainerClasses = `item-container ${ (length -1) === index ? 'last-item': '' }`;
     return (
-      <div className="item-container">
+      <div className={ itemContainerClasses }>
         <div className="left-container">
           <span className={ storeItem.type }></span>
           <div className="item-img-container">
@@ -35,7 +34,7 @@ class StoreItem extends React.Component {
         <div className="description-container">
           <h4 className="description-title">Decription</h4>
           <p className="description">{ storeItem.description }</p>
-        </div>        
+        </div>
         <div className="edit-icon-container">
           { view === 'my-store' && <span className="edit-icon" onClick={ this.handleEditClick }></span>}
         </div>
