@@ -9,8 +9,7 @@ export const updateUserInfo = userInfo => (
   { type: UPDATE_USER_INFO, payload: userInfo }
 );
 
-export const ToggleStoreItemActionMode = actionMode => {
-  console.log('==>', actionMode)
-  return { type: TOGGLE_ACTION_MODE, payload: actionMode }
-}
+export const ToggleStoreItemActionMode = actionMode => ( 
+  { type: TOGGLE_ACTION_MODE, payload: actionMode }
+)
 

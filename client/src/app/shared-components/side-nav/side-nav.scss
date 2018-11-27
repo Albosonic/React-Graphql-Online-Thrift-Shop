@@ -1,5 +1,4 @@
-.side-nav-container {
-  // border: 1px solid gray;
+.side-nav-container {  
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -20,6 +19,8 @@
       border-top: 1px solid gray;
       list-style-type: none;
       padding: 20px;
+      text-decoration: none;
+      color: black;
     }
     .nav-link.last-item {
       border-bottom: 1px solid gray;

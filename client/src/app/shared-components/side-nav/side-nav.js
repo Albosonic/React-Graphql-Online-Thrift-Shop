@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
 import './side-nav.scss';
 
 const SideNav = () => (
@@ -6,25 +8,16 @@ const SideNav = () => (
     <ul className="nav-link-container">
       <div className="nav-title-container">
         <h4 className="nav-title">Site Navigation</h4>
-      </div>
+      </div>      
       <li className="nav-link">
-        Conversations
-      </li>
-      <li className="nav-link">
-        Dashboard
+        <Link className="nav-link" to='/dashboard'>Dashboard</Link>
       </li>
       <li className="nav-link">
-        MyStore
+        <Link className="nav-link" to='/my-store'>My Store</Link>
       </li>
       <li className="nav-link">
-        Feed
-      </li>
-      <li className="nav-link">
-        Friends
-      </li>
-      <li className="nav-link last-item">
-        About
-      </li>
+        <Link className="nav-link" to='/login'>Sign out</Link>
+      </li>      
     </ul>
   </div>
 )

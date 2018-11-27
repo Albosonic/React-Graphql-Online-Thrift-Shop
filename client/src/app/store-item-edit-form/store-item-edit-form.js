@@ -3,6 +3,8 @@ import { types, subTypes } from './options';
 
 import './store-item-edit-form.scss';
 import DropImage from '../drop-image/drop-image';
+import store from '../../redux/store';
+import { ToggleStoreItemActionMode } from '../../redux/actions';
 
 class StoreItemEditForm extends React.Component {
   constructor(props) {
@@ -11,14 +13,17 @@ class StoreItemEditForm extends React.Component {
       itemType: null,
       itemSubType: null,
       itemDescription: '',
-      hide: false
+      hide: false,
+      title: store.getState().actionMode.title.title
     };
+    
     this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
     this.handleItemSubTypeChange = this.handleItemSubTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.generateOptions = this.generateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.returnOptionHandler = this.returnOptionHandler.bind(this);
+    this.backToStore = this.backToStore.bind(this);
   }
 
   handleItemTypeChange(e) { // can probably consolidate these
@@ -41,8 +46,12 @@ class StoreItemEditForm extends React.Component {
     }
   }
 
-  handleDescriptionChange(e) {
+  handleDescriptionChange(e) { // do this ==
     console.log('=====');
+  }
+
+  backToStore() {
+    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
   }
 
   generateOptions(options, optionType) {
@@ -82,11 +91,12 @@ class StoreItemEditForm extends React.Component {
     e.preventDefault();
   }
 
-  render() {
+  render() {    
     return (
       <div className="item-edit-form-container">
         <form className="item-edit-form" onSubmit={ this.handleSubmit }>
-          <h1 className="title">Store Item Edit</h1>
+        <span className="back-button" onClick={ this.backToStore }>Back</span>
+          <h1 className="title">{ this.state.title }</h1>
           { this.generateOptions(types, 'primary') }
           { this.state.showSubTypes && this.generateOptions(this.state.itemType, 'secondary') }
           { this.state.showEditDescription &&
@@ -104,7 +114,5 @@ class StoreItemEditForm extends React.Component {
     )
   }
 }
-
-// const mapStateToProps = state => ({ storeItemEditMode: state.storeItemEditMode });
 
 export default StoreItemEditForm

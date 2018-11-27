@@ -1,13 +1,14 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import RegForm from '../forms/registration';
 import DashBoard from '../dashboard/dashboard';
 import AccountSettings from '../account-settings/account-settings';
 import MyStoreRoot from '../my-store-root/my-store-root';
-
+// '/' temporarily takes user to dashboard.
 const Main = () => (
     <div>
+      <Route exact path="/" render={() => <Redirect to="/dashboard"/>}/>
       <Route exact path='/login' component={ RegForm }/>
       <Route exact path='/dashboard' component={ DashBoard }/>
       <Route exact path='/account-settings' component={ AccountSettings }/>      

@@ -1,32 +1,37 @@
-.my-store-container {
-  border: 2px solid red;
+.my-store-page-container {
   display: flex;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right:0;
-  position: absolute;
-  align-items:center;
-  .store-view-container {    
-    width: 100%;
-    max-width: 800px;
-    margin-top: 80px;
-    height: 100%;
-    overflow: scroll;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-    .hero-upload-container {
-      height: 300px;
-      margin: auto 0;
+  .side-nav-component-container {
+    border: 1px solid gray;
+  }
+  .my-store-container {
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right:0;
+    position: absolute;
+    align-items:center;
+    .store-view-container {
+      width: 100%;
+      max-width: 800px;
+      margin-top: 80px;
+      height: 100%;
       overflow: scroll;
-      border-bottom: 1px solid gray;
-      .hero {
-        width: 100%;
-        max-width: 800px;
-        height: auto;
+      border-radius: 5px;
+      -webkit-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+      -moz-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+      box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+      .hero-upload-container {
+        height: 300px;
+        margin: auto 0;
+        overflow: scroll;
+        border-bottom: 1px solid gray;
+        .hero {
+          width: 100%;
+          max-width: 800px;
+          height: auto;
+        }
       }
     }
   }

@@ -14,7 +14,7 @@ class StoreItem extends React.Component {
   }
 
   handleActionClick(e) {
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'return of the jedi' }))
+    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'Edit Item' }))
   }
 
   render() {
