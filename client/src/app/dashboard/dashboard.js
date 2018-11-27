@@ -1,18 +1,20 @@
-import React, {Component} from "react";
-// import axios from 'axios';
-// import { connect } from "react-redux";
+import React from "react";
+import SideNav from '../shared-components/side-nav/side-nav';
+import Activities from "../activities/activities";
+import items from '../mock-items-data';
+import './dashboard.scss';
 
-class Dashboard extends Component {
+class Dashboard extends React.Component {
+
   render () {
+    console.log(items)
     return (
       <div className="dashboard-container">
-        <h1>dash board</h1>
+        <SideNav/>
+        <Activities storeItems={ items }/>
       </div>
     )
   }
 }
-
-// const mapStateToProps = state => ({ articles: state.articles });
-// const List = connect(mapStateToProps)(ConnectedList);
 
 export default Dashboard;

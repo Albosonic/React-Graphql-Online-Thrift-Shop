@@ -22,6 +22,7 @@ class StoreItem extends React.Component {
   render() {
     const { storeItem } = this.props;
     const { handleItemClick } = this.props;
+    const { view } = this.props;
     return (
       <div className="item-container">
         <div className="left-container">
@@ -34,9 +35,9 @@ class StoreItem extends React.Component {
         <div className="description-container">
           <h4 className="description-title">Decription</h4>
           <p className="description">{ storeItem.description }</p>
-        </div>
+        </div>        
         <div className="edit-icon-container">
-          <span className="edit-icon" onClick={ this.handleEditClick }></span>
+          { view === 'my-store' && <span className="edit-icon" onClick={ this.handleEditClick }></span>}
         </div>
       </div>
     )
