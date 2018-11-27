@@ -1,7 +1,10 @@
 import React from 'react';
-import './store-item.scss';
+import PropTypes from 'prop-types';
+
 import store from '../../../redux/store';
 import { ToggleStoreItemEditMode } from '../../../redux/actions';
+
+import './store-item.scss';
 
 class StoreItem extends React.Component {
   constructor(props) {
@@ -39,4 +42,10 @@ class StoreItem extends React.Component {
     )
   }
 }
+
+StoreItem.propTypes = {
+  storeItem: PropTypes.object,
+  handleItemClick: PropTypes.func
+}
+
 export default StoreItem
