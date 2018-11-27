@@ -35,6 +35,7 @@
     max-width: 300px;
     display: table-cell;
     text-align: center;
+    margin-right: 60px;
     .description-title {
       text-decoration: underline;
       margin: 2px;
@@ -53,6 +54,14 @@
       width: 27px;
       background-size: 100%;
       background-repeat: no-repeat;          
+    }
+    .messages-icon {
+      background: url('../../../../public/images/messages.png');
+      height: 27px;
+      width: 27px;
+      margin-right: 10px;      
+      background-size: 100%;
+      background-repeat: no-repeat;
     }
   }
 }

@@ -20,8 +20,9 @@ class StoreItem extends React.Component {
   }
 
   render() {
-    const { storeItem, handleItemClick, view, index, length} = this.props;
+    const { storeItem, handleItemClick, view, index, length } = this.props;
     let itemContainerClasses = `item-container ${ (length -1) === index ? 'last-item': '' }`;
+    let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;    
     return (
       <div className={ itemContainerClasses }>
         <div className="left-container">
@@ -36,7 +37,8 @@ class StoreItem extends React.Component {
           <p className="description">{ storeItem.description }</p>
         </div>
         <div className="edit-icon-container">
-          { view === 'my-store' && <span className="edit-icon" onClick={ this.handleEditClick }></span>}
+          { view === 'my-store' && <span className="edit-icon" onClick={ this.handleEditClick }></span> }
+          { showMessageIcon && <span className="messages-icon"></span> }
         </div>
       </div>
     )

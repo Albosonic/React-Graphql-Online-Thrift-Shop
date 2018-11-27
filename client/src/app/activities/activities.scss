@@ -1,25 +1,40 @@
-.activities-container {
-  border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  align-items:center;
-  height: 100vh;
-  width: 100%;
-  max-width: 1000px;
-  -webkit-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
-  .hero-container {
+.activities-page-container {
     width: 100%;
-    height: 500px;
-    overflow: scroll;
-    .hero {
-      width: 100%;
+    max-width: 1000px;
+    // -webkit-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+    // -moz-box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+    // box-shadow: 0px 0px 30px -6px rgba(0,0,0,0.75);
+  .activities-title-container {
+    display: flex;
+    justify-content: center;
+    border-right: 1px solid gray;
+    border-left: 1px solid gray;
+    width: 100%;
+    max-width: 1000px;
+    .activities-title {
+      text-decoration: underline;
     }
   }
-  .activity-items-container {
-    width: 100%;
+  .activities-container {
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
     height: 100vh;
-    overflow: scroll;    
+    width: 100%;
+    max-width: 1000px;    
+    .hero-container {
+      width: 100%;
+      height: 500px;
+      overflow: scroll;
+      .hero {
+        width: 100%;
+      }
+    }
+    .activity-items-container {
+      width: 100%;
+      height: 100vh;
+      overflow: scroll;    
+    }
   }
 }

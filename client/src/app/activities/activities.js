@@ -11,7 +11,7 @@ class Activities extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this);
   }
 
-  handleItemClick(imageData) {    
+  handleItemClick(imageData) {
     this.setState({ currentHeroImg: imageData })
   }
 
@@ -19,12 +19,12 @@ class Activities extends React.Component {
     const view = 'activities'
     return items.map((item, i) => { // view should come from the url === maybe?
       return (
-        <StoreItem 
+        <StoreItem
           key={ i }
-          storeItem={ item } 
-          handleItemClick={ this.handleItemClick } 
-          length={ items.length } 
-          view={ view } 
+          storeItem={ item }
+          handleItemClick={ this.handleItemClick }
+          length={ items.length }
+          view={ view }
           index={ i } />
       )
     })
@@ -33,15 +33,20 @@ class Activities extends React.Component {
   render () {
     const storeItems = this.props.storeItems;
     return (
-      <div className="activities-container">
-        <div className="hero-container">
-          {
-            this.state.currentHeroImg &&
-            <img className="hero" src={ this.state.currentHeroImg }></img>
-          }
+      <div className="activities-page-container">
+        <div className="activities-title-container">
+          <h1 className="activities-title">Activities</h1>
         </div>
-        <div className="activity-items-container">
-          { this.renderStoreItems(storeItems) }
+        <div className="activities-container">
+          <div className="hero-container">
+            {
+              this.state.currentHeroImg &&
+              <img className="hero" src={ this.state.currentHeroImg }></img>
+            }
+          </div>
+          <div className="activity-items-container">
+            { this.renderStoreItems(storeItems) }
+          </div>
         </div>
       </div>
     )
