@@ -2,21 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import store from '../../../redux/store';
-import { ToggleStoreItemEditMode } from '../../../redux/actions';
+import { ToggleStoreItemActionMode } from '../../../redux/actions';
 
 import './store-item.scss';
 
 class StoreItem extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      itemEdit: false
-    };
-    this.handleEditClick = this.handleEditClick.bind(this);
+    this.state = {};
+    this.handleActionClick = this.handleActionClick.bind(this);
   }
 
-  handleEditClick() {
-    store.dispatch(ToggleStoreItemEditMode(!this.state.itemEdit))
+  handleActionClick(e) {
+    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'return of the jedi' }))
   }
 
   render() {
@@ -37,7 +35,7 @@ class StoreItem extends React.Component {
           <p className="description">{ storeItem.description }</p>
         </div>
         <div className="edit-icon-container">
-          { view === 'my-store' && <span className="edit-icon" onClick={ this.handleEditClick }></span> }
+          { view === 'my-store' && <span className="edit-icon" onClick={ this.handleActionClick }></span> }
           { showMessageIcon && <span className="messages-icon"></span> }
         </div>
       </div>

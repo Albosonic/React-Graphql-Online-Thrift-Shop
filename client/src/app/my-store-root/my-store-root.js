@@ -9,8 +9,9 @@ import { connect } from "react-redux";
 import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 
 class MyStoreRoot extends React.Component {
-  render() {    
-    if(!store.getState().storeItemEditMode) {      
+  render() {
+    let actionMode = store.getState().actionMode.storeItemActionMode    
+    if(!actionMode.storeItemActionMode) {
       return <MyStore/>
     } else {
       return <StoreItemEditForm/>
@@ -18,6 +19,6 @@ class MyStoreRoot extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({ storeItemEditMode: state.storeItemEditMode });
+const mapStateToProps = state => ({ actionMode: state.actionMode });
 
 export default connect(mapStateToProps)(MyStoreRoot);

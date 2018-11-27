@@ -15,8 +15,7 @@ class MyStore extends React.Component {
     }
   }
 
-  handleItemClick(imageData) {
-    console.log('===>', imageData);
+  handleItemClick(imageData) {    
     this.setState({ currentHeroImg: imageData })
   }
 
