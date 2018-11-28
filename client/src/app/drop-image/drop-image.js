@@ -47,7 +47,7 @@ class DropImage extends React.Component {
     }
   }
   renderPreviewImgs(fileData) { // not actually using the reader?
-    let mediaTypeImg = /image\/png/.test(fileData);
+    let mediaTypeImg = /image/.test(fileData);
     if(mediaTypeImg) {
       return fileData.map((fileData, i) => {
         return <img width="100px" height="100px" src={ fileData } key={i}/>

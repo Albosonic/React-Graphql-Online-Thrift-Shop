@@ -1,16 +1,16 @@
+import './my-store.scss';
 import React from 'react';
 import StoreItem from '../shared-components/store-item/store-item';
 
 import items from '../mock-items-data';
 import AddItem from '../add-item/add-item';
-import './my-store.scss';
 import SideNav from '../shared-components/side-nav/side-nav';
 
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
     this.state = { //should be a default img here i.e. store hero img.
-      currentHeroImg: null
+      currentHeroImg: items[0].img
     }
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -40,13 +40,10 @@ class MyStore extends React.Component {
         <div className="side-nav-component-container">
           <SideNav/>
         </div>
-        <div className="my-store-container">      
-          <div className="store-view-container">        
+        <div className="my-store-container">
+          <div className="store-view-container">
             <div className="hero-upload-container">
-              {
-                this.state.currentHeroImg &&
-                <img className="hero" src={ this.state.currentHeroImg }></img>
-              }
+              <img className="hero" src={ this.state.currentHeroImg }></img>
             </div>
             <AddItem/>
             { this.renderStoreItems(items) }

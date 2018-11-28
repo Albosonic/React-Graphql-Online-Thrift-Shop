@@ -2,6 +2,7 @@ import './my-store-root.scss';
 
 import React from 'react';
 import MyStore from '../my-store/my-store';
+import {withRouter} from "react-router-dom";
 
 import store from '../../redux/store';
 import { connect } from "react-redux";

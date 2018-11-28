@@ -5,9 +5,7 @@ import items from '../mock-items-data';
 import './dashboard.scss';
 
 class Dashboard extends React.Component {
-
-  render () {
-    console.log(items)
+  render () {    
     return (
       <div className="dashboard-container">
         <SideNav/>

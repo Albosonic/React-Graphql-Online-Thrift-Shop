@@ -4,14 +4,28 @@
   justify-content: space-between;
   .left-container {
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between;
     width: 100%;
     max-width: 100px;
     align-items: center;
     .dress {
       background: url('../../../../public/images/dress.png') repeat 0 0;
-      background-size: 100% 100%;    
-      height: 50px;    
+    }
+    .pants {
+      background: url('../../../../public/images/pants.png') repeat 0 0;
+    }
+    .shirt {
+      background: url('../../../../public/images/shirt.png') repeat 0 0;
+    }
+    .hat {
+      background: url('../../../../public/images/hat.png') repeat 0 0;
+    }
+    .shoe {
+      background: url('../../../../public/images/shoe.png') repeat 0 0;
+    }
+    .thumbnail {
+      background-size: 100% 100%;
+      height: 50px;
       width: 50px;
     }
     .item-img-container {
@@ -25,11 +39,11 @@
       }
       .item-img {
         width: 25px;
-        height: 25px;        
+        height: 25px;
       }
     }
   }
-  .description-container {    
+  .description-container {
     font-size: 12px;
     width: 100%;
     max-width: 300px;
@@ -53,13 +67,13 @@
       height: 27px;
       width: 27px;
       background-size: 100%;
-      background-repeat: no-repeat;          
+      background-repeat: no-repeat;
     }
     .messages-icon {
       background: url('../../../../public/images/messages.png');
       height: 27px;
       width: 27px;
-      margin-right: 10px;      
+      margin-right: 10px;
       background-size: 100%;
       background-repeat: no-repeat;
     }

@@ -24,7 +24,7 @@ class StoreItem extends React.Component {
     return (
       <div className={ itemContainerClasses }>
         <div className="left-container">
-          <span className={ storeItem.type }></span>
+          <span className={ `thumbnail ${storeItem.type}` }></span>
           <div className="item-img-container">
             <p className="img-text">Image</p>
             <img className="item-img" src={ storeItem.img } onClick={ ()=> handleItemClick(storeItem.img) }/>

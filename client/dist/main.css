@@ -65,7 +65,16 @@
     max-width: 100px;
     align-items: center; }
     .item-container .left-container .dress {
-      background: url(505d1c86c5b053a7a313a82cf7fef250.png) repeat 0 0;
+      background: url(505d1c86c5b053a7a313a82cf7fef250.png) repeat 0 0; }
+    .item-container .left-container .pants {
+      background: url(cc1580c46da877ddd6edc7f769c78f8d.png) repeat 0 0; }
+    .item-container .left-container .shirt {
+      background: url(7239d54a86025ae82aa78ca3f4251bc0.png) repeat 0 0; }
+    .item-container .left-container .hat {
+      background: url(9dc8dfd8ec0f63c9ed00d2b9f30326da.png) repeat 0 0; }
+    .item-container .left-container .shoe {
+      background: url(94e1c46f2bea763c7d2891ad0c059ff8.png) repeat 0 0; }
+    .item-container .left-container .thumbnail {
       background-size: 100% 100%;
       height: 50px;
       width: 50px; }
@@ -149,21 +158,6 @@
 
 
 
-.add-item-container {
-  border: 1px solid grey;
-  background-color: seashell;
-  display: flex;
-  justify-content: space-around;
-  padding: 5px;
-  opacity: .8;
-  margin: 5px; }
-  .add-item-container .plus-icon {
-    background: url(942e123b8a9d5f545c6fccca5f4e8541.png);
-    background-size: 100% 100%;
-    width: 50px;
-    height: 50px;
-    margin: 5px; }
-
 .my-store-page-container {
   display: flex; }
   .my-store-page-container .side-nav-component-container {
@@ -196,6 +190,21 @@
           width: 100%;
           max-width: 800px;
           height: auto; }
+
+.add-item-container {
+  border: 1px solid grey;
+  background-color: seashell;
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  opacity: .8;
+  margin: 5px; }
+  .add-item-container .plus-icon {
+    background: url(942e123b8a9d5f545c6fccca5f4e8541.png);
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    margin: 5px; }
 
 .item-edit-form-container {
   height: 650px;
