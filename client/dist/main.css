@@ -132,11 +132,14 @@ div.main-container {
       height: 100vh;
       overflow: scroll; }
 
-.store-container {
-  margin: 20px; }
-
-.store-container {
-  display: flex; }
+.user-feed-container {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  align-items: center;
+  overflow: scroll; }
+  .user-feed-container .store-container {
+    margin: 20px; }
 
 .store-view-container {
   width: 100%;
@@ -300,6 +303,9 @@ div.main-container {
       color: black; }
     .side-nav-container .nav-link-container .nav-link.last-item {
       border-bottom: 1px solid gray; }
+
+li {
+  list-style-type: none; }
 
 body {
   font-family: 'Work Sans', sans-serif; }

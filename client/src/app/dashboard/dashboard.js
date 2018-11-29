@@ -9,11 +9,8 @@ class Dashboard extends React.Component {
     return (
 
       <div className="dashboard-container">        
-        <Activities storeItems={ items }/>
-        <div className="feed-container">
-          <h1>Feed</h1>
-          <Feed/>
-        </div>
+        <Activities storeItems={ items }/>        
+        <Feed/>        
       </div>
     )
   }
