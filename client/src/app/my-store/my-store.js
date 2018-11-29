@@ -4,7 +4,6 @@ import StoreItem from '../shared-components/store-item/store-item';
 
 import items from '../mock-items-data';
 import AddItem from '../add-item/add-item';
-import SideNav from '../shared-components/side-nav/side-nav';
 
 class MyStore extends React.Component {
   constructor(props) {

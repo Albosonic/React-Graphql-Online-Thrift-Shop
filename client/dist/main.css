@@ -33,30 +33,6 @@ div.main-container {
     .reg-form-container .reg-form .submit-button {
       margin-top: 15px; }
 
-.side-nav-container {
-  display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: 100vh; }
-  .side-nav-container .nav-link-container {
-    padding: 0;
-    margin: 0; }
-    .side-nav-container .nav-link-container .nav-title-container {
-      display: flex;
-      justify-content: center;
-      background-color: aliceblue; }
-    .side-nav-container .nav-link-container .nav-title {
-      text-decoration: underline; }
-    .side-nav-container .nav-link-container .nav-link {
-      background-color: white;
-      border-top: 1px solid gray;
-      list-style-type: none;
-      padding: 20px;
-      text-decoration: none;
-      color: black; }
-    .side-nav-container .nav-link-container .nav-link.last-item {
-      border-bottom: 1px solid gray; }
-
 .item-container {
   border-top: 1px solid grey;
   display: flex;
