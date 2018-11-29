@@ -15,7 +15,7 @@ class RegForm extends React.Component {
     super(props);
     this.state = {};
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);    
   }
   handleChange(e) {
     const name = e.target.name;
@@ -26,23 +26,22 @@ class RegForm extends React.Component {
     createNewUser(this.state);
   }
 
-  render() {
+  render() {    
     return (
       <div className="reg-form-container">
         <form className="reg-form" onSubmit={this.handleSubmit}>
-          <label className="input-field firstname">
+          {/* <label className="input-field firstname">
             First Name:
             <input onChange={ this.handleChange } type="text" name="firstName" />
           </label>
           <label className="input-field lastname">
             Last Name:
             <input onChange={ this.handleChange } type="text" name="lastName" />
-          </label>
+          </label> */}
           <label className="input-field email">
             email:
             <input onChange={ this.handleChange } type="text" name="email" />
           </label>
-
           <label className="input-field password">
             Password:
             <input onChange={ this.handleChange } type="text" name="password" />

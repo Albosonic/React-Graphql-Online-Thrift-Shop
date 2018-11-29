@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider }  from 'react-redux';
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, withRouter } from 'react-router-dom'
 import store from '../redux/store/index';
 
 import Main from './main/main';
@@ -10,17 +10,17 @@ import SideNav from './side-nav/side-nav';
 
 import './app.scss'
 
-const App = () => {
+const App = withRouter(({location}) => {  
   return (
     <div className="app-container">
       <Header></Header>
       <div className="body-container">
-        <SideNav/>
+        { location.pathname !== '/login' && <SideNav/> }
         <Main></Main>
       </div>
    </div>     
   )
-}
+});
 
 export default App;
 
