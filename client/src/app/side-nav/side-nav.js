@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import './side-nav.scss';
 
 const SideNav = () => (
-  <div className="side-nav-container">    
+  <div className="side-nav-container">
     <ul className="nav-link-container">
       <div className="nav-title-container">
         <h4 className="nav-title">Site Navigation</h4>
-      </div>      
+      </div>
       <li className="nav-link">
         <Link className="nav-link" to='/dashboard'>Dashboard</Link>
       </li>
@@ -17,7 +17,7 @@ const SideNav = () => (
       </li>
       <li className="nav-link">
         <Link className="nav-link" to='/login'>Sign out</Link>
-      </li>      
+      </li>
     </ul>
   </div>
 )

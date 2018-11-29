@@ -1,3 +1,4 @@
+import './main.scss';
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
@@ -7,7 +8,7 @@ import AccountSettings from '../account-settings/account-settings';
 import MyStoreRoot from '../my-store-root/my-store-root';
 // '/' temporarily takes user to dashboard.
 const Main = () => (
-    <div>
+    <div className="main-container">
       <Route exact path="/" render={() => <Redirect to="/dashboard"/>}/>
       <Route exact path='/login' component={ RegForm }/>
       <Route exact path='/dashboard' component={ DashBoard }/>

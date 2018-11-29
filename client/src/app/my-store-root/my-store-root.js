@@ -11,7 +11,7 @@ import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 
 class MyStoreRoot extends React.Component {
   render() {
-    let actionMode = store.getState().actionMode.storeItemActionMode    
+    let actionMode = store.getState().actionMode.storeItemActionMode
     if(!actionMode.storeItemActionMode) {
       return <MyStore/>
     } else {

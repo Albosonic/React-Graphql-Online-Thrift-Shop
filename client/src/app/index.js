@@ -6,6 +6,7 @@ import store from '../redux/store/index';
 
 import Main from './main/main';
 import Header from './header/header';
+import SideNav from './side-nav/side-nav';
 
 import './app.scss'
 
@@ -13,7 +14,10 @@ const App = () => {
   return (
     <div className="app-container">
       <Header></Header>
-      <Main></Main>
+      <div className="body-container">
+        <SideNav/>
+        <Main></Main>
+      </div>
    </div>     
   )
 }

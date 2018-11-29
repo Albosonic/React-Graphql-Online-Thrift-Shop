@@ -5,10 +5,9 @@ import items from '../mock-items-data';
 import './dashboard.scss';
 
 class Dashboard extends React.Component {
-  render () {    
+  render () {
     return (
-      <div className="dashboard-container">
-        <SideNav/>
+      <div className="dashboard-container">        
         <Activities storeItems={ items }/>
       </div>
     )

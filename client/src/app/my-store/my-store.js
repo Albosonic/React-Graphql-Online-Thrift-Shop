@@ -35,21 +35,14 @@ class MyStore extends React.Component {
   }
 
   render() {
-    return (
-      <div className="my-store-page-container">
-        <div className="side-nav-component-container">
-          <SideNav/>
-        </div>
-        <div className="my-store-container">
-          <div className="store-view-container">
-            <div className="hero-upload-container">
-              <img className="hero" src={ this.state.currentHeroImg }></img>
-            </div>
-            <AddItem/>
-            { this.renderStoreItems(items) }
+    return (                  
+        <div className="store-view-container">
+          <div className="hero-upload-container">
+            <img className="hero" src={ this.state.currentHeroImg }></img>
           </div>
-        </div>
-      </div>
+          <AddItem/>
+          { this.renderStoreItems(items) }
+        </div>      
     )
   }
 }
