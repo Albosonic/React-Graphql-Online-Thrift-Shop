@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 
-class MyStoreRoot extends React.Component {
+class MyStoreRoot extends React.Component { //TODO: refactor this at some point
   render() {
     let actionMode = store.getState().actionMode.storeItemActionMode
     if(!actionMode.storeItemActionMode) {

@@ -1,15 +1,15 @@
-.side-nav-container {  
+.side-nav-container {
   display: flex;
   flex-direction: column;
-  width: 200px;
-  height: 100vh;    
+  width: 400px;
+  height: 100vh;
   .nav-link-container {
     .nav-title-container {
       display: flex;
       justify-content: center;
       background-color: aliceblue;
     }
-    .nav-title {    
+    .nav-title {
       text-decoration: underline;
     }
     padding: 0;

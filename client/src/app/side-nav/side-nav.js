@@ -18,6 +18,9 @@ const SideNav = () => (
       <li className="nav-link">
         <Link className="nav-link" to='/login'>Sign out</Link>
       </li>
+      <li className="nav-link">
+        <Link className="nav-link" to='/account-settings'>Account Settings</Link>
+      </li>
     </ul>
   </div>
 )

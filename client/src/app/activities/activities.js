@@ -6,7 +6,7 @@ class Activities extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentHeroImg: null
+      currentHeroImg: this.props.storeItems[0].img
     };
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -31,7 +31,7 @@ class Activities extends React.Component {
   }
 
   render () {
-    const storeItems = this.props.storeItems;
+    const storeItems = this.props.storeItems;    
     return (
       <div className="activities-page-container">
         <div className="activities-title-container">
