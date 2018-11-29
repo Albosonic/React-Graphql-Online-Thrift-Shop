@@ -1,21 +1,18 @@
 import React from 'react';
-import axios from 'axios';
-import store from '../../redux/store';
-import { updateUserInfo } from '../../redux/actions';
+import { Redirect } from 'react-router-dom'
+import { createNewUser } from '../services/user-service';
 
 import './Registration.scss';
-
-const createNewUser = (user) => {  
-  store.dispatch(updateUserInfo(user));
-  axios.post('/users', user).then(resp => console.log(resp));
-}
 
 class RegForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      loginSuccessful: false
+    };
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);    
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.redirectToDashboard = this.redirectToDashboard.bind(this);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -23,13 +20,19 @@ class RegForm extends React.Component {
   }
   handleSubmit(e) {
     e.preventDefault();
-    createNewUser(this.state);
+    createNewUser(this.state).then(resp => {
+      this.setState({loginSuccessful: true})
+    });
+  }
+  redirectToDashboard() {
+    return <Redirect to={'/dashboard'}/>
   }
 
-  render() {    
+  render() {
     return (
       <div className="reg-form-container">
         <form className="reg-form" onSubmit={this.handleSubmit}>
+          {this.state.loginSuccessful && this.redirectToDashboard() }
           {/* <label className="input-field firstname">
             First Name:
             <input onChange={ this.handleChange } type="text" name="firstName" />
