@@ -4,6 +4,10 @@
   height: 700px;
   align-items: center;
   overflow: scroll;
+  border-left: 1px solid gray;
+  .feed-title {
+    text-decoration: underline;
+  }
   .store-container {
     margin: 20px;  
   }

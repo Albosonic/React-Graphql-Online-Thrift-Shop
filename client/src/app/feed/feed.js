@@ -20,7 +20,7 @@ class Feed extends React.Component {
     const { stores } = this.props;
     return (
       <div className="user-feed-container">
-        <h1>Feed</h1>
+        <h1 className="feed-title">Feed</h1>
         { this.renderStoresToFeed(stores) }
       </div>
     )

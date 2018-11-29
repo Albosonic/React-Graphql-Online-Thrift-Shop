@@ -35,6 +35,8 @@ class MyStore extends React.Component {
   render() {
     const { storeData, view } = this.props;
     return (
+      <div className="outer-container">
+        <h1 className="store-title">Store Title</h1>
         <div className="store-view-container">
           <div className="hero-upload-container">
             <img className="hero" src={ this.state.currentHeroImg }></img>
@@ -42,6 +44,7 @@ class MyStore extends React.Component {
           { view === 'my-store' && <AddItem/> }
           { this.renderStoreItems(storeData.storeItems) }
         </div>
+      </div>
     )
   }
 }

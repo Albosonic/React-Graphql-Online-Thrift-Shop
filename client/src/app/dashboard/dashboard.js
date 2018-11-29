@@ -6,12 +6,11 @@ import './dashboard.scss';
 
 class Dashboard extends React.Component {
   render () {
-    return (
-
-      <div className="dashboard-container">        
-        <Activities storeItems={ items }/>        
-        <Feed/>        
-      </div>
+    return (      
+      <div className="dashboard-container">
+        <Activities storeItems={ items }/>
+        <Feed/>
+      </div>      
     )
   }
 }
