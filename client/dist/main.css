@@ -244,6 +244,9 @@ div.main-container {
 .drop-area.highlight {
   border-color: purple; }
 
+.store-container {
+  margin: 20px; }
+
 .header-container {
   background: url(ddba31801a57cde005577afc622b7470.png) repeat 0 0;
   background-size: 6% 110%;

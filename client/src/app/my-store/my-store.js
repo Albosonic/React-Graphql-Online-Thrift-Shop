@@ -2,14 +2,14 @@ import './my-store.scss';
 import React from 'react';
 import StoreItem from '../shared-components/store-item/store-item';
 
-import items from '../mock-items-data';
 import AddItem from '../add-item/add-item';
 
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { //should be a default img here i.e. store hero img.
-      currentHeroImg: items[0].img
+    const { storeData } = this.props;
+    this.state = {
+      currentHeroImg: storeData.storeItems[0].img,
     }
     this.handleItemClick = this.handleItemClick.bind(this);
   }
@@ -18,8 +18,7 @@ class MyStore extends React.Component {
     this.setState({ currentHeroImg: imageData })
   }
 
-  renderStoreItems() {
-    const view = 'my-store';
+  renderStoreItems(items) {
     return items.map((item, i) => {
       return (
         <StoreItem
@@ -27,21 +26,22 @@ class MyStore extends React.Component {
           storeItem={ item }
           handleItemClick={ this.handleItemClick }
           length={ items.length }
-          view={ view }
+          view={ this.props.view }
           index={ i } />
       )
     })
   }
 
   render() {
-    return (                  
+    const { storeData, view } = this.props;
+    return (
         <div className="store-view-container">
           <div className="hero-upload-container">
             <img className="hero" src={ this.state.currentHeroImg }></img>
           </div>
-          <AddItem/>
-          { this.renderStoreItems(items) }
-        </div>      
+          { view === 'my-store' && <AddItem/> }
+          { this.renderStoreItems(storeData.storeItems) }
+        </div>
     )
   }
 }

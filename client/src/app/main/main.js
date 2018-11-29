@@ -6,14 +6,16 @@ import RegForm from '../forms/registration';
 import DashBoard from '../dashboard/dashboard';
 import AccountSettings from '../account-settings/account-settings';
 import MyStoreRoot from '../my-store-root/my-store-root';
+import Feed from '../feed/feed';
 // '/' temporarily takes user to dashboard.
 const Main = () => (
   <div className="main-container">
     <Route exact path="/" render={() => <Redirect to="/dashboard"/>}/>
     <Route exact path='/login' component={ RegForm }/>
     <Route exact path='/dashboard' component={ DashBoard }/>
-    <Route exact path='/account-settings' component={ AccountSettings }/>      
-    <Route exact path='/my-store' component={ MyStoreRoot }/>      
+    <Route exact path='/account-settings' component={ AccountSettings }/>
+    <Route exact path='/my-store' component={ MyStoreRoot }/>
+    <Route exact path='/feed' component={ Feed }/>
   </div>
 )
 

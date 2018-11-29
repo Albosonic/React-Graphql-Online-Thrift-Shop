@@ -1,11 +1,12 @@
 import './my-store-root.scss';
-
 import React from 'react';
-import MyStore from '../my-store/my-store';
-import {withRouter} from "react-router-dom";
 
 import store from '../../redux/store';
 import { connect } from "react-redux";
+
+import MyStore from '../my-store/my-store';
+import stores from '../mock-store-data';
+
 
 import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 
@@ -13,7 +14,7 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
   render() {
     let actionMode = store.getState().actionMode.storeItemActionMode
     if(!actionMode.storeItemActionMode) {
-      return <MyStore/>
+      return <MyStore storeData={ stores[0] }/>
     } else {
       return <StoreItemEditForm/>
     }

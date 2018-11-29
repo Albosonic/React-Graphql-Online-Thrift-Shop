@@ -16,10 +16,13 @@ const SideNav = () => (
         <Link className="nav-link" to='/my-store'>My Store</Link>
       </li>
       <li className="nav-link">
-        <Link className="nav-link" to='/login'>Sign out</Link>
+        <Link className="nav-link" to='/feed'>Feed</Link>
       </li>
       <li className="nav-link">
         <Link className="nav-link" to='/account-settings'>Account Settings</Link>
+      </li>
+      <li className="nav-link">
+        <Link className="nav-link" to='/login'>Sign out</Link>
       </li>
     </ul>
   </div>
