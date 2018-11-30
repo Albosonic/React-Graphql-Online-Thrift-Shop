@@ -251,6 +251,10 @@ div.main-container {
       resize: none;
       width: 250px;
       height: 100px; }
+    .item-edit-form-container .item-edit-form .description-error {
+      color: red;
+      font-size: 13px;
+      margin-top: -5px; }
 
 .drop-area {
   border: 2px dashed #ccc;

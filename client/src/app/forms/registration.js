@@ -1,8 +1,8 @@
+import './Registration.scss';
+
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { createNewUser } from '../services/user-service';
-
-import './Registration.scss';
 
 class RegForm extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class RegForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     createNewUser(this.state).then(resp => {
-      this.setState({loginSuccessful: true})
+      this.setState({loginSuccessful: true});
     });
   }
   redirectToDashboard() {
@@ -32,15 +32,7 @@ class RegForm extends React.Component {
     return (
       <div className="reg-form-container">
         <form className="reg-form" onSubmit={this.handleSubmit}>
-          {this.state.loginSuccessful && this.redirectToDashboard() }
-          {/* <label className="input-field firstname">
-            First Name:
-            <input onChange={ this.handleChange } type="text" name="firstName" />
-          </label>
-          <label className="input-field lastname">
-            Last Name:
-            <input onChange={ this.handleChange } type="text" name="lastName" />
-          </label> */}
+          { this.state.loginSuccessful && this.redirectToDashboard() }
           <label className="input-field email">
             email:
             <input onChange={ this.handleChange } type="text" name="email" />

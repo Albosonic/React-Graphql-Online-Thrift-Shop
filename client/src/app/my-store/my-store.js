@@ -1,16 +1,20 @@
 import './my-store.scss';
 import React from 'react';
 import StoreItem from '../shared-components/store-item/store-item';
-
+import { mockImg5 } from '../shared-components/mock-img-data-5';
 import AddItem from '../add-item/add-item';
+import store from '../../redux/store'; // testing =========
 
-class MyStore extends React.Component {
+class MyStore extends React.Component {  
   constructor(props) {
     super(props);
     const { storeData } = this.props;
     this.state = {
-      currentHeroImg: storeData.storeItems[0].img,
+      currentHeroImg: mockImg5, // default Img
     }
+    // storeData.storeItems[0].img
+    console.log('======>', store.getState()); // testing =========
+
     this.handleItemClick = this.handleItemClick.bind(this);
   }
 
@@ -38,11 +42,12 @@ class MyStore extends React.Component {
       <div className="outer-container">
         <h1 className="store-title">Store Title</h1>
         <div className="store-view-container">
+          { this.state.currentHeroImg && 
           <div className="hero-upload-container">
             <img className="hero" src={ this.state.currentHeroImg }></img>
-          </div>
+          </div>}
           { view === 'my-store' && <AddItem/> }
-          { this.renderStoreItems(storeData.storeItems) }
+          {/* { this.renderStoreItems(storeData.storeItems) } */}
         </div>
       </div>
     )

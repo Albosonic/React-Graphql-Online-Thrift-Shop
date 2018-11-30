@@ -40,10 +40,10 @@ class DropImage extends React.Component {
     let reader = new FileReader()
     reader.readAsDataURL(e.dataTransfer.files[0])
     reader.onloadend = () => {
-      this.setState({imgFileData: [...this.state.imgFileData, reader.result]})
+      this.setState({imgFileData: [...this.state.imgFileData, reader.result]});
       this.setState({showPreviewImg: true});
-      this.setState({hideText: 'hide'})
-      console.log('==>', this.state.imgFileData)
+      this.setState({hideText: 'hide'});
+      this.props.setDroppedImagesToState(this.state.imgFileData); // sets image data to parent.
     }
   }
   renderPreviewImgs(fileData) { // not actually using the reader?
@@ -72,8 +72,7 @@ class DropImage extends React.Component {
         onDragEnter={ this.handleOnDragEnter }
         onDragOver={ this.handleOnDragOver }
         onDragLeave={ this.handleOnDragLeave }
-        onDrop={ this.handleOnDrop }
-        >
+        onDrop={ this.handleOnDrop }>
         { this.state.showPreviewImg && this.renderPreviewImgs(this.state.imgFileData) }
         <input type="file" id="file-elem" multiple accept="image/*"></input>
         <label className={`drop-text ${this.state.hideText}`} htmlFor="fileElem">drag and drop img files here.</label>

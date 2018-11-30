@@ -10,7 +10,7 @@ import SideNav from './side-nav/side-nav';
 
 import './app.scss'
 
-const App = withRouter(({location}) => {  
+const App = withRouter(({location}) => {
   return (
     <div className="app-container">
       <Header></Header>
@@ -18,11 +18,15 @@ const App = withRouter(({location}) => {
         { location.pathname !== '/login' && <SideNav/> }
         <Main></Main>
       </div>
-   </div>     
+   </div>
   )
 });
 
 export default App;
+
+store.subscribe(()=> {
+  localStorage.setItem('appState', JSON.stringify(store.getState()));
+})
 
 render(
   <Provider store={store}>
