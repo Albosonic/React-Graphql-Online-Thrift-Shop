@@ -31,6 +31,7 @@ app.use(bodyParser.json({
 }));
 
 app.post('/users/new', userHandlers.postNewUser);
+app.post('/users/login', userHandlers.loginUser);
 app.post('/item/new', itemHandlers.insertItem);
 app.post('/stores', storesHandlers.updateStores);
 

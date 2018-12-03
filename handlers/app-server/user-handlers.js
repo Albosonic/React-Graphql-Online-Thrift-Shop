@@ -13,5 +13,16 @@ module.exports = {
     }).then(resp => {
       res.status(200).send(resp);
     })
+  },
+  loginUser: (req, res) => {
+    console.log('req body app server:', req.body)
+    request.post({
+      url: 'http://localhost:4000/users/login',
+      form: req.body
+    },
+    (err, response, body)=> {
+      console.log('=====app server', res.body);
+        res.status(200).send(res);
+    })
   }
 }

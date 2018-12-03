@@ -4,7 +4,7 @@ const colors = require('colors');
 
 const usersBackEnd = express();
 
-const handleUsers = require('../handlers/users-server/handle-users-back-end');
+const handleUsers = require('./handlers/handle-users');
 const usersBEPort = process.env.PORT || '4000';
 
 usersBackEnd.use(bodyParser.urlencoded({ extended: false })) 
@@ -16,6 +16,7 @@ module.exports = () => {
   });
 
   usersBackEnd.post('/new/user', handleUsers.insertUser);
+  usersBackEnd.post('/users/login', handleUsers.loginUser);
 
   usersBackEnd.listen(usersBEPort, () => {
     console.log('users back end running...'.underline.cyan);

@@ -19,7 +19,8 @@ export const createNewUser = user => {
   }
 
   return new Promise((resolve, reject) => {
-    axios.post('/users/new', userObj).then(resp => {
+    axios.post('/users/new', userObj)
+    .then(resp => {
       //eventually refactor to use resp to update the redux store.
       if(resp.data.statusCode === 200) {
         console.log('wtf')
@@ -30,5 +31,14 @@ export const createNewUser = user => {
         reject({ registration: false, data: resp.data });
       }
     });
+  })
+}
+
+export const loginUser = userEmail => {
+  return new Promise((resolve, reject) => {
+    axios.post('users/login', {email: userEmail})
+    .then(resp => {
+      console.log('=loginUser=>', resp);
+    })
   })
 }
