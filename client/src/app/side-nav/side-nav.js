@@ -24,7 +24,7 @@ class SideNav extends React.Component {
     }
   }
 
-  handleSignOut() { // this needs to be refactored.
+  handleSignOut() { // TODO: clear entire state on log out.
     localStorage.removeItem('appState');
     this.setState({ signOut: true });    
   }

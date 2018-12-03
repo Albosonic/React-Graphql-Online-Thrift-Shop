@@ -27,7 +27,7 @@ class MyStore extends React.Component {
     this.setState({imgFileData: [...imageData]});
   }
 
-  renderStoreItems(items) {
+  renderStoreItems(items) {    
     if(items.length >  0) {
       return items.map((item, i) => {
         return (
@@ -58,7 +58,9 @@ class MyStore extends React.Component {
 
   render() {
     const { view } = this.props;
-    const { items, storeName } = store.getState().myStore;    
+    const { storeName } = store.getState().myStore;
+    const { items } = store.getState();    
+    
     return (
       <div className="outer-container">
         <h1

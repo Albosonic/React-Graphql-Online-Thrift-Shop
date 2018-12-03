@@ -10,7 +10,6 @@ import Main from './main/main';
 import Header from './header/header';
 import SideNav from './side-nav/side-nav';
 
-
 const App = withRouter(({location}) => {
   return (
     <div className="app-container">

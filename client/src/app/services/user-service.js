@@ -15,13 +15,14 @@ export const createNewUser = user => {
     storeId: userObj.id,
     sizes: null,
     storeName: null,
-    stars: null,
-    item: [],
+    stars: null,    
   }
-  
+
   return new Promise((resolve, reject) => {
-    axios.post('/users', userObj).then(resp => {      
+    axios.post('/users/new', userObj).then(resp => {
+      //eventually refactor to use resp to update the redux store.
       if(resp.data.statusCode === 200) {
+        console.log('wtf')
         store.dispatch(updateUserInfo(userObj));
         store.dispatch(updateStoreData(storeObj));
         resolve({ registration: true, data: resp.data, user: userObj });

@@ -6,7 +6,6 @@ import items from '../mock-items-data';
 import Feed from '../feed/feed';
 
 class Dashboard extends React.Component {
-
   constructor(props) {
     super(props)    
   }

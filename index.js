@@ -30,9 +30,9 @@ app.use(bodyParser.json({
   limit: '5mb'
 }));
 
-app.post('/users', userHandlers.postNewUser);
+app.post('/users/new', userHandlers.postNewUser);
+app.post('/item/new', itemHandlers.insertItem);
 app.post('/stores', storesHandlers.updateStores);
-app.post('/new/item', itemHandlers.insertItem);
 
 // all in app routes defuault to react router...
 app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));

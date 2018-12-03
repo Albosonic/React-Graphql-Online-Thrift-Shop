@@ -1,9 +1,10 @@
 const mongoose = require('mongoose').set('debug', true);
 
-const StoreSchema = new mongoose.Schema({ // the issue is here.
-  storeId: String,  
+const StoreSchema = new mongoose.Schema({
+  storeId: String,
+  sizes: String,
   storeName: String,
-  items: [Object]
+  stars: String,
 });
 
 module.exports = mongoose.model('Store', StoreSchema);

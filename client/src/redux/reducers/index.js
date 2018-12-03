@@ -1,23 +1,22 @@
 import
-{
-  ADD_ARTICLE,
+{  
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
-  UPDATE_STORE_NAME
+  UPDATE_STORE_NAME,
+  UPDATE_ITEMS
 }
 from "../constants/action-types";
 
 const initialState = {
-  articles: [],
   userInfo: [],
   myStore: {
     storeId: null,
     sizes: null,
     storeName: null,
     stars: null,
-    items: [],
   },
+  items: [],
   actionMode: {
     storeItemActionMode: false,
     title: ''
@@ -26,8 +25,6 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_ARTICLE: // this was an example I can get rid of it.
-      return { ...state, articles: [...state.articles, action.payload] }
     case UPDATE_USER_INFO:
       return { ...state, userInfo: [action.payload] }
     case TOGGLE_ACTION_MODE:
@@ -45,13 +42,12 @@ const rootReducer = (state = initialState, action) => {
           }
         }
       }
-    case UPDATE_STORE_DATA:      
+    case UPDATE_STORE_DATA:
       return {
         ...state,
           myStore: {
             ...state.myStore,
-              storeId: action.payload.storeId,
-              items: [...state.myStore.items, ...action.payload.item]
+              storeId: action.payload.storeId
           }
       }
     case UPDATE_STORE_NAME:
@@ -61,6 +57,11 @@ const rootReducer = (state = initialState, action) => {
             ...state.myStore,
             storeName: action.payload
           }
+      }
+    case UPDATE_ITEMS:
+      return {
+        ...state,
+          items: [ ...action.payload ]
       }
     default:
       return state;
