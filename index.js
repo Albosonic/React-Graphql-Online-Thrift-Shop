@@ -1,11 +1,14 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
+const mongoose = require('mongoose').set('debug', true);;
 const request = require('request');
 const bodyParser = require('body-parser');
 
-const runUsersBackEnd = require('./users-back-end');
-const appHandlers = require('./handlers/app-server/user-handlers');
+const runUsersBackEnd = require('./users-server/users-back-end');
+const runStoresBackEnd = require('./stores-server/stores-back-end');
+const userHandlers = require('./handlers/app-server/user-handlers');
+const storesHandlers = require('./handlers/app-server/stores-handlers');
+const itemHandlers = require('./handlers/app-server/item-handlers');
 
 const colors = require('colors');
 
@@ -17,10 +20,20 @@ mongoose.connect('mongodb://localhost:27017/clothes', { useNewUrlParser: true, u
 app.use(express.static('client'));
 app.set('client', path.join(__dirname, 'client'));
 
-app.use(bodyParser.urlencoded({ extended: false })) 
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ 
+  limit: '5mb',
+  parameterLimit: 100000,
+  extended: false,
+}));
 
-app.post('/users', appHandlers.postNewUser);
+app.use(bodyParser.json({
+  limit: '5mb'
+}));
+
+app.post('/users', userHandlers.postNewUser);
+app.post('/stores', storesHandlers.updateStores);
+app.post('/new/item', itemHandlers.insertItem);
+
 // all in app routes defuault to react router...
 app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));
 
@@ -29,3 +42,4 @@ app.listen(port, function() {
 });
 
 runUsersBackEnd();
+runStoresBackEnd();

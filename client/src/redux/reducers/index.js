@@ -3,7 +3,8 @@ import
   ADD_ARTICLE,
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
-  UPDATE_STORE_DATA 
+  UPDATE_STORE_DATA,
+  UPDATE_STORE_NAME
 }
 from "../constants/action-types";
 
@@ -11,9 +12,11 @@ const initialState = {
   articles: [],
   userInfo: [],
   myStore: {
-    id: null,
-    title: null,
-    items: []
+    storeId: null,
+    sizes: null,
+    storeName: null,
+    stars: null,
+    items: [],
   },
   actionMode: {
     storeItemActionMode: false,
@@ -42,11 +45,22 @@ const rootReducer = (state = initialState, action) => {
           }
         }
       }
-    case UPDATE_STORE_DATA:
+    case UPDATE_STORE_DATA:      
       return {
         ...state,
-          ...state.items,
-            items: [...state.items, ...action.payload.items]
+          myStore: {
+            ...state.myStore,
+              storeId: action.payload.storeId,
+              items: [...state.myStore.items, ...action.payload.item]
+          }
+      }
+    case UPDATE_STORE_NAME:
+      return {
+        ...state,
+          myStore: {
+            ...state.myStore,
+            storeName: action.payload
+          }
       }
     default:
       return state;

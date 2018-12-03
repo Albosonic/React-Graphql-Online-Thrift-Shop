@@ -1,25 +1,32 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import './side-nav.scss';
 import store from '../../redux/store';
 
 class SideNav extends React.Component {
   constructor(props) {
-    super(props);
+    super(props);    
     this.state = {
       userStore: store.getState().myStore,
-      storeLinkTitle: this.getStoreLinkTitle()
+      storeLinkTitle: this.getStoreLinkTitle(),
+      signOut: false      
     }
-
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
-  getStoreLinkTitle() {    
-    if(store.getState().myStore) {
+  getStoreLinkTitle() {
+    if(store.getState().myStore.id) {      
       return 'My Store';
     } else {
       return 'Create Store';
     }
+  }
+
+  handleSignOut() { // this needs to be refactored.
+    localStorage.removeItem('appState');
+    this.setState({ signOut: true });
+    return <Redirect to={'/login'}/>
   }
 
   render() {
@@ -41,8 +48,9 @@ class SideNav extends React.Component {
           <li className="nav-link">
             <Link className="nav-link" to='/account-settings'>Account Settings</Link>
           </li>
-          <li className="nav-link">
-            <Link className="nav-link" to='/login'>Sign out</Link>
+          <li className="nav-link" onClick={ this.handleSignOut }>
+            Sign Out
+            { this.state.signOut && this.handleSignOut() } 
           </li>
         </ul>
       </div>

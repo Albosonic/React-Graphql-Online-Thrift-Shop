@@ -18,21 +18,21 @@ class StoreItem extends React.Component {
   }
 
   render() {
-    const { storeItem, handleItemClick, view, index, length } = this.props;
+    const { storeItem, handleItemClick, view, index, length } = this.props;    
     let itemContainerClasses = `item-container ${ (length -1) === index ? 'last-item': '' }`;
     let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;    
     return (
       <div className={ itemContainerClasses }>
         <div className="left-container">
-          <span className={ `thumbnail ${storeItem.type}` }></span>
+          <span className={ `thumbnail ${storeItem.itemSubType}` }></span>
           <div className="item-img-container">
             <p className="img-text">Image</p>
-            <img className="item-img" src={ storeItem.img } onClick={ ()=> handleItemClick(storeItem.img) }/>
+            <img className="item-img" src={ storeItem.imgFileData } onClick={ ()=> handleItemClick(storeItem.imgFileData  ) }/>
           </div>
         </div>
         <div className="description-container">
           <h4 className="description-title">Decription</h4>
-          <p className="description">{ storeItem.description }</p>
+          <p className="description">{ storeItem.itemDescription }</p>
         </div>
         <div className="edit-icon-container">
           { view === 'my-store' && <span className="edit-icon" onClick={ this.handleActionClick }></span> }

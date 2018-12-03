@@ -4,7 +4,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { createNewUser } from '../services/user-service';
 
-class RegForm extends React.Component {
+class RegForm extends React.Component {  
   constructor(props) {
     super(props);
     this.state = {
@@ -12,7 +12,7 @@ class RegForm extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.redirectToDashboard = this.redirectToDashboard.bind(this);
+    this.redirectToDashboard = this.redirectToDashboard.bind(this);    
   }
   handleChange(e) {
     const name = e.target.name;
@@ -21,7 +21,7 @@ class RegForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     createNewUser(this.state).then(resp => {
-      this.setState({loginSuccessful: true});
+      this.setState({loginSuccessful: true});      
     });
   }
   redirectToDashboard() {

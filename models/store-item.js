@@ -1,10 +1,12 @@
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-// const UserSchema = new mongoose.Schema({
-//     type: String,
-//     subType: String,
-//     price: Object,
-//     id: String
-// });
+const StoreItemSchema = new mongoose.Schema({
+    storeId: String,
+    itemType: String,
+    itemSubType: String,
+    imgFileData: String,
+    itemDescription: String,
+    price: String
+});
 
-// module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Storeitem', StoreItemSchema);

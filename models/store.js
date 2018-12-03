@@ -1,23 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose').set('debug', true);
 
-const StoreSchema = new mongoose.Schema({
-  id: String,
+const StoreSchema = new mongoose.Schema({ // the issue is here.
+  storeId: String,  
   storeName: String,
-  stars: Number,
-  storeItems: [
-    {
-      id: String,
-      description: String,
-      size: String,
-      img: String,
-      messages: [
-        {
-          id: String,
-          message: String
-        }
-      ]
-    }
-  ]
+  items: [Object]
 });
 
-module.exports = mongoose.model('User', StoreSchema);
+module.exports = mongoose.model('Store', StoreSchema);

@@ -1,16 +1,20 @@
-import React from 'react';
-import { types, subTypes } from './options';
-
 import './store-item-edit-form.scss';
-import DropImage from '../drop-image/drop-image';
+
+import React from 'react';
 import store from '../../redux/store';
-import { ToggleStoreItemActionMode, updateStoreData } from '../../redux/actions';
+
+import DropImage from '../drop-image/drop-image';
+
+import { types, subTypes } from './options';
+import { ToggleStoreItemActionMode } from '../../redux/actions';
+import { saveNewItem } from '../services/item-service';
 
 class StoreItemEditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       hide: false,
+      price: null,
       itemType: null,
       itemSubType: null,
       imgFileData: null,
@@ -23,6 +27,7 @@ class StoreItemEditForm extends React.Component {
     this.setDroppedImagesToState = this.setDroppedImagesToState.bind(this);
     this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
     this.returnOptionHandler = this.returnOptionHandler.bind(this);
+    this.handlePriceChange = this.handlePriceChange.bind(this);
     this.generateOptions = this.generateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.backToStore = this.backToStore.bind(this);
@@ -71,7 +76,7 @@ class StoreItemEditForm extends React.Component {
     const changeHandler = this.returnOptionHandler(optionType);
     if(optionType === 'secondary') titleFragment = 'sub';
     if(!Array.isArray(options)) {
-      options = subTypes[0][this.transformTypes(options)];
+      options = subTypes[0][this.transformTypes(options)]; // refactor this not to need transform.
     }
     return (
       <label className="item-type-edit-container">
@@ -99,28 +104,21 @@ class StoreItemEditForm extends React.Component {
     return type;
   }
 
-  // descriptionError: false
-  // hide: false
-  // imgFileData: ["data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD…yCQB60JycGmvw49jSAcc+x+tOycAZFKy5zzim5x71Qj//2Q=="]
-  // itemDescription: "hi there mutha fiunke"
-  // itemSubType: "hats"
-  // itemType: "head wear"
-  // showEditDescription: true
-  // showSubTypes: true
-  // title: "Add New Item"
+  handlePriceChange(e) {
+    this.setState({ price: e.target.value });
+  }
 
-  handleSubmit(e) {
-    e.preventDefault();    
-    let storeObj = {
-      id: store.getState().userInfo[0].id,
-      item: [{
-        itemType: this.state.itemType,
-        itemSubType: this.state.itemSubType,
-        itemDescription: this.state.itemDescription,
-        imgFileData: this.state.imgFileData
-      }]
+  handleSubmit(e) { // change this to the add new item component.
+    e.preventDefault();
+    let item = {
+      storeId: store.getState().userInfo[0].id,
+      itemType: this.state.itemType,
+      itemSubType: this.state.itemSubType,
+      imgFileData: this.state.imgFileData,
+      itemDescription: this.state.itemDescription,
+      price: this.state.price,
     }
-    store.dispatch(updateStoreData(storeObj));
+    saveNewItem(item);
   }
 
   render() {
@@ -137,14 +135,23 @@ class StoreItemEditForm extends React.Component {
           {
             this.state.showEditDescription &&
             <label className="description-edit-container">
-                Enter a brief description:
-                <textarea
-                  className="description"
-                  type="text"
-                  placeholder="please enter a brief description"
-                  onChange={ this.handleDescriptionChange }/>
+              Enter a brief description:
+              <textarea
+                className="description"
+                type="text"
+                placeholder="please enter a brief description"
+                onChange={ this.handleDescriptionChange }/>
             </label>
           }
+            <label className="price-container">
+              Asking Price:
+              <input 
+                className="price" 
+                type="text" 
+                name="price"
+                placeholder="0.00"
+                onChange={ this.handlePriceChange }/>
+            </label>
           {
             this.state.descriptionError &&
             <p className='description-error'>description must be less than 150 characters</p>

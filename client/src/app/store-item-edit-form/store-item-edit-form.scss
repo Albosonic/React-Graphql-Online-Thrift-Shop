@@ -63,5 +63,21 @@
       font-size: 13px;
       margin-top: -5px;
     }
+    .price-container {      
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      margin: 10px;
+      align-items: center;
+      .price {
+        margin: 10px;
+        border: 1px solid gray;
+        border-radius: 3px;
+        width: 24px;
+      }
+      .price:focus {
+        outline: none;
+      }
+    }
   }
 }

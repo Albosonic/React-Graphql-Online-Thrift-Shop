@@ -3,7 +3,8 @@ import
   ADD_ARTICLE,
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
-  UPDATE_STORE_DATA
+  UPDATE_STORE_DATA,
+  UPDATE_STORE_NAME
 }
 from "../constants/action-types";
 
@@ -21,5 +22,9 @@ export const ToggleStoreItemActionMode = actionMode => (
 
 export const updateStoreData = storeData => (
   { type: UPDATE_STORE_DATA, payload: storeData }
+)
+
+export const updateStoreName = storeName => (
+  { type: UPDATE_STORE_NAME, payload: storeName }
 )
 
