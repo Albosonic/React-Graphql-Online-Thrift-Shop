@@ -20,8 +20,7 @@ export const createNewUser = user => {
   }
   
   return new Promise((resolve, reject) => {
-    axios.post('/users', userObj).then(resp => {
-      console.log('whoo', resp)
+    axios.post('/users', userObj).then(resp => {      
       if(resp.data.statusCode === 200) {
         store.dispatch(updateUserInfo(userObj));
         store.dispatch(updateStoreData(storeObj));

@@ -16,7 +16,7 @@ const App = withRouter(({location}) => {
     <div className="app-container">
       <Header></Header>
       <div className="body-container">
-        { location.pathname !== '/login' && <SideNav/> }
+        { location.pathname !== '/login' && <SideNav loc={ location }/> }
         <Main></Main>
       </div>
    </div>

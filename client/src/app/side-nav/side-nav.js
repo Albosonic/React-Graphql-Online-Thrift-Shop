@@ -13,6 +13,7 @@ class SideNav extends React.Component {
       signOut: false      
     }
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.redirect = this.redirect.bind(this);
   }
 
   getStoreLinkTitle() {
@@ -25,7 +26,10 @@ class SideNav extends React.Component {
 
   handleSignOut() { // this needs to be refactored.
     localStorage.removeItem('appState');
-    this.setState({ signOut: true });
+    this.setState({ signOut: true });    
+  }
+
+  redirect() {
     return <Redirect to={'/login'}/>
   }
 
@@ -50,7 +54,7 @@ class SideNav extends React.Component {
           </li>
           <li className="nav-link" onClick={ this.handleSignOut }>
             Sign Out
-            { this.state.signOut && this.handleSignOut() } 
+            { this.state.signOut && this.redirect() } 
           </li>
         </ul>
       </div>
