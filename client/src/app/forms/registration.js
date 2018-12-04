@@ -24,10 +24,12 @@ class RegForm extends React.Component {
     e.preventDefault();
     if(this.state.entryMode === 'Register') {
       createNewUser(this.state).then(resp => {
-        this.setState({loginSuccessful: true});      
+        this.setState({loginSuccessful: resp.registration });      
       });      
     } else {
-      loginUser(this.state.email)
+      loginUser(this.state.email).then(resp=> {
+        this.setState({loginSuccessful: resp.login });
+      })
     }
   }
   redirectToDashboard() {

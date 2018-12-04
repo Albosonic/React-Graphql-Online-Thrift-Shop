@@ -37,10 +37,14 @@ export const loginUser = userEmail => {
     axios.post('users/login', {email: userEmail})
     .then(resp => {
       let data = resp.data;
-      store.dispatch(updateStoreData(data[0]));
-      store.dispatch(updateStoreItems(data[1]));
-      store.dispatch(updateUserInfo(data[2]));      
-      resolve(resp);
+      if(resp.status === 200) {
+        store.dispatch(updateStoreData(data[0]));
+        store.dispatch(updateStoreItems(data[1]));
+        store.dispatch(updateUserInfo(data[2]));      
+        resolve({ login: true, data: resp.data });
+      } else {
+        reject({ login: false, data: resp.data });
+      }
     })
   })
 }
