@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateUserInfo, updateStoreData } from '../../redux/actions';
+import { updateUserInfo, updateStoreData, updateStoreItems } from '../../redux/actions';
 
 export const createNewUser = user => {
   var userObj = {
@@ -20,10 +20,8 @@ export const createNewUser = user => {
 
   return new Promise((resolve, reject) => {
     axios.post('/users/new', userObj)
-    .then(resp => {
-      //eventually refactor to use resp to update the redux store.
-      if(resp.data.statusCode === 200) {
-        console.log('wtf')
+    .then(resp => {      
+      if(resp.data.statusCode === 200) {        
         store.dispatch(updateUserInfo(userObj));
         store.dispatch(updateStoreData(storeObj));
         resolve({ registration: true, data: resp.data, user: userObj });
@@ -38,7 +36,11 @@ export const loginUser = userEmail => {
   return new Promise((resolve, reject) => {
     axios.post('users/login', {email: userEmail})
     .then(resp => {
-      console.log('=loginUser=>', resp);
+      let data = resp.data;
+      store.dispatch(updateStoreData(data[0]));
+      store.dispatch(updateStoreItems(data[1]));
+      store.dispatch(updateUserInfo(data[2]));      
+      resolve(resp);
     })
   })
 }
