@@ -14,15 +14,15 @@ module.exports = {
       res.status(200).send(resp);
     })
   },
-  loginUser: (req, res) => {
-    console.log('req body app server:', req.body)
+  loginUser: (req, res) => {    
     request.post({
       url: 'http://localhost:4000/users/login',
       form: req.body
     },
     (err, response, body)=> {
-      console.log('=====app server', res.body);
-        res.status(200).send(res);
+      console.log('=====app server', body);
+      if(err) return console.log(err);
+        res.status(200).send(body);
     })
   }
 }

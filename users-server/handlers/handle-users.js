@@ -4,17 +4,15 @@ const Store = require('../../models/store');
 
 module.exports = {
   insertUser: (req, res) => {
-    console.log('body=>', req.body);
-    const store = new Store({
+    const store = new Store({ // create store with matching ID to user ID.
       storeId: req.body.id,
-      sizes: 'fake size',
-      storeName: 'fake name',
-      stars: 'fake stars',
-    })
-    // check first if user exists fo that we are not duplicating user.
-    // if user exists send an error informing the client that user exists.
+      sizes: '',
+      storeName: '',
+      stars: '',
+    });
     var user = new User(req.body);
     User.findOne({'email': user.email}, 'firstName', (err, resp) => {
+      if(err) return console.log(err);
       if(resp === null) {
         user.save(err => {
           if(err) {
@@ -36,13 +34,13 @@ module.exports = {
     User.findOne(
       {'email': req.body.email},
       ['email','password','firstName', 'id'],
-      (err, resp) => {
-        if(resp === null) return res.status(404).send('user not found');
-        
-        // console.log('from mongo==>', resp)
-        module.exports.fetchUserStoreAndItems(resp.id)
-        .then(resp => {
-          console.log('promise.all array O P\'s===>', resp);
+      (err, userFromDB) => {
+        if(err) return console.log(err);
+        if(userFromDB === null) return res.status(404).send('user not found');
+        module.exports.fetchUserStoreAndItems(userFromDB.id)
+        .then(storeAndItems => {
+          storeAndItems.push(userFromDB);
+          res.status(200).send(storeAndItems);
         })
       }
     )
@@ -50,8 +48,8 @@ module.exports = {
   fetchUserStoreAndItems: (userId) => {
     return Promise.all(
       [
-        module.exports.fetchUserStore(userId),
-        module.exports.fetchUserItems(userId)
+        module.exports.fetchUserStore(userId).catch(err=>console.log(err)),
+        module.exports.fetchUserItems(userId).catch(err=>console.log(err))
       ]
     )
   },
@@ -59,7 +57,7 @@ module.exports = {
     return new Promise((resolve, reject) => {
       Store.findOne(
         {'storeId': userId},
-        ['sizes','storeName', 'stars'],
+        ['storeId','sizes','storeName', 'stars'],
         (err, resp) => {
           if(resp === null) {
             reject('user not found');
