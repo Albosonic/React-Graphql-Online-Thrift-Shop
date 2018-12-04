@@ -204,7 +204,8 @@ div.main-container {
     border-bottom: 1px solid black;
     margin: 10px;
     width: 300px;
-    height: 30px; }
+    height: 30px;
+    font-size: 22px; }
   .outer-container .store-name-edit:focus {
     outline: none; }
   .outer-container .store-name-edit::-webkit-input-placeholder {

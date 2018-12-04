@@ -4,16 +4,17 @@ import StoreItem from '../shared-components/store-item/store-item';
 import { mockImg5 } from '../shared-components/mock-img-data-5';
 import AddItem from '../add-item/add-item';
 import store from '../../redux/store';
-import { updateStoreName } from '../../redux/actions';
+import { persistStoreName } from '../services/store-service';
 
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       defaultStoreName: 'Add Your Store Name',
+      storeName: store.getState().myStore.storeName,
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
-      imgFileData: [],
+      imgFileData: [],      
       editStoreName: false,
       items: store.getState().items
     }
@@ -21,10 +22,6 @@ class MyStore extends React.Component {
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
     this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    // this.listenForItemChanges();
   }
 
   handleItemClick(imageData) {
@@ -57,24 +54,20 @@ class MyStore extends React.Component {
   }
   handleStoreNameSubmit(e) {
     e.preventDefault();
-    store.dispatch(updateStoreName(e.target.storename.value)); // nedds its own service function.
+    // store.dispatch(updateStoreName(e.target.storename.value)); // nedds its own service function.
+    persistStoreName({ storeName: this.state.storeName, storeId: store.getState().myStore.storeId })
     this.setState({ editStoreName: false });
-  }
-  listenForItemChanges() {
-    store.subscribe(()=>{
-      this.setState({ items: [...store.getState().items] })
-    })
   }
 
   render() {
     const { view } = this.props;
-    const { storeName } = store.getState().myStore;    
+    
     return (
       <div className="outer-container">
         <h1
           onClick={ this.handleStoreNameClick }
           className={`store-title ${ view }`}>
-          { storeName || this.state.defaultStoreName }
+          { this.state.storeName || this.state.defaultStoreName }
         </h1>
         { this.state.editStoreName &&
         <form onSubmit={ this.handleStoreNameSubmit }>

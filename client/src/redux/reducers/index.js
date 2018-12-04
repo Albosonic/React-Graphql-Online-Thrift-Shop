@@ -58,8 +58,7 @@ const rootReducer = (state = initialState, action) => {
             storeName: action.payload
           }
       }
-    case UPDATE_ITEMS:
-      console.log('payload:', action.payload)
+    case UPDATE_ITEMS: // might need a serparate SET_ITEMS for login.      
       return {
         ...state,
           items: [ ...state.items, action.payload ]

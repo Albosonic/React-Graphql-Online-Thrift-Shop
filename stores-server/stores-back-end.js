@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const colors = require('colors');
 
-const handleStores = require('../handlers/stores-server/handle-stores-back-end');
+const handleStores = require('./handlers/stores-handlers');
 const handleItems = require('../handlers/stores-server/handle-items');
 
 const storesBackEnd = express();
@@ -17,7 +17,7 @@ module.exports = () => {
     res.send('hello world')
   });
 
-  storesBackEnd.post('/update/stores', handleStores.insertStore);
+  storesBackEnd.post('/stores/update/name', handleStores.updateStoreName);
   storesBackEnd.post('/new/item', handleItems.insertNewItem);
 
   storesBackEnd.listen(storesBEPort, () => {

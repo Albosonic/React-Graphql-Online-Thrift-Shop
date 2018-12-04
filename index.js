@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const runUsersBackEnd = require('./users-server/users-back-end');
 const runStoresBackEnd = require('./stores-server/stores-back-end');
 const userHandlers = require('./handlers/app-server/user-handlers');
-const storesHandlers = require('./handlers/app-server/stores-handlers');
+const storesHandlers = require('./handlers/app-server/store-handlers');
 const itemHandlers = require('./handlers/app-server/item-handlers');
 
 const colors = require('colors');
@@ -33,7 +33,7 @@ app.use(bodyParser.json({
 app.post('/users/new', userHandlers.postNewUser);
 app.post('/users/login', userHandlers.loginUser);
 app.post('/item/new', itemHandlers.insertItem);
-app.post('/stores', storesHandlers.updateStores);
+app.post('/stores/update/name', storesHandlers.updateStoreName);
 
 // all in app routes defuault to react router...
 app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));
