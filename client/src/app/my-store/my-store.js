@@ -14,7 +14,8 @@ class MyStore extends React.Component {
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
       imgFileData: [],
-      editStoreName: false
+      editStoreName: false,
+      items: store.getState().items
     }
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
@@ -22,12 +23,16 @@ class MyStore extends React.Component {
     this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
   }
 
+  componentDidMount() {
+    // this.listenForItemChanges();
+  }
+
   handleItemClick(imageData) {
     this.setState({ currentHeroImg: imageData[0] });
     this.setState({imgFileData: [...imageData]});
   }
 
-  renderStoreItems(items) {    
+  renderStoreItems(items) {
     if(items.length >  0) {
       return items.map((item, i) => {
         return (
@@ -55,12 +60,15 @@ class MyStore extends React.Component {
     store.dispatch(updateStoreName(e.target.storename.value)); // nedds its own service function.
     this.setState({ editStoreName: false });
   }
+  listenForItemChanges() {
+    store.subscribe(()=>{
+      this.setState({ items: [...store.getState().items] })
+    })
+  }
 
   render() {
     const { view } = this.props;
-    const { storeName } = store.getState().myStore;
-    const { items } = store.getState();    
-    
+    const { storeName } = store.getState().myStore;    
     return (
       <div className="outer-container">
         <h1
@@ -84,7 +92,7 @@ class MyStore extends React.Component {
             <img className="hero" src={ this.state.currentHeroImg }></img>
           </div>}
           { view === 'my-store' && <AddItem/> }
-          { this.renderStoreItems(items) }
+          { this.renderStoreItems(this.state.items) }
         </div>
       </div>
     )

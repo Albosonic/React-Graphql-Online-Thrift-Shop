@@ -59,9 +59,10 @@ const rootReducer = (state = initialState, action) => {
           }
       }
     case UPDATE_ITEMS:
+      console.log('payload:', action.payload)
       return {
         ...state,
-          items: [ ...action.payload ]
+          items: [ ...state.items, action.payload ]
       }
     default:
       return state;
