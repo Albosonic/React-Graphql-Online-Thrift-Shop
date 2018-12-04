@@ -1,5 +1,4 @@
 const Store = require('../../models/store');
-const request = require('request');
 
 module.exports = {
   updateStoreName: (req, res) => {    
@@ -13,7 +12,5 @@ module.exports = {
         res.status(200).send(doc);
       }
     )
-    
-    
   }
 }

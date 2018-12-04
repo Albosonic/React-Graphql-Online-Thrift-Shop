@@ -2,11 +2,10 @@ import axios from 'axios';
 import store from '../../redux/store';
 import { updateStoreName } from '../../redux/actions';
 
-export const persistStoreName = nameAndId => {  
-  console.log('==whoo', nameAndId)
+export const persistStoreName = nameAndId => {
   return new Promise((resolve, reject) => {
     axios.post('/stores/update/name', nameAndId)
-    .then(resp => {      
+    .then(resp => {
       if(resp.status === 200) {
         store.dispatch(updateStoreName(resp.data.storeName));
         resolve({ saved: true, data: resp.data });

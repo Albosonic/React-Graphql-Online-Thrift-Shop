@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose').set('debug', true);;
+const mongoose = require('mongoose').set('debug', true);
 const request = require('request');
 const bodyParser = require('body-parser');
 
