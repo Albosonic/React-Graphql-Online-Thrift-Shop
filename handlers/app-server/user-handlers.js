@@ -19,8 +19,7 @@ module.exports = {
       url: 'http://localhost:4000/users/login',
       form: req.body
     },
-    (err, response, body)=> {
-      console.log('=====app server', body);
+    (err, response, body)=> {      
       if(err) return console.log(err);
         res.status(200).send(body);
     })
