@@ -6,8 +6,18 @@ import { fetchFeed } from '../services/feed-service';
 
 class Feed extends React.Component {
   constructor(props) {
-    super(props);    
-    this.renderStoresToFeed = this.renderStoresToFeed.bind(this);        
+    super(props);
+    this.renderStoresToFeed = this.renderStoresToFeed.bind(this);
+    this.state = {
+
+    }
+    this.setFeedToState();
+  }
+
+  setFeedToState() {
+    fetchFeed().then(feed => {
+      console.log(feed)
+    })
   }
 
   renderStoresToFeed() {
@@ -15,7 +25,7 @@ class Feed extends React.Component {
     return stores.map((store, i) => {
       return (
         <li className="store-container" key={ i }>
-          <MyStore 
+          <MyStore
             className="store-component"
             storeData={ store }
             view={ view }/>
