@@ -26,7 +26,7 @@ class MyStore extends React.Component {
 
   handleItemClick(imageData) {
     this.setState({ currentHeroImg: imageData[0] });
-    this.setState({imgFileData: [...imageData]});
+    this.setState({ imgFileData: [...imageData] });
   }
 
   renderStoreItems(items) {

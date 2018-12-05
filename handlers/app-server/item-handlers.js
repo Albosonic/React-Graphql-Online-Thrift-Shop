@@ -1,20 +1,25 @@
 const request = require('request');
+const bodyParser = require('body-parser');
 
 module.exports = {
-  insertItem: (req, res) => {
-    console.log('req.body.items ==>', req.body);
-    new Promise((resolve, reject) => {
-      request.post({url:'http://localhost:5000/new/item', form: req.body},(err,httpResponse,body) => {
-        if(err) {
-          reject(err);
-        } else {
-          console.log('say what!??', httpResponse.body);
-          resolve(httpResponse);
+  insertItem: (req, res) => {    
+    let body = req.body;
+    console.log('linke', body.imgFileData)
+    request.post(
+      {
+        url:'http://localhost:5000/new/item',
+        json: {
+          storeId: body.storeId,
+          itemType: body.itemType,
+          itemSubType: body.itemSubType,
+          imgFileData: body.imgFileData,
+          itemDescription: body.itemDescription,
+          price: body.price
         }
-      });
-    })
-    .then(resp => {
-      res.status(200).send(resp);
-    })
+      },
+      (err,httpResponse,body) => {
+      if(err) return err
+      res.status(200).send(body);
+    });    
   }
 }

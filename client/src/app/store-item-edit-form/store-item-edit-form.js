@@ -68,7 +68,9 @@ class StoreItemEditForm extends React.Component {
   }
 
   setDroppedImagesToState(imageData) {
-    this.setState({imgFileData: [...imageData]})
+    console.log('iageData :', imageData);
+    this.setState({imgFileData: [...imageData]});
+    console.log('===>', this.state)
   }
 
   generateOptions(options, optionType) {

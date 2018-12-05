@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose').set('debug', true);
+const mongoose = require('mongoose');
 const request = require('request');
 const bodyParser = require('body-parser');
 
@@ -15,7 +15,7 @@ const colors = require('colors');
 const app = express();
 const port = process.env.PORT || '3000';
 
-mongoose.connect('mongodb://localhost:27017/clothes', { useNewUrlParser: true, useCreateIndex: true, });
+mongoose.connect('mongodb://localhost:27017/newclothes', { useNewUrlParser: true, useCreateIndex: true, });
 
 app.use(express.static('client'));
 app.set('client', path.join(__dirname, 'client'));

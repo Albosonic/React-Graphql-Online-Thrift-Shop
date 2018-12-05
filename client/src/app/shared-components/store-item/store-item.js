@@ -20,7 +20,7 @@ class StoreItem extends React.Component {
   render() {
     const { storeItem, handleItemClick, view, index, length } = this.props;    
     let itemContainerClasses = `item-container ${ (length -1) === index ? 'last-item': '' }`;
-    let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;    
+    let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;
     return (
       <div className={ itemContainerClasses }>
         <div className="left-container">

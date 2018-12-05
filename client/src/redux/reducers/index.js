@@ -1,5 +1,5 @@
 import
-{  
+{
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
@@ -58,7 +58,8 @@ const rootReducer = (state = initialState, action) => {
             storeName: action.payload
           }
       }
-    case UPDATE_ITEMS: // might need a serparate SET_ITEMS for login.      
+    case UPDATE_ITEMS: // might need a serparate SET_ITEMS for login.
+      console.log('payload', action.payload)
       return {
         ...state,
           items: [ ...state.items, action.payload ]

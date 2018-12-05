@@ -3,14 +3,21 @@ const bodyParser = require('body-parser');
 const colors = require('colors');
 
 const handleStores = require('./handlers/stores-handlers');
-const handleItems = require('../handlers/stores-server/handle-items');
+const handleItems = require('./handlers/handle-items');
 
 const storesBackEnd = express();
 
 const storesBEPort = process.env.PORT || '5000';
 
-storesBackEnd.use(bodyParser.urlencoded({ extended: false })) 
-storesBackEnd.use(bodyParser.json())
+storesBackEnd.use(bodyParser.urlencoded({ 
+  limit: '5mb',
+  parameterLimit: 100000,
+  extended: false,
+}));
+
+storesBackEnd.use(bodyParser.json({
+  limit: '5mb'
+}));
 
 module.exports = () => {
   storesBackEnd.get('/', (req, res) => {

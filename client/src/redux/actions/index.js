@@ -25,7 +25,9 @@ export const updateStoreName = storeName => (
   { type: UPDATE_STORE_NAME, payload: storeName }
 )
 
-export const updateStoreItems = storeItems => (
-  { type: UPDATE_ITEMS, payload: storeItems }
-)
+export const updateStoreItems = storeItems => {
+  console.log('storeItems', storeItems)
+  return { type: UPDATE_ITEMS, payload: storeItems }
+}
+
 
