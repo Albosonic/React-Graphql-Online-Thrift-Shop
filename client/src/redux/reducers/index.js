@@ -4,7 +4,8 @@ import
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
-  UPDATE_ITEMS
+  UPDATE_ITEMS,
+  CLEAR_STATE
 }
 from "../constants/action-types";
 
@@ -25,6 +26,8 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_STATE:
+      return { ...initialState }
     case UPDATE_USER_INFO:
       return { ...state, userInfo: [action.payload] }
     case TOGGLE_ACTION_MODE:
@@ -59,11 +62,10 @@ const rootReducer = (state = initialState, action) => {
           }
       }
     case UPDATE_ITEMS: // might need a serparate SET_ITEMS for login.
-      console.log('payload', action.payload)
       return {
         ...state,
           items: [ ...state.items, action.payload ]
-      }
+      }    
     default:
       return state;
   }

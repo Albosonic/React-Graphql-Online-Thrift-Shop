@@ -35,6 +35,8 @@ app.post('/users/login', userHandlers.loginUser);
 app.post('/item/new', itemHandlers.insertItem);
 app.post('/stores/update/name', storesHandlers.updateStoreName);
 
+app.get('/stores/feed', storesHandlers.fetchAllStores);
+
 // all in app routes defuault to react router...
 app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));
 

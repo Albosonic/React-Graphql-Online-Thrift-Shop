@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 import './side-nav.scss';
 import store from '../../redux/store';
+import { clearState } from '../../redux/actions';
 
 class SideNav extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class SideNav extends React.Component {
       signOut: false      
     }
     this.handleSignOut = this.handleSignOut.bind(this);
-    this.redirect = this.redirect.bind(this);
+    this.redirect = this.redirect.bind(this);    
   }
 
   getStoreLinkTitle() {
@@ -24,12 +25,12 @@ class SideNav extends React.Component {
     }
   }
 
-  handleSignOut() { // TODO: clear entire state on log out.
-    localStorage.removeItem('appState');
+  handleSignOut() {
+    store.dispatch(clearState());    
     this.setState({ signOut: true });    
   }
 
-  redirect() {
+  redirect() {    
     return <Redirect to={'/login'}/>
   }
 

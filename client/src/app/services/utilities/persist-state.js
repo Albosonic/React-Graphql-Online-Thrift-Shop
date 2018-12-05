@@ -1,9 +1,8 @@
-import store from '../../../redux/store';
-
 export const loadState = () => {
   try {
-    let serializedState = localStorage.getItem('appState');
+    const serializedState = localStorage.getItem('appState');
     if(localStorage.getItem('appState') === null) {
+      console.log('here ===')
       return undefined;
     }
     return JSON.parse(serializedState);
@@ -12,8 +11,11 @@ export const loadState = () => {
   }
 }
 
-export const persisitState = () => {
-  store.subscribe(()=> {  
-    localStorage.setItem('appState', JSON.stringify(store.getState()));
-  })
+export const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('appState', serializedState);
+  } catch(err) {
+    console.log('save state',err);
+  }
 }

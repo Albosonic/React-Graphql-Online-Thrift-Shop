@@ -1,11 +1,11 @@
 import
-{
-  ADD_ARTICLE,
+{  
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
-  UPDATE_ITEMS
+  UPDATE_ITEMS,
+  CLEAR_STATE
 }
 from "../constants/action-types";
 
@@ -23,11 +23,15 @@ export const updateStoreData = storeData => (
 
 export const updateStoreName = storeName => (
   { type: UPDATE_STORE_NAME, payload: storeName }
-)
+);
 
-export const updateStoreItems = storeItems => {
-  console.log('storeItems', storeItems)
-  return { type: UPDATE_ITEMS, payload: storeItems }
+export const updateStoreItems = storeItems => (
+  { type: UPDATE_ITEMS, payload: storeItems }
+);
+
+export const clearState = clearStateObj => {
+  console.log('wtf ==')  
+  return { type: CLEAR_STATE, payload: clearStateObj }
 }
 
-
+ 

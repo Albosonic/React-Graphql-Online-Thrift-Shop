@@ -1,7 +1,14 @@
 import { createStore } from "redux";
-import { loadState } from "../../app/services/utilities/persist-state";
+import { loadState, saveState } from "../../app/services/utilities/persist-state";
+
+import throttle from 'lodash/throttle';
 import rootReducer from "../reducers/index";
 
-const store = createStore(rootReducer, loadState());
+const persistState = loadState();
+const store = createStore(rootReducer, persistState);
+
+store.subscribe(throttle(() => {
+    saveState(store.getState());
+  }), 1000)
 
 export default store;

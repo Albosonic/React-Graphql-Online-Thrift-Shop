@@ -53,9 +53,8 @@ class MyStore extends React.Component {
     this.setState({ storeName: e.target.value });
   }
   handleStoreNameSubmit(e) {
-    e.preventDefault();
-    // store.dispatch(updateStoreName(e.target.storename.value)); // nedds its own service function.
-    persistStoreName({ storeName: this.state.storeName, storeId: store.getState().myStore.storeId })
+    e.preventDefault();    
+    persistStoreName({ storeName: this.state.storeName, storeId: store.getState().myStore.storeId });
     this.setState({ editStoreName: false });
   }
 

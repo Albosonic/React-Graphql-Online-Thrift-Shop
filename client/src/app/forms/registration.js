@@ -3,8 +3,9 @@ import './Registration.scss';
 import React from 'react';
 import { Redirect } from 'react-router-dom'
 import { createNewUser, loginUser } from '../services/user-service';
+import store from '../../redux/store';
 
-class RegForm extends React.Component {  
+class RegForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +15,7 @@ class RegForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.heandleloginRegViews = this.heandleloginRegViews.bind(this);
-    this.redirectToDashboard = this.redirectToDashboard.bind(this);    
+    this.redirectToDashboard = this.redirectToDashboard.bind(this);
   }
   handleChange(e) {
     const name = e.target.name;
@@ -24,8 +25,8 @@ class RegForm extends React.Component {
     e.preventDefault();
     if(this.state.entryMode === 'Register') {
       createNewUser(this.state).then(resp => {
-        this.setState({loginSuccessful: resp.registration });      
-      });      
+        this.setState({loginSuccessful: resp.registration });
+      });
     } else {
       loginUser(this.state.email).then(resp=> {
         this.setState({loginSuccessful: resp.login });
@@ -36,7 +37,7 @@ class RegForm extends React.Component {
     return <Redirect to={'/dashboard'}/>
   }
 
-  heandleloginRegViews() {    
+  heandleloginRegViews() {
     if(this.state.entryMode === 'Register') {
       this.setState({ entryMode: 'Login' })
     } else {
@@ -46,15 +47,15 @@ class RegForm extends React.Component {
 
   render() {
     return (
-      <div className="reg-form-container">        
+      <div className="reg-form-container">
         <form className="reg-form" onSubmit={this.handleSubmit}>
-        { 
+        {
           this.state.entryMode === 'Register' &&
-          <p className="login-reg-button" onClick={ this.heandleloginRegViews }>Login</p> 
+          <p className="login-reg-button" onClick={ this.heandleloginRegViews }>Login</p>
         }
         {
-          this.state.entryMode === 'Login' && 
-          <p className="login-reg-button" onClick={ this.heandleloginRegViews }>Register</p> 
+          this.state.entryMode === 'Login' &&
+          <p className="login-reg-button" onClick={ this.heandleloginRegViews }>Register</p>
         }
           <h1>{ this.state.entryMode }</h1>
           { this.state.loginSuccessful && this.redirectToDashboard() }
