@@ -11,10 +11,11 @@ class Dashboard extends React.Component {
   }
 
   render () {
+    const feedView = 'side-bar';
     return (
       <div className="dashboard-container">
         <Activities storeItems={ items }/>
-        <Feed/>
+        <Feed feedView={ feedView }/>
       </div>
     )
   }
