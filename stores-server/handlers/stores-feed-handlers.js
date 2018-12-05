@@ -10,7 +10,7 @@ module.exports = {
           Item.find(
             {'storeId': store.storeId},
             (err, items) => {
-              if(err) return reject(err);
+              if(err) return reject(err);              
               resolve({userStore: store,  storeItems: items});
             }
           )

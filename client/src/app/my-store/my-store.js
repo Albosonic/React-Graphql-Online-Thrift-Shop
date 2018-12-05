@@ -11,13 +11,14 @@ class MyStore extends React.Component {
     super(props);
     this.state = {
       defaultStoreName: 'Add Your Store Name',
-      storeName: store.getState().myStore.storeName,
+      storeName: store.getState().myStore.storeName, //TODO: fix this and have a default.
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
       imgFileData: [],      
       editStoreName: false,
-      items: store.getState().items
+      items: this.props.storeData.storeItems
     }
+    console.log(this.props.storeData)
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);

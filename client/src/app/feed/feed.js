@@ -9,25 +9,32 @@ class Feed extends React.Component {
     super(props);
     this.renderStoresToFeed = this.renderStoresToFeed.bind(this);
     this.state = {
-
+      feed: null,
+      feedIn: false,
     }
     this.setFeedToState();
   }
 
   setFeedToState() {
-    fetchFeed().then(feed => {
-      console.log(feed)
+    fetchFeed().then(feedObj => {
+      this.setState({
+        feed: feedObj.data,
+        feedIn: true
+      })
     })
   }
 
-  renderStoresToFeed() {
+  renderStoresToFeed(feed) {
     const view = 'feed';
-    return stores.map((store, i) => {
+    return feed.map((storeObj, i) => {
+      storeObj.userStore.storeItems = storeObj.storeItems;
+      // delete storeObj.storeItems;
+      console.log(storeObj.userStore)
       return (
         <li className="store-container" key={ i }>
           <MyStore
             className="store-component"
-            storeData={ store }
+            storeData={ storeObj.userStore }
             view={ view }/>
         </li>
       );
@@ -39,7 +46,7 @@ class Feed extends React.Component {
     return (
       <div className="user-feed-container">
         <h1 className="feed-title">Feed</h1>
-        { this.renderStoresToFeed(stores) }
+        { this.state.feedIn && this.renderStoresToFeed(this.state.feed) }
       </div>
     )
   }
