@@ -9,3 +9,5 @@ Online thrift shop. (buy sell trade)
   * add validation for email and password
 
   * encrypt password over the network
+
+- persist store name to all store components 

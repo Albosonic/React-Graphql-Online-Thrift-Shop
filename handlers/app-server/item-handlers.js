@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 
 module.exports = {
   insertItem: (req, res) => {    
-    let body = req.body;
-    console.log('linke', body.imgFileData)
+    let body = req.body;    
     request.post(
       {
         url:'http://localhost:5000/new/item',
