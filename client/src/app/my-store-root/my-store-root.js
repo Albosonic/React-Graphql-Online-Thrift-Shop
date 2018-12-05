@@ -13,12 +13,16 @@ import Feed from '../feed/feed';
 
 class MyStoreRoot extends React.Component { //TODO: refactor this at some point
   render() {
-    let actionMode = store.getState().actionMode.storeItemActionMode
+
+    const { actionMode, storeData, storeItems } = this.props;    
     const view = 'my-store';
     if(!actionMode.storeItemActionMode) {//TODO, this will need to come from the redux store.
       return (
         <div className="my-store-page-container">
-          <MyStore storeData={ stores[0] } view={ view }/>
+          <MyStore
+            storeData={ storeData }
+            storeItems={ storeItems }            
+            view={ view }/>
           <Feed/>
         </div>
       )
@@ -28,6 +32,10 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
   }
 }
 
-const mapStateToProps = state => ({ actionMode: state.actionMode });
+const mapStateToProps = state => ({
+    actionMode: state.actionMode.storeItemActionMode,
+    storeData: state.myStore,
+    storeItems: state.items
+  });
 
 export default connect(mapStateToProps)(MyStoreRoot);

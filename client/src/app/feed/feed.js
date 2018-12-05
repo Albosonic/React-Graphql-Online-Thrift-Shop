@@ -26,18 +26,19 @@ class Feed extends React.Component {
 
   renderStoresToFeed(feed) {
     const view = 'feed';
+    // Probably want to use redux store and map state to props her at some point.
     return feed.map((storeObj, i) => {
-      storeObj.userStore.storeItems = storeObj.storeItems;
-      // delete storeObj.storeItems;
-      console.log(storeObj.userStore)
-      return (
-        <li className="store-container" key={ i }>
-          <MyStore
-            className="store-component"
-            storeData={ storeObj.userStore }
-            view={ view }/>
-        </li>
-      );
+      if(storeObj.storeItems.length > 0) {
+        return (
+          <li className="store-container" key={ i }>
+            <MyStore
+              className="store-component"
+              storeData={ storeObj.userStore }
+              storeItems={ storeObj.storeItems }
+              view={ view }/>
+          </li>
+        );
+      }      
     });
   }
 

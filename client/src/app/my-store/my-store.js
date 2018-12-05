@@ -9,16 +9,16 @@ import { persistStoreName } from '../services/store-service';
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
+    const { storeData, storeItems } = this.props;
     this.state = {
       defaultStoreName: 'Add Your Store Name',
-      storeName: store.getState().myStore.storeName, //TODO: fix this and have a default.
+      storeName: storeData.storeName, //TODO: fix this and have a default.
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
-      imgFileData: [],      
+      imgFileData: [],
       editStoreName: false,
-      items: this.props.storeData.storeItems
-    }
-    console.log(this.props.storeData)
+      items: [...storeItems],
+    }    
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
@@ -54,14 +54,13 @@ class MyStore extends React.Component {
     this.setState({ storeName: e.target.value });
   }
   handleStoreNameSubmit(e) {
-    e.preventDefault();    
+    e.preventDefault();
     persistStoreName({ storeName: this.state.storeName, storeId: store.getState().myStore.storeId });
     this.setState({ editStoreName: false });
   }
 
   render() {
     const { view } = this.props;
-    
     return (
       <div className="outer-container">
         <h1
