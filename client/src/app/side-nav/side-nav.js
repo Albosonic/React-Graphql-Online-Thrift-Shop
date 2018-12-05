@@ -8,22 +8,12 @@ import { clearState } from '../../redux/actions';
 class SideNav extends React.Component {
   constructor(props) {
     super(props);    
-    this.state = {
-      userStore: store.getState().myStore,
-      storeLinkTitle: this.getStoreLinkTitle(),
+    this.state = {      
       signOut: false      
     }
     this.handleSignOut = this.handleSignOut.bind(this);
     this.redirect = this.redirect.bind(this);    
-  }
-
-  getStoreLinkTitle() {
-    if(store.getState().myStore.id) {      
-      return 'My Store';
-    } else {
-      return 'Create Store';
-    }
-  }
+  }  
 
   handleSignOut() {
     store.dispatch(clearState());    
@@ -45,7 +35,7 @@ class SideNav extends React.Component {
             <Link className="nav-link" to='/dashboard'>Dashboard</Link>
           </li>
           <li className="nav-link">
-            <Link className="nav-link" to='/my-store'>{ this.state.storeLinkTitle }</Link>
+            <Link className="nav-link" to='/my-store'>My Store</Link>
           </li>
           <li className="nav-link">
             <Link className="nav-link" to='/feed'>Feed</Link>

@@ -62,7 +62,7 @@ class MyStore extends React.Component {
   render() {
     const { view } = this.props;
     return (
-      <div className="outer-container">
+      <div className={`outer-container ${view}`}>
         <h1
           onClick={ this.handleStoreNameClick }
           className={`store-title ${ view }`}>
