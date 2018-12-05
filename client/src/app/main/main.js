@@ -15,7 +15,7 @@ const Main = () => (
     <Route exact path='/dashboard' component={ DashBoard }/>
     <Route exact path='/account-settings' component={ AccountSettings }/>
     <Route exact path='/my-store' component={ MyStoreRoot }/>
-    <Route exact path='/feed' component={ Feed }/>
+    <Route exact path='/feed' render={ (props) => <Feed feedView="main-feed"/> }/>
   </div>
 )
 

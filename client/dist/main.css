@@ -189,6 +189,10 @@ div.main-container {
   .user-feed-container .store-container {
     margin: 20px; }
 
+.user-feed-container.main-feed {
+  max-width: 900px;
+  margin: 0 auto; }
+
 .outer-container {
   border: 1px solid gray;
   display: flex;
