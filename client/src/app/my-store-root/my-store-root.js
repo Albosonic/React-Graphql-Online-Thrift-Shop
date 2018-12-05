@@ -16,6 +16,7 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
 
     const { actionMode, storeData, storeItems } = this.props;    
     const view = 'my-store';
+    const feedView = 'side-bar'
     if(!actionMode.storeItemActionMode) {//TODO, this will need to come from the redux store.
       return (
         <div className="my-store-page-container">
@@ -23,7 +24,7 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
             storeData={ storeData }
             storeItems={ storeItems }            
             view={ view }/>
-          <Feed/>
+          <Feed feedView={ feedView }/>
         </div>
       )
     } else {
