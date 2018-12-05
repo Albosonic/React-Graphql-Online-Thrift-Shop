@@ -51,12 +51,11 @@
   max-width: 800px;
   height: 100%;
   overflow: scroll;
-  .hero-upload-container {
-    height: 300px;
+  .hero-upload-container {    
     margin: auto 0;
-    overflow: scroll;
-    border-bottom: 1px solid gray;
+    overflow: scroll;    
     .hero {
+      object-fit: cover;
       width: 100%;
       max-width: 800px;
       height: auto;

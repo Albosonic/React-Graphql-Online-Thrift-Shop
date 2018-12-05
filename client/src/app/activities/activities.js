@@ -17,7 +17,7 @@ class Activities extends React.Component {
 
   renderStoreItems(items) {
     const view = 'activities'
-    return items.map((item, i) => { // view should come from the url === maybe?
+    return items.map((item, i) => {
       return (
         <StoreItem
           key={ i }
