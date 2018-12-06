@@ -141,17 +141,17 @@ class StoreItemEditForm extends React.Component {
               <textarea
                 className="description"
                 type="text"
-                placeholder="please enter a brief description"
+                placeholder="Please enter a brief description."
                 onChange={ this.handleDescriptionChange }/>
             </label>
           }
             <label className="price-container">
               Asking Price:
-              <input 
-                className="price" 
-                type="text" 
+              <input
+                className="price"
+                type="text"
                 name="price"
-                placeholder="0.00"
+                placeholder="$0.00"
                 onChange={ this.handlePriceChange }/>
             </label>
           {
@@ -159,7 +159,7 @@ class StoreItemEditForm extends React.Component {
             <p className='description-error'>description must be less than 150 characters</p>
           }
           <DropImage setDroppedImagesToState={ this.setDroppedImagesToState }/>
-          <input type='submit'/>
+          <input className="edit-submit" type='submit'/>
         </form>
       </div>
     )
