@@ -10,4 +10,4 @@ Online thrift shop. (buy sell trade)
 
   * encrypt password over the network
 
-- persist store name to all store components 
+- populate item data on edit click, and persist edit on submit.
