@@ -1,11 +1,12 @@
 import
-{  
+{
   UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
   UPDATE_ITEMS,
-  CLEAR_STATE
+  CLEAR_STATE,
+  STORE_ITEM_EDIT_MODE
 }
 from "../constants/action-types";
 
@@ -15,6 +16,10 @@ export const updateUserInfo = userInfo => (
 
 export const ToggleStoreItemActionMode = actionMode => (
   { type: TOGGLE_ACTION_MODE, payload: actionMode }
+);
+
+export const storeItemEditMode = editMode => (
+  { type: STORE_ITEM_EDIT_MODE, payload: editMode }
 );
 
 export const updateStoreData = storeData => (
@@ -29,9 +34,9 @@ export const updateStoreItems = storeItems => (
   { type: UPDATE_ITEMS, payload: storeItems }
 );
 
-export const clearState = clearStateObj => {
-  console.log('wtf ==')  
-  return { type: CLEAR_STATE, payload: clearStateObj }
-}
+export const clearState = clearStateObj => (
+  { type: CLEAR_STATE, payload: clearStateObj }
+);
 
- 
+
+

@@ -15,7 +15,6 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
   render() {
 
     const { actionMode, storeData, storeItems } = this.props;
-    console.log('==>', actionMode)
     const view = 'my-store';
     const feedView = 'side-bar'
     if(!actionMode.storeItemActionMode) {//TODO, this will need to come from the redux store.
@@ -29,15 +28,15 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
         </div>
       )
     } else {
-      return <StoreItemEditForm/>
+       return <StoreItemEditForm/>
     }
   }
 }
 
-const mapStateToProps = state => ({
-    actionMode: state.actionMode,
-    storeData: state.myStore,
-    storeItems: state.items
-  });
+const mapStateToProps = state => ({  
+  actionMode: state.actionMode,
+  storeData: state.myStore,
+  storeItems: state.items,
+});
 
 export default connect(mapStateToProps)(MyStoreRoot);

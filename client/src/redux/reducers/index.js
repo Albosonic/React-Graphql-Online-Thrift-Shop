@@ -5,7 +5,8 @@ import
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
   UPDATE_ITEMS,
-  CLEAR_STATE
+  CLEAR_STATE,
+  STORE_ITEM_EDIT_MODE
 }
 from "../constants/action-types";
 
@@ -20,7 +21,15 @@ const initialState = {
   items: [],
   actionMode: {
     storeItemActionMode: false,
-    title: ''
+    title: '',
+    itemEditContent: {
+      storeId: null,
+      itemType: null,
+      itemSubType: null,
+      imgFileData: [],
+      itemDescription: null,
+      price: null
+    }
   }
 };
 
@@ -37,6 +46,15 @@ const rootReducer = (state = initialState, action) => {
           storeItemActionMode: action.payload.storeItemActionMode,
           title: action.payload.title
         },
+      }
+    case STORE_ITEM_EDIT_MODE:
+      return {
+        ...state,
+        actionMode: {
+          storeItemActionMode: action.payload.storeItemActionMode,
+          title: action.payload.title,
+          itemEditContent: { ...action.payload.storeItem }
+        }
       }
     case UPDATE_STORE_DATA:
       return {

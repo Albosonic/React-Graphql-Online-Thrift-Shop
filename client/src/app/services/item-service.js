@@ -8,3 +8,10 @@ export const saveNewItem = item => {
     store.dispatch(updateStoreItems(resp.data));
   })
 }
+
+export const persistItemEdit = item => {
+  axios.post('/item/edit', item)
+  .then(resp => {
+    store.dispatch(updateStoreItems(resp.data));
+  })
+}

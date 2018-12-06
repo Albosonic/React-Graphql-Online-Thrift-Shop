@@ -1,37 +1,52 @@
 import './store-item-edit-form.scss';
+import { subTypes } from './options';
 
 import React from 'react';
+import { connect } from "react-redux";
 import store from '../../redux/store';
+import { ToggleStoreItemActionMode } from '../../redux/actions';
+
+import { saveNewItem, persistItemEdit } from '../services/item-service';
 
 import DropImage from '../drop-image/drop-image';
-
-import { types, subTypes } from './options';
-import { ToggleStoreItemActionMode } from '../../redux/actions';
-import { saveNewItem } from '../services/item-service';
 
 class StoreItemEditForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hide: false,
-      price: null,
-      itemType: null,
-      itemSubType: null,
-      imgFileData: null,
-      itemDescription: '',
-      descriptionError: false,
-      title: store.getState().actionMode.title.title
-    };
+    if(this.props.itemEditContent) { // TODO: map all this state in root, and pass each individually, then this can be cleaned up.
+      const { title, itemEditContent: { price, itemType, itemSubType, imgFileData, itemDescription } } = this.props;
+      this.state = {
+        hide: false,
+        price: price,
+        itemType: itemType,
+        itemSubType: itemSubType,
+        imgFileData: imgFileData,
+        itemDescription: itemDescription,
+        showEditDescription: true,
+        descriptionError: false,
+        showSubTypes: true,
+        title: title
+      };
+    } else {
+      this.state = {
+        hide: false,
+        price: null,
+        itemType: null,
+        itemSubType: null,
+        imgFileData: null,
+        itemDescription: '',
+        descriptionError: false,
+        title: this.props.title
+      };
+    }
     this.handleItemSubTypeChange = this.handleItemSubTypeChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.setDroppedImagesToState = this.setDroppedImagesToState.bind(this);
     this.handleItemTypeChange = this.handleItemTypeChange.bind(this);
-    this.returnOptionHandler = this.returnOptionHandler.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.generateOptions = this.generateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.backToStore = this.backToStore.bind(this);
-    console.log(store.getState())
   }
 
   handleItemTypeChange(e) {
@@ -60,26 +75,20 @@ class StoreItemEditForm extends React.Component {
     this.setState({imgFileData: [...imageData]});
   }
 
-  generateOptions(options, optionType) {
-    let titleFragment;
-    const changeHandler = this.returnOptionHandler(optionType);
-    if(optionType === 'secondary') titleFragment = 'sub';
-    if(!Array.isArray(options)) {
-      options = subTypes[0][options];
-    }
+  generateOptions(options) {
+    options = subTypes[0][options];
     return (
       <label className="item-type-edit-container">
-        Select item {titleFragment}type:
-        <select className="item-type-selector" onChange={ changeHandler }>
+        Select item subtype:
+        <select className="item-type-selector" value={ this.state.itemSubType || ""} onChange={ this.handleItemSubTypeChange }>
           <option className="option" value="">--Please choose an option--</option>
-          { options.map((type, i) => <option className="option" key={i} value={type}>{type}</option>) }
+          { options.map((type, i) => {
+              return <option className="option" key={i} value={type}>{type}</option>;
+            })
+          }
         </select>
       </label>
     )
-  }
-
-  returnOptionHandler(optionType) {
-    return optionType === 'primary' ? this.handleItemTypeChange : this.handleItemSubTypeChange;
   }
 
   handlePriceChange(e) {
@@ -87,7 +96,8 @@ class StoreItemEditForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();    
+    e.preventDefault();
+    const editMode = 'Edit Item';
     let item = { // this can be done dynamically using state.
       storeId: store.getState().userInfo[0].id,
       itemType: this.state.itemType,
@@ -95,22 +105,31 @@ class StoreItemEditForm extends React.Component {
       imgFileData: this.state.imgFileData,
       itemDescription: this.state.itemDescription,
       price: this.state.price,
-    }    
-    saveNewItem(item);
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
+    }
+    if(this.state.title === editMode) {
+      persistItemEdit(item);
+      store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
+    } else {
+      saveNewItem(item);
+      store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
+    }
   }
 
   render() {
+    const optionTypes = ['tops', 'bottoms', 'head', 'feet'];
     return (
       <div className="item-edit-form-container">
         <form className="item-edit-form" onSubmit={ this.handleSubmit }>
         <span className="back-button" onClick={ this.backToStore }>Back</span>
           <h1 className="title">{ this.state.title }</h1>
-          { this.generateOptions(types, 'primary') }
-          {
-            this.state.showSubTypes &&
-            this.generateOptions(this.state.itemType, 'secondary')
-          }
+          <label className="item-type-edit-container">
+            Select item type:
+            <select className="item-type-selector" value={ this.state.itemType || "" } onChange={ this.handleItemTypeChange }>
+              <option className="option" value="">--Please choose an option--</option>
+              { optionTypes.map((type, i) => <option className="option" key={i} value={type}>{type}</option>) }
+            </select>
+          </label>
+          { this.state.showSubTypes && this.generateOptions(this.state.itemType) }
           {
             this.state.showEditDescription &&
             <label className="description-edit-container">
@@ -119,7 +138,9 @@ class StoreItemEditForm extends React.Component {
                 className="description"
                 type="text"
                 placeholder="Please enter a brief description."
-                onChange={ this.handleDescriptionChange }/>
+                onChange={ this.handleDescriptionChange }
+                value={ this.state.itemDescription }
+                />
             </label>
           }
             <label className="price-container">
@@ -129,6 +150,7 @@ class StoreItemEditForm extends React.Component {
                 type="text"
                 name="price"
                 placeholder="$0.00"
+                value={ this.state.price || "" }
                 onChange={ this.handlePriceChange }/>
             </label>
           {
@@ -143,4 +165,9 @@ class StoreItemEditForm extends React.Component {
   }
 }
 
-export default StoreItemEditForm
+const mapStateToProps = state => ({
+  itemEditContent: state.actionMode.itemEditContent,
+  title: state.actionMode.title
+})
+
+export default connect(mapStateToProps)(StoreItemEditForm)

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import store from '../../../redux/store';
-import { ToggleStoreItemActionMode } from '../../../redux/actions';
+import { ToggleStoreItemActionMode, storeItemEditMode } from '../../../redux/actions';
 
 import './store-item.scss';
 
@@ -14,11 +14,15 @@ class StoreItem extends React.Component {
   }
 
   handleActionClick(e) {
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'Edit Item' }))
+    store.dispatch(storeItemEditMode({
+      storeItem: this.props.storeItem,
+      storeItemActionMode: true,
+      title: 'Edit Item',
+    }))
   }
 
   render() {
-    const { storeItem, handleItemClick, view, index, length } = this.props;
+    const { storeItem, handleItemClick, view } = this.props;
     let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;
     return (
       <div className="item-container">

@@ -1,5 +1,4 @@
 
-const types = ['tops', 'bottoms', 'head', 'feet'];
 const subTypes = [{
   tops: ['blouse', 'shirts', 'jackets', 'sweatshirts'],
   bottoms: ['pants', 'skirts', 'mini skirts', ],

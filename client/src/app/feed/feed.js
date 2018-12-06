@@ -44,8 +44,6 @@ class Feed extends React.Component {
 
   render() {
     const { feedView } = this.props;
-    console.log(feedView)
-    console.log(feedView)
     return (
       <div className={`user-feed-container ${feedView}`}>
         <h1 className="feed-title">Feed</h1>
