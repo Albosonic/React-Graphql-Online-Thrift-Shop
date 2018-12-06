@@ -18,7 +18,7 @@ class StoreItem extends React.Component {
   }
 
   render() {
-    const { storeItem, handleItemClick, view, index, length } = this.props;        
+    const { storeItem, handleItemClick, view, index, length } = this.props;
     let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;
     return (
       <div className="item-container">

@@ -94,9 +94,9 @@ class StoreItemEditForm extends React.Component {
       imgFileData: this.state.imgFileData,
       itemDescription: this.state.itemDescription,
       price: this.state.price,
-    }
-    console.log('item', item)
+    }    
     saveNewItem(item);
+    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
   }
 
   render() {
