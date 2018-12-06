@@ -8,9 +8,9 @@ class AddItem extends React.Component {
     super(props);
     this.handleAddItemClick = this.handleAddItemClick.bind(this);
   }
-  
+
   handleAddItemClick(e) {
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'Add New Item' }));    
+    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'Add New Item' }));
   }
 
   render() {

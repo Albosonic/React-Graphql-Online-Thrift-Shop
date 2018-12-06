@@ -34,16 +34,9 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         actionMode: {
-          ...state.actionMode,
-          storeItemActionMode: {
-            ...state.actionMode.storeItemActionMode,
-            storeItemActionMode: action.payload.storeItemActionMode
-          },
-          title: {
-            ...state.actionMode.title,
-            title: action.payload.title
-          }
-        }
+          storeItemActionMode: action.payload.storeItemActionMode,
+          title: action.payload.title
+        },
       }
     case UPDATE_STORE_DATA:
       return {
@@ -65,7 +58,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
           items: [ ...state.items, action.payload ]
-      }    
+      }
     default:
       return state;
   }

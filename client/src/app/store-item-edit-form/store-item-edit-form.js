@@ -31,6 +31,7 @@ class StoreItemEditForm extends React.Component {
     this.generateOptions = this.generateOptions.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.backToStore = this.backToStore.bind(this);
+    console.log(store.getState())
   }
 
   handleItemTypeChange(e) {
