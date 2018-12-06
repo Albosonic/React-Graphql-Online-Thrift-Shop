@@ -9,21 +9,21 @@ import { persistStoreName } from '../services/store-service';
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
-    const { storeData, storeItems } = this.props;
+    var { storeData, storeItems } = this.props;    
     this.state = {
       defaultStoreName: 'Add Your Store Name',
       storeName: storeData.storeName, //TODO: fix this and have a default.
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
-      imgFileData: [],
+      imgFileData: [],      
       editStoreName: false,
       items: [...storeItems],
     }    
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
-    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
-  }
+    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);    
+  }  
 
   handleItemClick(imageData) {
     this.setState({ currentHeroImg: imageData[0] });
@@ -31,7 +31,7 @@ class MyStore extends React.Component {
   }
 
   renderStoreItems(items) {
-    if(items.length >  0) {
+    if(items.length >  0) {      
       return items.map((item, i) => {
         return (
           <StoreItem

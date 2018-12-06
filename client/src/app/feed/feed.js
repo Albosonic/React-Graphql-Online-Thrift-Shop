@@ -7,11 +7,11 @@ import { fetchFeed } from '../services/feed-service';
 class Feed extends React.Component {
   constructor(props) {
     super(props);
-    this.renderStoresToFeed = this.renderStoresToFeed.bind(this);
     this.state = {
       feed: null,
       feedIn: false,
     }
+    // this.renderStoresToFeed = this.prenderStoresToFeed.bind(this);
     this.setFeedToState();
   }
 
@@ -25,8 +25,7 @@ class Feed extends React.Component {
   }
 
   renderStoresToFeed(feed) {
-    const storeView = 'feed';
-    // Probably want to use redux store and map state to props her at some point.
+    const storeView = 'feed';    
     return feed.map((storeObj, i) => {
       if(storeObj.storeItems.length > 0) {
         return (

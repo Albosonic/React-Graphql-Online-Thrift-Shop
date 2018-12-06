@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 import axios from 'axios';
 import store from '../../redux/store';
-import { updateUserInfo, updateStoreData, updateStoreItems } from '../../redux/actions';
+import { updateUserInfo, updateStoreData, updateAllItems } from '../../redux/actions';
 
 export const createNewUser = user => {
   var userObj = {
@@ -39,7 +39,7 @@ export const loginUser = userEmail => {
       let data = resp.data;
       if(resp.status === 200) {
         store.dispatch(updateStoreData(data[0]));
-        store.dispatch(updateStoreItems(data[1]));
+        store.dispatch(updateAllItems(data[1]));
         store.dispatch(updateUserInfo(data[2]));      
         resolve({ login: true, data: resp.data });
       } else {

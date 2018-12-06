@@ -4,9 +4,10 @@ import
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
-  UPDATE_ITEMS,
   CLEAR_STATE,
-  STORE_ITEM_EDIT_MODE
+  STORE_ITEM_EDIT_MODE,
+  ADD_ONE_ITEM,
+  UPDATE_ALL_ITEMS
 }
 from "../constants/action-types";
 
@@ -62,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
           myStore: {
             ...state.myStore,
               storeId: action.payload.storeId
-          }
+          },          
       }
     case UPDATE_STORE_NAME:
       return {
@@ -72,11 +73,25 @@ const rootReducer = (state = initialState, action) => {
             storeName: action.payload
           }
       }
-    case UPDATE_ITEMS: // might need a serparate SET_ITEMS for login.
+    case ADD_ONE_ITEM: // might need a serparate SET_ITEMS for login.
       return {
         ...state,
           items: [ ...state.items, action.payload ]
       }
+    case UPDATE_ALL_ITEMS:
+      return {
+        ...state,
+          myStore: {
+            ...state.myStore
+          },
+          items: [...action.payload],
+          actionMode: {
+            ...state.actionMode,
+            itemEditContent: {
+              ...state.actionMode.itemEditContent
+            }
+          }
+      }    
     default:
       return state;
   }

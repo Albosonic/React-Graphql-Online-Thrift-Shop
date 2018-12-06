@@ -15,7 +15,7 @@ const colors = require('colors');
 const app = express();
 const port = process.env.PORT || '3000';
 
-mongoose.connect('mongodb://localhost:27017/newclothes', { useNewUrlParser: true, useCreateIndex: true, });
+mongoose.connect('mongodb://localhost:27017/nextclothes', { useNewUrlParser: true, useCreateIndex: true, });
 
 app.use(express.static('client'));
 app.set('client', path.join(__dirname, 'client'));
@@ -33,6 +33,7 @@ app.use(bodyParser.json({
 app.post('/users/new', userHandlers.postNewUser);
 app.post('/users/login', userHandlers.loginUser);
 app.post('/item/new', itemHandlers.insertItem);
+app.post('/item/edit', itemHandlers.editItem);
 app.post('/stores/update/name', storesHandlers.updateStoreName);
 
 app.get('/stores/feed', storesHandlers.fetchAllStores);

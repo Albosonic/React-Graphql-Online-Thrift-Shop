@@ -1,7 +1,6 @@
 import './my-store-root.scss';
 import React from 'react';
 
-import store from '../../redux/store';
 import { connect } from "react-redux";
 
 import MyStore from '../my-store/my-store';
@@ -10,11 +9,14 @@ import stores from '../mock-store-data';
 
 import StoreItemEditForm from '../store-item-edit-form/store-item-edit-form';
 import Feed from '../feed/feed';
+import store from '../../redux/store';
 
 class MyStoreRoot extends React.Component { //TODO: refactor this at some point
+  constructor(props) {
+    super(props);    
+  }
   render() {
-
-    const { actionMode, storeData, storeItems } = this.props;
+    const { actionMode, storeData, storeItems } = this.props;    
     const view = 'my-store';
     const feedView = 'side-bar'
     if(!actionMode.storeItemActionMode) {//TODO, this will need to come from the redux store.

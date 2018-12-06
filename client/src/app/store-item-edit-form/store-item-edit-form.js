@@ -98,7 +98,7 @@ class StoreItemEditForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const editMode = 'Edit Item';
-    let item = { // this can be done dynamically using state.
+    let item = {      
       storeId: store.getState().userInfo[0].id,
       itemType: this.state.itemType,
       itemSubType: this.state.itemSubType,
@@ -107,6 +107,7 @@ class StoreItemEditForm extends React.Component {
       price: this.state.price,
     }
     if(this.state.title === editMode) {
+      item._id = this.props.itemEditContent._id,
       persistItemEdit(item);
       store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
     } else {

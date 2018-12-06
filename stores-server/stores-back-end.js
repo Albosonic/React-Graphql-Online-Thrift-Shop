@@ -26,7 +26,8 @@ module.exports = () => {
   });
 
   storesBackEnd.post('/stores/update/name', handleStores.updateStoreName);
-  storesBackEnd.post('/new/item', handleItems.insertNewItem);
+  storesBackEnd.post('/item/new', handleItems.insertNewItem);
+  storesBackEnd.post('/item/edit', handleItems.editItem);
   
   storesBackEnd.get('/stores/feed', handleFeed.fetchAllStores);
 
