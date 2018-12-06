@@ -1,12 +1,13 @@
 import axios from 'axios';
 
 import store from '../../redux/store';
-import { addOneItem, updateAllItems, forceRender } from '../../redux/actions';
+import { addOneItem, updateAllItems, toggleStoreItemActionMode } from '../../redux/actions';
 
 export const saveNewItem = item => {
   axios.post('/item/new', item)
   .then(resp => {
     store.dispatch(addOneItem(resp.data));
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
   })
 }
 
@@ -22,5 +23,6 @@ export const persistItemEdit = item => {
       return item;
     })
     store.dispatch(updateAllItems(newItemsList));
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
   })
 }

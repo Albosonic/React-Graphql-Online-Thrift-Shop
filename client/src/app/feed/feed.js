@@ -10,8 +10,7 @@ class Feed extends React.Component {
     this.state = {
       feed: null,
       feedIn: false,
-    }
-    // this.renderStoresToFeed = this.prenderStoresToFeed.bind(this);
+    }    
     this.setFeedToState();
   }
 

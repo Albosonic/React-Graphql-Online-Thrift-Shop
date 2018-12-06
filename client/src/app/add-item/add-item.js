@@ -1,6 +1,6 @@
 import React from 'react';
 import store from '../../redux/store';
-import { ToggleStoreItemActionMode, updateStoreData } from '../../redux/actions';
+import { toggleStoreItemActionMode, updateStoreData } from '../../redux/actions';
 import './add-item.scss';
 
 class AddItem extends React.Component {
@@ -10,7 +10,7 @@ class AddItem extends React.Component {
   }
 
   handleAddItemClick(e) {
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: true, title: 'Add New Item' }));
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: true, title: 'Add New Item' }));
   }
 
   render() {

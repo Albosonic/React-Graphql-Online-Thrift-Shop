@@ -63,7 +63,7 @@ const rootReducer = (state = initialState, action) => {
           myStore: {
             ...state.myStore,
               storeId: action.payload.storeId
-          },          
+          },
       }
     case UPDATE_STORE_NAME:
       return {
@@ -91,7 +91,7 @@ const rootReducer = (state = initialState, action) => {
               ...state.actionMode.itemEditContent
             }
           }
-      }    
+      }
     default:
       return state;
   }

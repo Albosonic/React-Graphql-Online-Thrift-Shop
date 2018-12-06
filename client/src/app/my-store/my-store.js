@@ -31,6 +31,7 @@ class MyStore extends React.Component {
   }
 
   renderStoreItems(items) {
+    const { view } = this.props;
     if(items.length >  0) {      
       return items.map((item, i) => {
         return (
@@ -39,7 +40,7 @@ class MyStore extends React.Component {
             storeItem={ item }
             handleItemClick={ this.handleItemClick }
             length={ items.length }
-            view={ this.props.view }
+            view={ view }
             index={ i } />
         )
       })

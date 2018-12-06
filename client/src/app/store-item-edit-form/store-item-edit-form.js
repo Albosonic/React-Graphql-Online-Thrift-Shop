@@ -106,13 +106,11 @@ class StoreItemEditForm extends React.Component {
       itemDescription: this.state.itemDescription,
       price: this.state.price,
     }
-    if(this.state.title === editMode) {
+    if(this.state.title === editMode) {      
       item._id = this.props.itemEditContent._id,
-      persistItemEdit(item);
-      store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
+      persistItemEdit(item);      
     } else {
-      saveNewItem(item);
-      store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: 'Edit Item' }))
+      saveNewItem(item);      
     }
   }
 

@@ -16,7 +16,7 @@ export const updateUserInfo = userInfo => (
   { type: UPDATE_USER_INFO, payload: userInfo }
 );
 
-export const ToggleStoreItemActionMode = actionMode => (
+export const toggleStoreItemActionMode = actionMode => (
   { type: TOGGLE_ACTION_MODE, payload: actionMode }
 );
 

@@ -11,6 +11,7 @@ class StoreItem extends React.Component {
     super(props)
     this.state = {};
     this.handleActionClick = this.handleActionClick.bind(this);
+    const { view, storeItem } = this.props;    
   }
 
   handleActionClick(e) {
