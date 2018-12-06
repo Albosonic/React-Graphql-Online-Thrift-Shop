@@ -33,33 +33,21 @@ class StoreItemEditForm extends React.Component {
     this.backToStore = this.backToStore.bind(this);
   }
 
-  handleItemTypeChange(e) { // can probably consolidate these
+  handleItemTypeChange(e) {
     let value = e.target.value;
     this.setState({itemType: value});
-    if(value) {
-      this.setState({showSubTypes: true});
-    } else {
-      this.setState({showSubTypes: false});
-    }
+    value ? this.setState({showSubTypes: true}) : this.setState({showSubTypes: false});
   }
 
-  handleItemSubTypeChange(e) { // can probably consolidate these
+  handleItemSubTypeChange(e) {
     let value = e.target.value;
     this.setState({itemSubType: value})
-    if(value) {
-      this.setState({showEditDescription: true});
-    } else {
-      this.setState({showEditDescription: false});
-    }
+    value ? this.setState({showEditDescription: true}) : this.setState({showEditDescription: false});
   }
 
   handleDescriptionChange(e) {
     let value = e.target.value;
-    if(value.length > 150) {
-      this.state.descriptionError = true;
-    } else {
-      this.state.descriptionError = false;
-    }
+    value.length > 150 ? this.state.descriptionError = true : this.state.descriptionError = false;
     this.setState({itemDescription: e.target.value});
   }
 
@@ -68,9 +56,7 @@ class StoreItemEditForm extends React.Component {
   }
 
   setDroppedImagesToState(imageData) {
-    console.log('iageData :', imageData);
     this.setState({imgFileData: [...imageData]});
-    console.log('===>', this.state)
   }
 
   generateOptions(options, optionType) {
@@ -78,7 +64,7 @@ class StoreItemEditForm extends React.Component {
     const changeHandler = this.returnOptionHandler(optionType);
     if(optionType === 'secondary') titleFragment = 'sub';
     if(!Array.isArray(options)) {
-      options = subTypes[0][this.transformTypes(options)]; // refactor this not to need transform.
+      options = subTypes[0][options];
     }
     return (
       <label className="item-type-edit-container">
@@ -92,27 +78,16 @@ class StoreItemEditForm extends React.Component {
   }
 
   returnOptionHandler(optionType) {
-    if(optionType === 'primary') {
-      return this.handleItemTypeChange
-    } else {
-      return this.handleItemSubTypeChange
-    }
-  }
-
-  transformTypes(type) {
-    let reg = new RegExp(type);
-    if (reg.test('head wear')) type = 'head';
-    if (reg.test('foot wear')) type = 'feet';
-    return type;
+    return optionType === 'primary' ? this.handleItemTypeChange : this.handleItemSubTypeChange;
   }
 
   handlePriceChange(e) {
     this.setState({ price: e.target.value });
   }
 
-  handleSubmit(e) { // change this to the add new item component.
-    e.preventDefault();
-    let item = {
+  handleSubmit(e) {
+    e.preventDefault();    
+    let item = { // this can be done dynamically using state.
       storeId: store.getState().userInfo[0].id,
       itemType: this.state.itemType,
       itemSubType: this.state.itemSubType,
@@ -120,6 +95,7 @@ class StoreItemEditForm extends React.Component {
       itemDescription: this.state.itemDescription,
       price: this.state.price,
     }
+    console.log('item', item)
     saveNewItem(item);
   }
 
