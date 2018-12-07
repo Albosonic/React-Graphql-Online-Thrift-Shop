@@ -6,9 +6,9 @@ const socket = openSocket('http://localhost:8000');
 import store from '../../redux/store';
 import { addOneItem, updateAllItems, toggleStoreItemActionMode } from '../../redux/actions';
 
-export const saveNewItem = item => {
+export const saveNewItem = item => {  
   axios.post('/item/new', item)
-  .then(resp => {
+  .then(resp => {    
     store.dispatch(addOneItem(resp.data));
     store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
   })

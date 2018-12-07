@@ -24,5 +24,16 @@ module.exports = {
       if(err) return console.log(err);
       res.status(200).send(updatedItem);
     });
+  },
+  persistMessages: (req, res) => {
+    let body = req.body;
+    let _id = body._id;
+    let options = { new: true };
+    let update = {$push: { messages:  body.message }}    
+    Item.findByIdAndUpdate(_id, update, options, (err, updatedItem) => {
+      console.log('here =', updatedItem.messages)
+      if(err) return console.log(err);
+      res.status(200).send(updatedItem)
+    });
   }
 }

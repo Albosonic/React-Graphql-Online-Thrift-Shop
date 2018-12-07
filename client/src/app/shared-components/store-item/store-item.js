@@ -13,7 +13,10 @@ class StoreItem extends React.Component {
     super(props)
     this.state = {
       chatTxt: '',
-      messages: []
+      messages: [],
+      currentMessage: '',
+      showMessages: false,
+      chatClass: 'hide'
     };
     this.handleActionClick = this.handleActionClick.bind(this);
     const { view, storeItem } = this.props;
@@ -21,6 +24,8 @@ class StoreItem extends React.Component {
     this.handleChatChange = this.handleChatChange.bind(this);
     this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.renderChattter = this.renderChattter.bind(this);
+    this.chatInput = React.createRef();
+    this.chatList = React.createRef();
   }
 
   handleActionClick(e) {
@@ -32,7 +37,8 @@ class StoreItem extends React.Component {
   }
 
   handleMsgClick(e) {
-    console.log(e.target)
+    let state = this.state;
+    state.chatClass === 'hide' ? this.setState({chatClass: 'show'}) : this.setState({chatClass: 'hide'});
   }
 
   handleChatChange(e) {
@@ -40,7 +46,7 @@ class StoreItem extends React.Component {
     this.setState({ chatTxt: e.target.value });
   }
 
-  renderChattter(messages) {    
+  renderChattter(messages) {
     return messages.map((msgObj, i) => (
       <div className="message-container" key={ i }>
         <p className="handle">handle</p>
@@ -49,20 +55,28 @@ class StoreItem extends React.Component {
         </div>
         <p className="time">{ msgObj.date }</p>
       </div>
-    ))          
+    ))
+  }
+
+  scrollToMsg(el) {
+    el.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
   }
 
   handleChatSubmit(e) {
     e.preventDefault();
-    sendToChatter(this.state.chatTxt)
+    const { storeItem } = this.props;
+    // storeItem.messages = []; // this is a temp mock.
+    // console.log(e.target)
+    // storeItem.messages.push(this.state.chatTxt);
+    sendToChatter({message: this.state.chatTxt, _id: storeItem._id});
     subscribeToChatter()
     .then(msg => {
       msg = [msg];
-      console.log('spread', msg)
-      console.log('msg', msg)
+      let nodeList = this.chatList.current.childNodes;
       this.setState({messages: [...this.state.messages, ...msg]})
       this.forceUpdate();
-      console.log(this.state)
+      this.scrollToMsg(nodeList[nodeList.length - 1]);
+      this.chatInput.current.value = "";
     })
   }
 
@@ -73,10 +87,10 @@ class StoreItem extends React.Component {
       <div className="outer-item-container">
         <div className="item-container">
           <div className="left-container">
-            <span className={ `thumbnail ${storeItem.itemSubType}` }></span>
+            <span className={ `thumbnail ${ storeItem.itemSubType }` }></span>
             <div className="item-img-container">
               <p className="img-text">Image</p>
-              <img className="item-img" src={ storeItem.imgFileData } onClick={ ()=> handleItemClick(storeItem.imgFileData  ) }/>
+              <img className="item-img" src={ storeItem.imgFileData } onClick={ ()=> handleItemClick(storeItem.imgFileData) }/>
             </div>
           </div>
           <div className="description-container">
@@ -88,13 +102,14 @@ class StoreItem extends React.Component {
             { showMessageIcon && <span onClick={ this.handleMsgClick } className="messages-icon"></span> }
           </div>
         </div>
-        <div className="chat-container">
-          { this.renderChattter(this.state.messages) }
+        <div className={`chat-container ${ this.state.chatClass }`}>
+          <div ref={this.chatList} className="message-list-container">
+            { this.renderChattter(this.state.messages) }
+          </div>
           <form onSubmit={ this.handleChatSubmit } className="chat-form">
-            <input onChange={ this.handleChatChange } className="chat-input" type="text" placeholder="enter message here."/>
+            <input ref={this.chatInput} onChange={ this.handleChatChange } className="chat-input" type="text" placeholder="enter message here."/>
           </form>
         </div>
-
       </div>
     )
   }
