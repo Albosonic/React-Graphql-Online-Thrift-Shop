@@ -3,10 +3,14 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 const colors = require('colors');
 const port = 8000;
+
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', (sentMsg) => {      
-      client.emit('recieveMsg', { msg: sentMsg, date: new Date() });
+    client.on('sendMsg', (sentMsg) => {
+      let time = new Date().toLocaleTimeString();      
+      let suffix = time.slice(9);
+      time = time.slice(0, 5);
+      client.emit('recieveMsg', { msg: sentMsg, date: `${time} ${suffix}` });
     });
   });
 

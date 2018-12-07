@@ -117,15 +117,16 @@
         align-self: center;
       }
       .text-container {
-        display: flex;
         display: table-cell;
         text-align: center;
         width: 55%;
-        .text {
+        .text {          
           background-color: aliceblue;
           border-radius: 5px;
           font-size: 13px;
           padding: 7px;
+          width: fit-content;
+          margin: auto;
         }
       }
     }
