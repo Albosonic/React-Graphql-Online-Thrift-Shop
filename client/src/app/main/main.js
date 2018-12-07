@@ -6,7 +6,9 @@ import RegForm from '../forms/registration';
 import DashBoard from '../dashboard/dashboard';
 import AccountSettings from '../account-settings/account-settings';
 import MyStoreRoot from '../my-store-root/my-store-root';
+import Shop from '../shop/shop';
 import Feed from '../feed/feed';
+
 // '/' temporarily takes user to dashboard.
 const Main = () => (
   <div className="main-container">
@@ -16,6 +18,7 @@ const Main = () => (
     <Route exact path='/account-settings' component={ AccountSettings }/>
     <Route exact path='/my-store' component={ MyStoreRoot }/>
     <Route exact path='/feed' render={ (props) => <Feed feedView="main-feed"/> }/>
+    <Route exact path='/shop' component={ Shop }/>
   </div>
 )
 

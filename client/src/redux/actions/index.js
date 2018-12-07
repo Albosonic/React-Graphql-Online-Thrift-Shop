@@ -7,8 +7,9 @@ import
   CLEAR_STATE,
   STORE_ITEM_EDIT_MODE,
   ADD_ONE_ITEM,
-  UPDATE_ALL_ITEMS,
-  FORCE_RENDER
+  UPDATE_ALL_ITEMS,  
+  UPDATE_ALL_STORE_FEED,
+  UPDATE_CURRENT_SHOP
 }
 from "../constants/action-types";
 
@@ -38,7 +39,15 @@ export const addOneItem = storeItem => (
 
 export const updateAllItems = storeItems => (
   { type: UPDATE_ALL_ITEMS, payload: storeItems }
-)
+);
+
+export const updateStoreFeed = allStores => (
+  {type: UPDATE_ALL_STORE_FEED, payload: allStores}
+);
+
+export const updateCurrentShop = shop => (
+  { type: UPDATE_CURRENT_SHOP, payload: shop }
+);
 
 export const clearState = clearStateObj => (
   { type: CLEAR_STATE, payload: clearStateObj }

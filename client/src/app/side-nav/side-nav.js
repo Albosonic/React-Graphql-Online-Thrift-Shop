@@ -7,24 +7,20 @@ import { clearState } from '../../redux/actions';
 
 class SideNav extends React.Component {
   constructor(props) {
-    super(props);    
-    this.state = {      
-      signOut: false      
+    super(props);
+    this.state = {
+      signOut: false
     }
-    this.handleSignOut = this.handleSignOut.bind(this);
-    this.redirect = this.redirect.bind(this);    
-  }  
-
-  handleSignOut() {
-    store.dispatch(clearState());    
-    this.setState({ signOut: true });    
+    this.handleSignOut = this.handleSignOut.bind(this);    
   }
 
-  redirect() {    
-    return <Redirect to={'/login'}/>
+  handleSignOut() {
+    store.dispatch(clearState());
+    this.setState({ signOut: true });
   }
 
   render() {
+    if(this.state.signOut) return <Redirect to={'/login'}/>
     return (
       <div className="side-nav-container">
         <ul className="nav-link-container">
@@ -45,7 +41,6 @@ class SideNav extends React.Component {
           </li>
           <li className="nav-link" onClick={ this.handleSignOut }>
             Sign Out
-            { this.state.signOut && this.redirect() } 
           </li>
         </ul>
       </div>

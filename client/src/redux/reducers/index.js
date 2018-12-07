@@ -7,7 +7,8 @@ import
   CLEAR_STATE,
   STORE_ITEM_EDIT_MODE,
   ADD_ONE_ITEM,
-  UPDATE_ALL_ITEMS
+  UPDATE_ALL_ITEMS,
+  UPDATE_CURRENT_SHOP
 }
 from "../constants/action-types";
 
@@ -18,6 +19,15 @@ const initialState = {
     sizes: null,
     storeName: null,
     stars: null,
+  },
+  currentShop: {
+    shopInfo: {
+      storeId: null,
+      sizes: null,
+      storeName: null,
+      stars: null,
+      storeItems: []
+    }
   },
   items: [],
   actionMode: {
@@ -72,6 +82,11 @@ const rootReducer = (state = initialState, action) => {
             ...state.myStore,
             storeName: action.payload
           }
+      }
+    case UPDATE_CURRENT_SHOP:
+      return {
+        ...state,
+        currentShop: action.payload
       }
     case ADD_ONE_ITEM: // might need a serparate SET_ITEMS for login.
       return {

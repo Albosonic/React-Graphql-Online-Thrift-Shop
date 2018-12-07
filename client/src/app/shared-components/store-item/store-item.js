@@ -11,7 +11,8 @@ class StoreItem extends React.Component {
     super(props)
     this.state = {};
     this.handleActionClick = this.handleActionClick.bind(this);
-    const { view, storeItem } = this.props;    
+    const { view, storeItem } = this.props;
+    this.handleMsgClick = this.handleMsgClick.bind(this);
   }
 
   handleActionClick(e) {
@@ -22,9 +23,13 @@ class StoreItem extends React.Component {
     }))
   }
 
+  handleMsgClick(e) {
+    console.log(e.target)
+  }
+
   render() {
     const { storeItem, handleItemClick, view } = this.props;
-    let showMessageIcon = view === 'activities' && storeItem.unreadMessages.length > 0 ? true: false;
+    let showMessageIcon = view === 'activities' || view === 'shop';
     return (
       <div className="item-container">
         <div className="left-container">
@@ -40,7 +45,7 @@ class StoreItem extends React.Component {
         </div>
         <div className="edit-icon-container">
           { view === 'my-store' && <span className="edit-icon" onClick={ this.handleActionClick }></span> }
-          { showMessageIcon && <span className="messages-icon"></span> }
+          { showMessageIcon && <span onClick={ this.handleMsgClick } className="messages-icon"></span> }
         </div>
       </div>
     )

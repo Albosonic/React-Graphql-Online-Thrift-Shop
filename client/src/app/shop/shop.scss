@@ -1,0 +1,8 @@
+.shop-container {
+  display: flex;
+  .shop-body-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
