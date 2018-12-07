@@ -5,7 +5,7 @@ const colors = require('colors');
 const port = 8000;
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', (sentMsg) => {
+    client.on('sendMsg', (sentMsg) => {      
       client.emit('recieveMsg', { msg: sentMsg, date: new Date() });
     });
   });
