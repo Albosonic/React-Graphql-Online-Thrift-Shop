@@ -68,7 +68,7 @@ class StoreItemEditForm extends React.Component {
   }
 
   backToStore() {
-    store.dispatch(ToggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
   }
 
   setDroppedImagesToState(imageData) {
