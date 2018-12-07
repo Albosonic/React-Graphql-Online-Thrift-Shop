@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 
 module.exports = {
   insertItem: (req, res) => {
-    let body = req.body;
+    let body = req.body;    
     request.post(
       {
         url:'http://localhost:5000/item/new',
@@ -13,7 +13,8 @@ module.exports = {
           itemSubType: body.itemSubType,
           imgFileData: body.imgFileData,
           itemDescription: body.itemDescription,
-          price: body.price
+          messages: body.messages,
+          price: body.price,
         }
       },
       (err, httpResponse, body) => {

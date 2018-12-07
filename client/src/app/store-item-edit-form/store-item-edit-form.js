@@ -4,7 +4,7 @@ import { subTypes } from './options';
 import React from 'react';
 import { connect } from "react-redux";
 import store from '../../redux/store';
-import { ToggleStoreItemActionMode } from '../../redux/actions';
+import { toggleStoreItemActionMode } from '../../redux/actions';
 
 import { saveNewItem, persistItemEdit } from '../services/item-service';
 
@@ -25,6 +25,7 @@ class StoreItemEditForm extends React.Component {
         showEditDescription: true,
         descriptionError: false,
         showSubTypes: true,
+        messages: [],
         title: title
       };
     } else {
@@ -105,6 +106,7 @@ class StoreItemEditForm extends React.Component {
       imgFileData: this.state.imgFileData,
       itemDescription: this.state.itemDescription,
       price: this.state.price,
+      messages: [],
     }
     if(this.state.title === editMode) {      
       item._id = this.props.itemEditContent._id,

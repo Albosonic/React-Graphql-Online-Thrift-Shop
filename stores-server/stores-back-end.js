@@ -21,13 +21,11 @@ storesBackEnd.use(bodyParser.json({
 }));
 
 module.exports = () => {
-  storesBackEnd.get('/', (req, res) => {
-    res.send('hello world')
-  });
 
   storesBackEnd.post('/stores/update/name', handleStores.updateStoreName);
   storesBackEnd.post('/item/new', handleItems.insertNewItem);
   storesBackEnd.post('/item/edit', handleItems.editItem);
+  storesBackEnd.post('/item/messages/persist', handleItems.persistMessages);
   
   storesBackEnd.get('/stores/feed', handleFeed.fetchAllStores);
 

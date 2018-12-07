@@ -14,6 +14,7 @@ class StoreItem extends React.Component {
     this.state = {
       chatTxt: '',
       messages: [],
+      currentMessage: '',
       showMessages: false,
       chatClass: 'hide'
     };
@@ -45,7 +46,7 @@ class StoreItem extends React.Component {
     this.setState({ chatTxt: e.target.value });
   }
 
-  renderChattter(messages) {    
+  renderChattter(messages) {
     return messages.map((msgObj, i) => (
       <div className="message-container" key={ i }>
         <p className="handle">handle</p>
@@ -54,7 +55,7 @@ class StoreItem extends React.Component {
         </div>
         <p className="time">{ msgObj.date }</p>
       </div>
-    ))          
+    ))
   }
 
   scrollToMsg(el) {
@@ -63,13 +64,17 @@ class StoreItem extends React.Component {
 
   handleChatSubmit(e) {
     e.preventDefault();
-    sendToChatter(this.state.chatTxt)
-    let nodeList = this.chatList.current.childNodes;
+    const { storeItem } = this.props;
+    // storeItem.messages = []; // this is a temp mock.
+    // console.log(e.target)
+    // storeItem.messages.push(this.state.chatTxt);
+    sendToChatter({message: this.state.chatTxt, _id: storeItem._id});
     subscribeToChatter()
     .then(msg => {
       msg = [msg];
+      let nodeList = this.chatList.current.childNodes;
       this.setState({messages: [...this.state.messages, ...msg]})
-      this.forceUpdate();      
+      this.forceUpdate();
       this.scrollToMsg(nodeList[nodeList.length - 1]);
       this.chatInput.current.value = "";
     })
