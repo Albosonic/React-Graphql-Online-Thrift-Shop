@@ -1,6 +1,6 @@
 import React from 'react';
 import store from '../../redux/store';
-import { toggleStoreItemActionMode, updateStoreData } from '../../redux/actions';
+import { toggleStoreItemActionMode } from '../../redux/actions';
 import './add-item.scss';
 
 class AddItem extends React.Component {

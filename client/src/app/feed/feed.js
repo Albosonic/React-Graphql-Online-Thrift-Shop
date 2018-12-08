@@ -1,40 +1,35 @@
-import React from 'react';
-import { Link, Redirect } from "react-router-dom";
 import './feed.scss';
-import MyStore from '../my-store/my-store';
-import { fetchFeed } from '../services/feed-service';
-import store from '../../redux/store';
+import React from 'react';
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+
 import { updateCurrentShop } from '../../redux/actions';
+
+import store from '../../redux/store';
+import MyStore from '../my-store/my-store';
+
+
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      feed: null,
-      feedIn: false,
+      feed: this.props.allStores,
       goShopping: false
     }
-    this.handleStoreClick = this.handleStoreClick.bind(this);
-    this.setFeedToState();
+    this.handleStoreClick = this.handleStoreClick.bind(this); 
+    console.log('all stores from feed', this.props)   
   }
 
-  setFeedToState() {
-    fetchFeed().then(feedObj => {
-      this.setState({
-        feed: feedObj.data,
-        feedIn: true
-      })
-    })
-  }
 
-  handleStoreClick(currentShop) {    
+  handleStoreClick(currentShop) {
     this.setState({ goShopping: true });
     store.dispatch(updateCurrentShop(currentShop))
   }
 
   renderStoresToFeed(feed) {
     const storeView = 'feed';
-    return feed.map((storeObj, i) => {
+    return feed.map((storeObj, i) => {      
       if(storeObj.storeItems.length > 0) {
         return (
           <li onClick={ () => this.handleStoreClick(storeObj) } className="store-container" key={ i }>
@@ -51,14 +46,18 @@ class Feed extends React.Component {
 
   render() {
     const { feedView } = this.props;
-    if(this.state.goShopping) return <Redirect to="/shop"/>;    
+    if(this.state.goShopping) return <Redirect to="/shop"/>;
     return (
       <div className={`user-feed-container ${feedView}`}>
         <h1 className="feed-title">Feed</h1>
-        { this.state.feedIn && this.renderStoresToFeed(this.state.feed) }
+        { this.renderStoresToFeed(this.state.feed) }
       </div>
     )
   }
 }
 
-export default Feed;
+const mapStateToProps = state => ({
+  allStores: state.allStores
+})
+
+export default connect(mapStateToProps)(Feed);

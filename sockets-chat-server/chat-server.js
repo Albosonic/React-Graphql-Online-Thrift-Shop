@@ -9,10 +9,11 @@ const port = 8000;
 
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', (sentMsgObj) => {      
-      let time = helpers.generateTime();
-      helpers.persistMessages(sentMsgObj);
-      client.emit('recieveMsg', { msg: sentMsgObj.message, date: `${time}` });
+    client.on('sendMsg', (sentMsgObj) => {
+      let time = helpers.generateTime();      
+      sentMsgObj.messageData.time = time;       
+      helpers.persistMessages(sentMsgObj); // do a .then here and then emnit with the val from db.
+      // client.emit('recieveMsg', { msg: sentMsgObj.message, date: `${time}` });
     });
   });
 

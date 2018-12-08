@@ -1,10 +1,11 @@
+import './store-item.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from "react-redux";
 
 import store from '../../../redux/store';
-import { ToggleStoreItemActionMode, storeItemEditMode } from '../../../redux/actions';
+import { storeItemEditMode, updateOneMessage } from '../../../redux/actions';
 
-import './store-item.scss';
 import { subscribeToChatter, sendToChatter } from '../../services/item-service';
 
 
@@ -19,13 +20,13 @@ class StoreItem extends React.Component {
       chatClass: 'hide'
     };
     this.handleActionClick = this.handleActionClick.bind(this);
-    const { view, storeItem } = this.props;
     this.handleMsgClick = this.handleMsgClick.bind(this);
     this.handleChatChange = this.handleChatChange.bind(this);
     this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.renderChattter = this.renderChattter.bind(this);
     this.chatInput = React.createRef();
     this.chatList = React.createRef();
+    console.log('props', this.props)
   }
 
   handleActionClick(e) {
@@ -65,10 +66,7 @@ class StoreItem extends React.Component {
   handleChatSubmit(e) {
     e.preventDefault();
     const { storeItem } = this.props;
-    // storeItem.messages = []; // this is a temp mock.
-    // console.log(e.target)
-    // storeItem.messages.push(this.state.chatTxt);
-    sendToChatter({message: this.state.chatTxt, _id: storeItem._id});
+    sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt } });
     subscribeToChatter()
     .then(msg => {
       msg = [msg];
@@ -77,6 +75,7 @@ class StoreItem extends React.Component {
       this.forceUpdate();
       this.scrollToMsg(nodeList[nodeList.length - 1]);
       this.chatInput.current.value = "";
+      store.dispatch(updateOneMessage({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: msg[0] } }));
     })
   }
 
@@ -115,9 +114,14 @@ class StoreItem extends React.Component {
   }
 }
 
-StoreItem.propTypes = {
-  storeItem: PropTypes.object,
-  handleItemClick: PropTypes.func
-}
+const mapStateToProps = state => ({
+  // actionMode: state.actionMode,
+});
 
-export default StoreItem
+export default connect(mapStateToProps)(StoreItem);
+
+
+  // StoreItem.propTypes = {
+  //   storeItem: PropTypes.object,
+  //   handleItemClick: PropTypes.func
+  // }

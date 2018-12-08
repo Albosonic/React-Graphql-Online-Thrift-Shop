@@ -8,7 +8,9 @@ import
   STORE_ITEM_EDIT_MODE,
   ADD_ONE_ITEM,
   UPDATE_ALL_ITEMS,
-  UPDATE_CURRENT_SHOP
+  UPDATE_CURRENT_SHOP,
+  UPDATE_ALL_STORES_FEED,
+  UPDATE_ONE_MSG
 }
 from "../constants/action-types";
 
@@ -26,9 +28,11 @@ const initialState = {
       sizes: null,
       storeName: null,
       stars: null,
-      storeItems: []
+      storeItems: [],
+      messages: []
     }
   },
+  allStores: [],
   items: [],
   actionMode: {
     storeItemActionMode: false,
@@ -93,6 +97,12 @@ const rootReducer = (state = initialState, action) => {
         ...state,
           items: [ ...state.items, action.payload ]
       }
+    case UPDATE_ONE_MSG:
+      console.log('heee',action.payload)      
+      return {
+        ...state,
+        allStores : [ ...action.payload ]
+      }
     case UPDATE_ALL_ITEMS:
       return {
         ...state,
@@ -107,6 +117,11 @@ const rootReducer = (state = initialState, action) => {
             }
           }
       }
+      case UPDATE_ALL_STORES_FEED:        
+        return {
+          ...state,
+            allStores: [...action.payload]
+        }
     default:
       return state;
   }

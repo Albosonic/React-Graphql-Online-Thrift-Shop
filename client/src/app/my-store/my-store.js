@@ -5,6 +5,7 @@ import { mockImg5 } from '../shared-components/mock-img-data-5';
 import AddItem from '../add-item/add-item';
 import store from '../../redux/store';
 import { persistStoreName } from '../services/store-service';
+import { fetchFeed } from '../services/feed-service';
 
 class MyStore extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class MyStore extends React.Component {
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
     this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
+    fetchFeed(); // this is temp
   }
 
   handleItemClick(imageData) {

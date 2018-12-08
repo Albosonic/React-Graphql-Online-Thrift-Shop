@@ -2,14 +2,15 @@ const Item = require('../models/store-item');
 const request = require('request');
 
 module.exports = {
-  persistMessages: (body) => {    
+  persistMessages: (body) => {
     request.post(
       {
         url:'http://localhost:5000/item/messages/persist',
         json: body
       },
       (err, httpResponse, body) => {
-        if(err) return err; // consider using a promis to mapp error handling back to chatr server.        
+        if(err) return err; // consider using a promis to mapp error handling back to chatr server.
+        
       }
     );
   },

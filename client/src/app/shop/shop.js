@@ -6,7 +6,6 @@ import Feed from '../feed/feed';
 
 const Shop = () => {
   const { userStore, storeItems } = store.getState().currentShop;
-  console.log('whoo', storeItems)
   const shopView = "shop";
   return (
     <div className="shop-container">
