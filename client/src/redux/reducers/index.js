@@ -97,8 +97,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
           items: [ ...state.items, action.payload ]
       }
-    case UPDATE_ONE_MSG:
-      console.log('heee',action.payload)      
+    case UPDATE_ONE_MSG:      
       return {
         ...state,
         allStores : [ ...action.payload ]

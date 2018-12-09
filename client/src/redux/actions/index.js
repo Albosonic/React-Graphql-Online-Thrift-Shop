@@ -53,7 +53,6 @@ export const updateCurrentShop = shop => (
 );
 
 export const updateOneMessage = msg => {
-  console.log(mgg)
   let data = msg.messageData;
   let updatedStoresList = store.getState().allStores.map(storeObj => {
     if(storeObj.userStore.storeId === data.storeId) {

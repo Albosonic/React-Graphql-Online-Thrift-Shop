@@ -39,7 +39,7 @@ export const sendToChatter = (outGoingMsg) => {
 }
 
 export const subscribeToChatter = () => {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {    
     socket.on('recieveMsg', incoming => resolve(incoming));
   })
 }

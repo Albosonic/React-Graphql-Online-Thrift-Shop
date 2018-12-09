@@ -19,7 +19,7 @@ module.exports = {
       itemDescription: body.itemDescription,
       price: body.price
     }
-    Item.findByIdAndUpdate(_id, update, options, (err, updatedItem) => {      
+    Item.findByIdAndUpdate(_id, update, options, (err, updatedItem) => {
       if(err) return console.log(err);
       res.status(200).send(updatedItem);
     });
@@ -28,8 +28,8 @@ module.exports = {
     let body = req.body;
     let _id = body.messageData.itemId;
     let options = { new: true };
-    let update = {$push: { messages:  body.messageData }}    
-    Item.findByIdAndUpdate(_id, update, options, (err, updatedItem) => {      
+    let update = {$push: { messages:  body.messageData }}
+    Item.findByIdAndUpdate(_id, update, options, (err, updatedItem) => {
       if(err) return console.log(err);      
       res.status(200).send(updatedItem)
     });

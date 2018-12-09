@@ -47,12 +47,12 @@ class StoreItem extends React.Component {
     this.setState({ chatTxt: e.target.value });
   }
 
-  renderChattter(messages) {
+  renderChattter(messages) {    
     return messages.map((msgObj, i) => (
       <div className="message-container" key={ i }>
         <p className="handle">handle</p>
         <div className="text-container">
-          <p className="text">{ msgObj.msg }</p>
+          <p className="text">{ msgObj.msg.messageData.message }</p>
         </div>
         <p className="time">{ msgObj.date }</p>
       </div>
@@ -69,8 +69,8 @@ class StoreItem extends React.Component {
     sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt } });
     subscribeToChatter()
     .then(msg => {
-      msg = [msg];
-      let nodeList = this.chatList.current.childNodes;
+      msg = [msg];      
+      let nodeList = this.chatList.current.childNodes;      
       this.setState({messages: [...this.state.messages, ...msg]})
       this.forceUpdate();
       this.scrollToMsg(nodeList[nodeList.length - 1]);
