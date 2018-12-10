@@ -6,7 +6,7 @@ const StoreItemSchema = new mongoose.Schema({
     itemSubType: String,
     imgFileData: [String],
     itemDescription: String,
-    messages: [String],
+    messages: [Object],
     price: String
 });
 

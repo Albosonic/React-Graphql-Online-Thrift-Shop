@@ -10,9 +10,10 @@ const port = 8000;
 module.exports = () => {
   io.on('connection', (client) => {
     client.on('sendMsg', (sentMsgObj) => {      
-      let time = helpers.generateTime();
+      let time = helpers.generateTime();      
+      sentMsgObj.messageData.time = time;       
       helpers.persistMessages(sentMsgObj);
-      client.emit('recieveMsg', { msg: sentMsgObj.message, date: `${time}` });
+      client.emit('recieveMsg', { msg: sentMsgObj, date: `${time}` });
     });
   });
 

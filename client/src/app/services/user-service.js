@@ -2,6 +2,7 @@ import uuidv4 from 'uuid/v4';
 import axios from 'axios';
 import store from '../../redux/store';
 import { updateUserInfo, updateStoreData, updateAllItems } from '../../redux/actions';
+import { fetchFeed } from './feed-service';
 
 export const createNewUser = user => {
   var userObj = {
@@ -24,6 +25,7 @@ export const createNewUser = user => {
       if(resp.data.statusCode === 200) {        
         store.dispatch(updateUserInfo(userObj));
         store.dispatch(updateStoreData(storeObj));
+        fetchFeed();
         resolve({ registration: true, data: resp.data, user: userObj });
       } else {
         reject({ registration: false, data: resp.data });
