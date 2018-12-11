@@ -10,21 +10,32 @@ import { fetchFeed } from '../services/feed-service';
 class MyStore extends React.Component {
   constructor(props) {
     super(props);
-    var { storeData, storeItems } = this.props;
     this.state = {
       defaultStoreName: 'Add Your Store Name',
-      storeName: storeData.storeName, //TODO: fix this and have a default.
+      storeName: '', //TODO: fix this and have a default.
+      storeName: 'fuck',
       titleAddedClass: 'no-title-added',
       currentHeroImg: mockImg5, // default Img find a better one.
       imgFileData: [],
       editStoreName: false,
-      items: [...storeItems]
+      items: store.getState().currentShop.storeItems
     }
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
     this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
-    fetchFeed(); // this is temp
+  }
+
+  componentDidUpdate(nextProps) {
+    var { storeData, storeItems } = nextProps;    
+    console.log('=========', storeItems)
+    if(this.state.items.length < storeItems.length) {
+      this.setState({
+        storeName: storeData.storeName,
+        items: [...storeItems]
+      })
+    }
+
   }
 
   handleItemClick(imageData) {

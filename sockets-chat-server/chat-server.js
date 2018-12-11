@@ -1,19 +1,25 @@
 const app = require('express')();
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
-const colors = require('colors');
 
+const colors = require('colors');
 const helpers = require('./chat-helpers');
 
 const port = 8000;
 
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', (sentMsgObj) => {      
-      let time = helpers.generateTime();      
-      sentMsgObj.messageData.time = time;       
-      helpers.persistMessages(sentMsgObj);
-      client.emit('recieveMsg', { msg: sentMsgObj, date: `${time}` });
+    client.on('sendMsg', (sentMsgObj) => {
+      let time = helpers.generateTime();
+      sentMsgObj.messageData.time = time;
+      helpers.persistMessages(sentMsgObj)
+      .then(storeItem => {
+        client.emit('recieveMsg', storeItem);
+      }, err => client.emit('recieveMsg', 'ERROR: 500'))
     });
   });
 

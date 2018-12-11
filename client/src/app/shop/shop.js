@@ -1,12 +1,13 @@
 import './shop.scss';
 import React from 'react';
-import MyStore from '../my-store/my-store';
 import store from '../../redux/store';
+import { connect } from "react-redux";
+import MyStore from '../my-store/my-store';
 import Feed from '../feed/feed';
 
-const Shop = () => {
-  const { userStore, storeItems } = store.getState().currentShop;
+const Shop = ({ userStore, storeItems }) => {
   const shopView = "shop";
+  console.log('====== render shop')  
   return (
     <div className="shop-container">
       <div className="shop-body-container">
@@ -18,4 +19,9 @@ const Shop = () => {
   );
 }
 
-export default Shop;
+const mapStateToProps = state => ({
+  userStore: state.currentShop.userStore,
+  storeItems: state.currentShop.storeItems
+})
+
+export default connect(mapStateToProps)(Shop);

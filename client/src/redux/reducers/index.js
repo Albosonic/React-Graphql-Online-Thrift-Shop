@@ -10,7 +10,8 @@ import
   UPDATE_ALL_ITEMS,
   UPDATE_CURRENT_SHOP,
   UPDATE_ALL_STORES_FEED,
-  UPDATE_ONE_MSG
+  UPDATE_ONE_MSG,
+  UPDATE_CURRENT_MESSAGE
 }
 from "../constants/action-types";
 
@@ -23,13 +24,12 @@ const initialState = {
     stars: null,
   },
   currentShop: {
-    shopInfo: {
+    storeItems: [],
+    userStore: {
       storeId: null,
       sizes: null,
       storeName: null,
       stars: null,
-      storeItems: [],
-      messages: []
     }
   },
   allStores: [],
@@ -97,11 +97,19 @@ const rootReducer = (state = initialState, action) => {
         ...state,
           items: [ ...state.items, action.payload ]
       }
-    case UPDATE_ONE_MSG:      
+    case UPDATE_ONE_MSG:
       return {
         ...state,
         allStores : [ ...action.payload ]
       }
+    case UPDATE_CURRENT_MESSAGE:    
+      // return {
+      //   ...state,
+      //   currentShop: {
+      //     storeItems: [ ...action.payload ],
+      //     userStore: {...state.currentShop.userStore}
+      //   }
+      // }
     case UPDATE_ALL_ITEMS:
       return {
         ...state,
@@ -116,7 +124,7 @@ const rootReducer = (state = initialState, action) => {
             }
           }
       }
-      case UPDATE_ALL_STORES_FEED:        
+      case UPDATE_ALL_STORES_FEED:
         return {
           ...state,
             allStores: [...action.payload]

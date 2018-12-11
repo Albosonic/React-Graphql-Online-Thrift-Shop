@@ -5,14 +5,12 @@ const socket = openSocket('http://localhost:8000');
 
 import store from '../../redux/store';
 import { addOneItem, updateAllItems, toggleStoreItemActionMode } from '../../redux/actions';
-import { fetchFeed } from '../services/feed-service';
 
 export const saveNewItem = item => {  
   axios.post('/item/new', item)
   .then(resp => {    
     store.dispatch(addOneItem(resp.data));
-    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
-    // fetchFeed();
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));    
   })
 }
 
@@ -28,13 +26,11 @@ export const persistItemEdit = item => {
       return item;
     })
     store.dispatch(updateAllItems(newItemsList));
-    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));
-    
+    store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));    
   })
 }
 
-export const sendToChatter = (outGoingMsg) => {
-  console.log(outGoingMsg)
+export const sendToChatter = (outGoingMsg) => {  
   socket.emit('sendMsg', outGoingMsg);
 }
 

@@ -2,10 +2,8 @@ import './store-item.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-
 import store from '../../../redux/store';
-import { storeItemEditMode, updateOneMessage } from '../../../redux/actions';
-
+import { storeItemEditMode, updateOneMessage, updateCurrentMsg } from '../../../redux/actions';
 import { subscribeToChatter, sendToChatter } from '../../services/item-service';
 
 
@@ -14,19 +12,19 @@ class StoreItem extends React.Component {
     super(props)
     this.state = {
       chatTxt: '',
-      messages: [],
+      messages: this.props.storeItem.messages,
       currentMessage: '',
       showMessages: false,
       chatClass: 'hide'
     };
     this.handleActionClick = this.handleActionClick.bind(this);
-    this.handleMsgClick = this.handleMsgClick.bind(this);
     this.handleChatChange = this.handleChatChange.bind(this);
     this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.renderChattter = this.renderChattter.bind(this);
+    this.handleMsgClick = this.handleMsgClick.bind(this);
     this.chatInput = React.createRef();
     this.chatList = React.createRef();
-    console.log('props', this.props)
+    console.log('whooo', this.props.storeItem.messages)
   }
 
   handleActionClick(e) {
@@ -47,12 +45,12 @@ class StoreItem extends React.Component {
     this.setState({ chatTxt: e.target.value });
   }
 
-  renderChattter(messages) {    
+  renderChattter(messages) {
     return messages.map((msgObj, i) => (
       <div className="message-container" key={ i }>
         <p className="handle">handle</p>
         <div className="text-container">
-          <p className="text">{ msgObj.msg.messageData.message }</p>
+          <p className="text">{ msgObj.message }</p>
         </div>
         <p className="time">{ msgObj.date }</p>
       </div>
@@ -66,16 +64,13 @@ class StoreItem extends React.Component {
   handleChatSubmit(e) {
     e.preventDefault();
     const { storeItem } = this.props;
-    sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt } });
+    sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt }});
     subscribeToChatter()
-    .then(msg => {
-      msg = [msg];      
-      let nodeList = this.chatList.current.childNodes;      
-      this.setState({messages: [...this.state.messages, ...msg]})
-      this.forceUpdate();
-      this.scrollToMsg(nodeList[nodeList.length - 1]);
+    .then(storeItem => {
+      // let nodeList = this.chatList.current.childNodes;
+      // this.scrollToMsg(nodeList[nodeList.length - 1]);
       this.chatInput.current.value = "";
-      store.dispatch(updateOneMessage({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: msg[0] } }));
+      store.dispatch(updateOneMessage(storeItem));
     })
   }
 
@@ -102,8 +97,9 @@ class StoreItem extends React.Component {
           </div>
         </div>
         <div className={`chat-container ${ this.state.chatClass }`}>
-          <div ref={this.chatList} className="message-list-container">
-            { this.renderChattter(this.state.messages) }
+
+          <div ref={ this.chatList } className="message-list-container">
+            { this.renderChattter(this.props.storeItem.messages) }
           </div>
           <form onSubmit={ this.handleChatSubmit } className="chat-form">
             <input ref={this.chatInput} onChange={ this.handleChatChange } className="chat-input" type="text" placeholder="enter message here."/>
@@ -114,11 +110,11 @@ class StoreItem extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  // actionMode: state.actionMode,
-});
+// const mapStateToProps = state => ({
+//   // actionMode: state.actionMode,
+// });
 
-export default connect(mapStateToProps)(StoreItem);
+export default StoreItem;
 
 
   // StoreItem.propTypes = {
