@@ -4,6 +4,7 @@ import StoreItem from '../shared-components/store-item/store-item';
 import { mockImg5 } from '../shared-components/mock-img-data-5';
 import AddItem from '../add-item/add-item';
 import store from '../../redux/store';
+import { connect } from "react-redux";
 import { persistStoreName } from '../services/store-service';
 import { fetchFeed } from '../services/feed-service';
 
@@ -18,24 +19,13 @@ class MyStore extends React.Component {
       currentHeroImg: mockImg5, // default Img find a better one.
       imgFileData: [],
       editStoreName: false,
-      items: store.getState().currentShop.storeItems
+      items: this.props.storeItems
     }
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
     this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
-  }
-
-  componentDidUpdate(nextProps) {
-    var { storeData, storeItems } = nextProps;    
-    console.log('=========', storeItems)
-    if(this.state.items.length < storeItems.length) {
-      this.setState({
-        storeName: storeData.storeName,
-        items: [...storeItems]
-      })
-    }
-
+    // console.log(this.props.storeItems);
   }
 
   handleItemClick(imageData) {

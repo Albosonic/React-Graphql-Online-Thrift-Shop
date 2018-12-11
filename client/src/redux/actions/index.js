@@ -11,11 +11,10 @@ import
   UPDATE_ALL_STORES_FEED,
   UPDATE_CURRENT_SHOP,
   UPDATE_ONE_MSG,
-  UPDATE_CURRENT_MESSAGE
+  UPDATE_CURRENT_CHAT
 }
 from "../constants/action-types";
 import store from "../store";
-// import store from "../store";
 
 export const updateUserInfo = userInfo => (
   { type: UPDATE_USER_INFO, payload: userInfo }
@@ -49,22 +48,27 @@ export const updateStoreFeed = allStores => (
   {type: UPDATE_ALL_STORE_FEED, payload: allStores}
 );
 
-export const updateCurrentShop = shop => (
-  { type: UPDATE_CURRENT_SHOP, payload: shop }
-);
+export const updateCurrentShop = shop => {
+  return { type: UPDATE_CURRENT_SHOP, payload: shop }
+}
 
-export const updateOneMessage = storeItem => {
+export const updateCurrentChat = chatMsg => {  
+  return { type: UPDATE_CURRENT_CHAT, payload: chatMsg }
+}
+
+export const updateOneMessage = storeItem => {    
+  store.dispatch(updateCurrentChat(storeItem.messages))
   let updatedStoresList = store.getState().allStores.map(storeObj => {
     if(storeObj.userStore.storeId === storeItem.storeId) {
       let updatedStoreItems = storeObj.storeItems.map(item => {
-        if(item._id === storeItem.itemId) {
+        if(item._id === storeItem._id) {          
           return storeItem;
         } else {
           return item;
         }
       })
       storeObj.storeItems = [ ...updatedStoreItems ];
-      store.dispatch(updateCurrentShop(storeObj))      
+      store.dispatch(updateCurrentShop(storeObj));
       return storeObj;
     } else {
       return storeObj;

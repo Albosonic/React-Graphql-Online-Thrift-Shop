@@ -6,8 +6,7 @@ import MyStore from '../my-store/my-store';
 import Feed from '../feed/feed';
 
 const Shop = ({ userStore, storeItems }) => {
-  const shopView = "shop";
-  console.log('====== render shop')  
+  const shopView = "shop";  
   return (
     <div className="shop-container">
       <div className="shop-body-container">

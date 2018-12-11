@@ -11,7 +11,8 @@ import
   UPDATE_CURRENT_SHOP,
   UPDATE_ALL_STORES_FEED,
   UPDATE_ONE_MSG,
-  UPDATE_CURRENT_MESSAGE
+  UPDATE_CURRENT_MESSAGE,
+  UPDATE_CURRENT_CHAT
 }
 from "../constants/action-types";
 
@@ -32,6 +33,7 @@ const initialState = {
       stars: null,
     }
   },
+  currentChat: [], 
   allStores: [],
   items: [],
   actionMode: {
@@ -87,10 +89,16 @@ const rootReducer = (state = initialState, action) => {
             storeName: action.payload
           }
       }
-    case UPDATE_CURRENT_SHOP:
+    case UPDATE_CURRENT_SHOP:      
       return {
         ...state,
         currentShop: action.payload
+      }
+    case UPDATE_CURRENT_CHAT:
+      console.log('action.payload', action.payload)
+      return {
+        ...state,
+        currentChat: [ ...action.payload ]
       }
     case ADD_ONE_ITEM: // might need a serparate SET_ITEMS for login.
       return {
@@ -103,13 +111,13 @@ const rootReducer = (state = initialState, action) => {
         allStores : [ ...action.payload ]
       }
     case UPDATE_CURRENT_MESSAGE:    
-      // return {
-      //   ...state,
-      //   currentShop: {
-      //     storeItems: [ ...action.payload ],
-      //     userStore: {...state.currentShop.userStore}
-      //   }
-      // }
+      return {
+        ...state,
+        currentShop: {
+          storeItems: [ ...action.payload ],
+          userStore: {...state.currentShop.userStore}
+        }
+      }
     case UPDATE_ALL_ITEMS:
       return {
         ...state,
