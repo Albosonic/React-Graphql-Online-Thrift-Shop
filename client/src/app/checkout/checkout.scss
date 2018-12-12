@@ -1,3 +1,36 @@
 .stripe-form-container {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  font-size: 18px;
+  margin: 0 auto;
+  padding: 20px;
+  .stripe-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .name-container {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      margin: 10px auto;
+      margin-bottom: 25px;
+      input[type=text] {
+        margin-top: 10px;
+        border-radius: 2px;
+        border: 1px solid gray;
+        height: 20px;
+      }
+      input[type=text]:focus {
+        outline: none;
+      }
+    }
+    .cta {
+      border-radius: 5px;
+      padding: 20px;
+      margin: 50px 90px 25px 90px;
+      background-color: aliceblue;
+    }
+  }
 }
