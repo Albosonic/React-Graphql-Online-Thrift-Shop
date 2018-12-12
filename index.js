@@ -10,6 +10,7 @@ const runChatSockets = require('./sockets-chat-server/chat-server');
 const userHandlers = require('./handlers/app-server/user-handlers');
 const storesHandlers = require('./handlers/app-server/store-handlers');
 const itemHandlers = require('./handlers/app-server/item-handlers');
+const paymentHandlers = require('./handlers/app-server/payments-handlers');
 
 const colors = require('colors');
 const app = express();
@@ -35,6 +36,7 @@ app.post('/users/login', userHandlers.loginUser);
 app.post('/item/new', itemHandlers.insertItem);
 app.post('/item/edit', itemHandlers.editItem);
 app.post('/stores/update/name', storesHandlers.updateStoreName);
+app.post('/stripe/payment', paymentHandlers.handlePayment);
 
 app.get('/stores/feed', storesHandlers.fetchAllStores);
 

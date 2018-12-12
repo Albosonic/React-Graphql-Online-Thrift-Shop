@@ -16,7 +16,7 @@ class Chatter extends React.Component {
   }
 
   render() {
-    const { currentChat } = this.props;
+    const { currentChat } = this.props;    
     return (
       <div ref={ this.chatList } className="message-list-container">
         {   
@@ -26,7 +26,7 @@ class Chatter extends React.Component {
               <div className="text-container">
                 <p className="text">{ msgObj.message }</p>
               </div>
-              <p className="time">{ msgObj.date }</p>
+              <p className="time">{ msgObj.time }</p>
             </div>
           ))
         }

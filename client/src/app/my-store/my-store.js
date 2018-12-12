@@ -4,9 +4,7 @@ import StoreItem from '../shared-components/store-item/store-item';
 import { mockImg5 } from '../shared-components/mock-img-data-5';
 import AddItem from '../add-item/add-item';
 import store from '../../redux/store';
-import { connect } from "react-redux";
 import { persistStoreName } from '../services/store-service';
-import { fetchFeed } from '../services/feed-service';
 
 class MyStore extends React.Component {
   constructor(props) {
@@ -24,8 +22,7 @@ class MyStore extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
-    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
-    // console.log(this.props.storeItems);
+    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);    
   }
 
   handleItemClick(imageData) {
