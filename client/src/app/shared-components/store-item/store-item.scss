@@ -54,8 +54,7 @@
       width: 100%;
       max-width: 300px;
       display: table-cell;
-      text-align: center;
-      margin-right: 60px;
+      text-align: center;      
       .description-title {
         text-decoration: underline;
         margin: 2px;
@@ -82,6 +81,9 @@
         margin-right: 10px;
         background-size: 100%;
         background-repeat: no-repeat;
+      }
+      .buy-icon {
+        margin-right: 20px;
       }
     }
   }

@@ -9,7 +9,6 @@ import store from '../../redux/store';
 import MyStore from '../my-store/my-store';
 
 
-
 class Feed extends React.Component {
   constructor(props) {
     super(props);
@@ -17,8 +16,7 @@ class Feed extends React.Component {
       feed: this.props.allStores,
       goShopping: false
     }
-    this.handleStoreClick = this.handleStoreClick.bind(this); 
-    console.log('all stores from feed', this.props)   
+    this.handleStoreClick = this.handleStoreClick.bind(this);
   }
 
 
@@ -29,7 +27,7 @@ class Feed extends React.Component {
 
   renderStoresToFeed(feed) {
     const storeView = 'feed';
-    return feed.map((storeObj, i) => {      
+    return feed.map((storeObj, i) => {
       if(storeObj.storeItems.length > 0) {
         return (
           <li onClick={ () => this.handleStoreClick(storeObj) } className="store-container" key={ i }>

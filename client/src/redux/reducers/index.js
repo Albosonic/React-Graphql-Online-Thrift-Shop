@@ -1,6 +1,7 @@
 import
 {
   UPDATE_USER_INFO,
+  UPDATE_BILLING_INFO,  
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
@@ -23,6 +24,7 @@ const initialState = {
     sizes: null,
     storeName: null,
     stars: null,
+    userToken: null
   },
   currentShop: {
     storeItems: [],
@@ -33,7 +35,7 @@ const initialState = {
       stars: null,
     }
   },
-  currentChat: [], 
+  currentChat: [],  
   allStores: [],
   items: [],
   actionMode: {
@@ -94,8 +96,7 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         currentShop: action.payload
       }
-    case UPDATE_CURRENT_CHAT:
-      console.log('action.payload', action.payload)
+    case UPDATE_CURRENT_CHAT:      
       return {
         ...state,
         currentChat: [ ...action.payload ]

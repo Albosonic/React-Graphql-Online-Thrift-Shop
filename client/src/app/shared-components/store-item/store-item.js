@@ -1,7 +1,8 @@
 import './store-item.scss';
 import React from 'react';
-
 import store from '../../../redux/store';
+import { Redirect } from 'react-router-dom';
+
 import { storeItemEditMode, updateOneMessage, updateCurrentChat } from '../../../redux/actions';
 import { subscribeToChatter, sendToChatter } from '../../services/item-service';
 
@@ -15,13 +16,15 @@ class StoreItem extends React.Component {
       messages: this.props.storeItem.messages,
       currentMessage: '',
       showMessages: false,
-      chatClass: 'hide'
+      chatClass: 'hide',
+      enterInfo: false
     };
     this.handleActionClick = this.handleActionClick.bind(this);
     this.handleChatChange = this.handleChatChange.bind(this);
     this.handleChatSubmit = this.handleChatSubmit.bind(this);
     this.handleMsgClick = this.handleMsgClick.bind(this);
-    this.chatInput = React.createRef();    
+    this.handlePurchase = this.handlePurchase.bind(this);
+    this.chatInput = React.createRef();
   }
 
   handleActionClick(e) {
@@ -43,12 +46,16 @@ class StoreItem extends React.Component {
     this.setState({ chatTxt: e.target.value });
   }
 
+  handlePurchase() {    
+    this.setState({ enterInfo: true })
+  }
+
   handleChatSubmit(e) {
     e.preventDefault();
     const { storeItem } = this.props;
     sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt }});
     subscribeToChatter()
-    .then(storeItem => {      
+    .then(storeItem => {
       this.chatInput.current.value = "";
       store.dispatch(updateOneMessage(storeItem));
     })
@@ -56,7 +63,8 @@ class StoreItem extends React.Component {
 
   render() {
     const { storeItem, handleItemClick, view } = this.props;
-    let showMessageIcon = view === 'activities' || view === 'shop';
+    let showComIcons = view === 'activities' || view === 'shop';
+    if(this.state.enterInfo) return <Redirect to="./account-settings"/>;
     return (
       <div className="outer-item-container">
         <div className="item-container">
@@ -73,11 +81,12 @@ class StoreItem extends React.Component {
           </div>
           <div className="edit-icon-container">
             { view === 'my-store' && <span className="edit-icon" onClick={ this.handleActionClick }></span> }
-            { showMessageIcon && <span onClick={ this.handleMsgClick } className="messages-icon"></span> }
+            { showComIcons && <span onClick={ this.handleMsgClick } className="messages-icon"></span> }
+            { view === 'shop' && <span className="buy-icon" onClick={ this.handlePurchase }>Buy</span> }
           </div>
         </div>
-        <div className={`chat-container ${ this.state.chatClass }`}>          
-          <Chatter/>          
+        <div className={`chat-container ${ this.state.chatClass }`}>
+          <Chatter/>
           <form onSubmit={ this.handleChatSubmit } className="chat-form">
             <input ref={this.chatInput} onChange={ this.handleChatChange } className="chat-input" type="text" placeholder="enter message here."/>
           </form>

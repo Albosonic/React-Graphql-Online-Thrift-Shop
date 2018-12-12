@@ -8,7 +8,6 @@ import AccountSettings from '../account-settings/account-settings';
 import MyStoreRoot from '../my-store-root/my-store-root';
 import Shop from '../shop/shop';
 import Feed from '../feed/feed';
-import { fetchFeed } from '../services/feed-service';
 
 // '/' temporarily takes user to dashboard.
 const Main = () => (
