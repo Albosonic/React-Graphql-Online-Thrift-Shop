@@ -8,11 +8,13 @@ class Chatter extends React.Component {
   }
   componentDidUpdate() {
     let nodeList = this.chatList.current.childNodes;
-    this.scrollToMsg(nodeList[nodeList.length - 1]);  
+    if(nodeList > 0) {      
+      this.scrollToMsg(nodeList[nodeList.length - 1]);  
+    }
   }
 
   scrollToMsg(el) {
-    el.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
+    // el.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"})
   }
 
   render() {

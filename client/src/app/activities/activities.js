@@ -1,18 +1,23 @@
+import './activities.scss';
+
 import React from "react";
+import { connect } from "react-redux";
+
 import StoreItem from '../shared-components/store-item/store-item';
-import './activities.scss'
 
 class Activities extends React.Component {
   constructor(props) {
     super(props);
+    const storeItems = this.props.storeItems;
     this.state = {
-      currentHeroImg: this.props.storeItems[0].img
+      currentHeroImg: storeItems[0].imgFileData[0] || null
     };
-    this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);    
   }
 
   handleItemClick(imageData) {
-    this.setState({ currentHeroImg: imageData })
+    console.log('who =========')
+    // this.setState({ currentHeroImg: imageData })
   }
 
   renderStoreItems(items) {
@@ -31,7 +36,8 @@ class Activities extends React.Component {
   }
 
   render () {
-    const storeItems = this.props.storeItems;    
+    const storeItems = this.props.storeItems;
+    
     return (
       <div className="activities-page-container">
         <div className="activities-title-container">
@@ -53,4 +59,10 @@ class Activities extends React.Component {
   }
 }
 
-export default Activities;
+const mapStateToProps = state => ({
+  myStore: state.myStore,
+  storeItems: state.items,
+})
+
+
+export default connect(mapStateToProps)(Activities);

@@ -16,7 +16,7 @@ class Feed extends React.Component {
       feed: this.props.allStores,
       goShopping: false
     }
-    this.handleStoreClick = this.handleStoreClick.bind(this);
+    this.handleStoreClick = this.handleStoreClick.bind(this);    
   }
 
 
@@ -27,6 +27,7 @@ class Feed extends React.Component {
 
   renderStoresToFeed(feed) {
     const storeView = 'feed';
+    console.log('====sary', feed)
     return feed.map((storeObj, i) => {
       if(storeObj.storeItems.length > 0) {
         return (

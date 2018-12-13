@@ -63,6 +63,7 @@ class StoreItem extends React.Component {
 
   render() {
     const { storeItem, handleItemClick, view } = this.props;
+    console.log('storeItem', storeItem)
     let showComIcons = view === 'activities' || view === 'shop';
     if(this.state.enterInfo) return <Redirect to="./account-settings"/>;
     return (

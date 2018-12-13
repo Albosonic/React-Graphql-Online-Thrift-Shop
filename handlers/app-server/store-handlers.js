@@ -13,8 +13,7 @@ module.exports = {
       }
     );
   },
-  fetchAllStores: (req, res) => {
-    // console.log('params', req.query);
+  fetchAllStores: (req, res) => {    
     let q = req.query;
     const options = {
       url: `http://localhost:5000/stores/feed?range=${q.range}`,
@@ -23,7 +22,7 @@ module.exports = {
     }
     request(
       options,
-      (err, response, body) => {
+      (err, response, body) => {        
         if(err) return err;
         res.status(200).send(body);
       }
