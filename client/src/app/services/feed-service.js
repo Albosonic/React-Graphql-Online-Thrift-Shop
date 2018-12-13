@@ -9,7 +9,6 @@ export const fetchFeed = ()=> {
     params: {range: 50}
   })
   .then(resp => {
-    store.dispatch(updateAllStores(resp.data))
-    console.log('resp ==>', resp);
+    store.dispatch(updateAllStores(resp.data))    
   }, err => reject(err));
 }

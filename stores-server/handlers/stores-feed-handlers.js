@@ -11,7 +11,11 @@ module.exports = {
             {'storeId': store.storeId},
             (err, items) => {
               if(err) return reject(err);
-              resolve({ userStore: store,  storeItems: items });
+              var allItems = {};
+              items.forEach(item => {
+                allItems[item._id] = item;
+              })
+              resolve({ userStore: store,  storeItems: allItems });
             }
           )
         })
@@ -20,7 +24,7 @@ module.exports = {
         var allStores = {};
         stores.forEach(store => {
           allStores[store.userStore.storeId] = store;
-        })                
+        })
         res.status(200).send(allStores);
       })
     })

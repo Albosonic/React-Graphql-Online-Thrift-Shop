@@ -133,8 +133,7 @@ const rootReducer = (state = initialState, action) => {
             }
           }
       }
-      case UPDATE_ALL_STORES_FEED:
-        console.log('payload --->', action.payload)
+      case UPDATE_ALL_STORES_FEED:        
         return {
           ...state,
             allStores: { ...action.payload }
