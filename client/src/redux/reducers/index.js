@@ -36,7 +36,7 @@ const initialState = {
     }
   },
   currentChat: [],  
-  allStores: [],
+  allStores: {},
   items: [],
   actionMode: {
     storeItemActionMode: false,
@@ -134,9 +134,10 @@ const rootReducer = (state = initialState, action) => {
           }
       }
       case UPDATE_ALL_STORES_FEED:
+        console.log('payload --->', action.payload)
         return {
           ...state,
-            allStores: [...action.payload]
+            allStores: { ...action.payload }
         }
     default:
       return state;
