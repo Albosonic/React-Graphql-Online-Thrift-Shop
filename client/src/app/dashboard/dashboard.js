@@ -1,27 +1,31 @@
 import './dashboard.scss';
 
 import React from "react";
+import { connect } from "react-redux";
 import Activities from "../activities/activities";
 import Feed from '../feed/feed';
-import store from '../../redux/store'; store.getState().items
-import {fetchFeed} from '../services/feed-service';
+import store from '../../redux/store';
 
 class Dashboard extends React.Component {
   constructor(props) {
     super(props)
-    
-    fetchFeed()
   }
 
   render () {
     const feedView = 'side-bar';
+    const { userStore, storeItems } = this.props;
     return (
       <div className="dashboard-container">
-        {/* <Activities/> */}
-        {/* <Feed feedView={ feedView }/> */}
+        <Activities userStore={ userStore } storeItems={ storeItems } />
+        <Feed feedView={ feedView }/>
       </div>
     )
-  }
+  } 
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({  
+  userStore: state.myStore,
+  storeItems: state.myStore.items
+})
+
+export default connect(mapStateToProps)(Dashboard);

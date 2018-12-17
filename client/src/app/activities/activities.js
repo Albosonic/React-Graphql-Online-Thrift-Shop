@@ -4,40 +4,46 @@ import React from "react";
 import { connect } from "react-redux";
 
 import StoreItem from '../shared-components/store-item/store-item';
+import store from '../../redux/store';
 
 class Activities extends React.Component {
   constructor(props) {
     super(props);
-    const storeItems = this.props.storeItems;
+    const { storeId } = this.props;
     this.state = {
-      currentHeroImg: storeItems[0].imgFileData[0] || null
+      // currentHeroImg: storeItems[0].imgFileData[0] || null
+      // myStore: store.getState().allStores[storeId]
     };
-    this.handleItemClick = this.handleItemClick.bind(this);    
+    this.handleItemClick = this.handleItemClick.bind(this);
   }
 
   handleItemClick(imageData) {
-    console.log('who =========')
     // this.setState({ currentHeroImg: imageData })
   }
 
   renderStoreItems(items) {
     const view = 'activities'
-    return items.map((item, i) => {
-      return (
-        <StoreItem
-          key={ i }
-          storeItem={ item }
-          handleItemClick={ this.handleItemClick }
-          length={ items.length }
-          view={ view }
-          index={ i } />
-      )
-    })
+    if(items) {
+      const keys = Object.keys(items);
+      return keys.map((key, i) => {
+        const item = items[key];
+        return (
+          <StoreItem
+            key={ i }
+            storeItem={ item }
+            handleItemClick={ this.handleItemClick }
+            length={ items.length }
+            view={ view }
+            index={ i } />
+        )
+      })
+    }
   }
 
   render () {
-    const storeItems = this.props.storeItems;
-    
+    const { userStore, storeItems } = this.props;
+    console.log('props ====', storeItems)
+    console.log('storeItems ====', userStore)
     return (
       <div className="activities-page-container">
         <div className="activities-title-container">
@@ -59,10 +65,9 @@ class Activities extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  myStore: state.myStore,
-  storeItems: state.items,
-})
+// const mapStateToProps = state => ({
+//   myStore: state.myStore,
+// })
 
-
-export default connect(mapStateToProps)(Activities);
+export default Activities;
+// export default connect(mapStateToProps)(Activities);

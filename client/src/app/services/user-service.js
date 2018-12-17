@@ -16,13 +16,14 @@ export const createNewUser = user => {
     storeId: userObj.id,
     sizes: null,
     storeName: null,
-    stars: null,    
+    stars: null,
+    items: null
   }
 
   return new Promise((resolve, reject) => {
     axios.post('/users/new', userObj)
-    .then(resp => {      
-      if(resp.data.statusCode === 200) {        
+    .then(resp => {
+      if(resp.data.statusCode === 200) {
         store.dispatch(updateUserInfo(userObj));
         store.dispatch(updateStoreData(storeObj));
         fetchFeed();
@@ -42,7 +43,7 @@ export const loginUser = userEmail => {
       if(resp.status === 200) {
         store.dispatch(updateStoreData(data[0]));
         store.dispatch(updateAllItems(data[1]));
-        store.dispatch(updateUserInfo(data[2]));      
+        store.dispatch(updateUserInfo(data[2]));
         resolve({ login: true, data: resp.data });
       } else {
         reject({ login: false, data: resp.data });

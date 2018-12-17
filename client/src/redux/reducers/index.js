@@ -1,7 +1,6 @@
 import
 {
-  UPDATE_USER_INFO,
-  UPDATE_BILLING_INFO,  
+  UPDATE_USER_INFO,  
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
@@ -10,10 +9,10 @@ import
   ADD_ONE_ITEM,
   UPDATE_ALL_ITEMS,
   UPDATE_CURRENT_SHOP,
-  UPDATE_ALL_STORES_FEED,
-  UPDATE_ONE_MSG,
+  UPDATE_ALL_STORES,  
   UPDATE_CURRENT_MESSAGE,
-  UPDATE_CURRENT_CHAT
+  UPDATE_CURRENT_CHAT,
+  UPDATE_MY_STORE
 }
 from "../constants/action-types";
 
@@ -24,7 +23,8 @@ const initialState = {
     sizes: null,
     storeName: null,
     stars: null,
-    userToken: null
+    userToken: null,
+    items: {}
   },
   currentShop: {
     storeItems: [],
@@ -35,7 +35,7 @@ const initialState = {
       stars: null,
     }
   },
-  currentChat: [],  
+  currentChat: [],
   allStores: {},
   items: [],
   actionMode: {
@@ -56,9 +56,22 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case CLEAR_STATE:
       return { ...initialState }
-    case UPDATE_USER_INFO:
-      return { ...state, userInfo: [action.payload] }
-    case TOGGLE_ACTION_MODE:
+    case UPDATE_USER_INFO:      
+      return {
+        ...state,
+        userInfo: [action.payload],
+        actionMode: {
+          storeItemActionMode: false,
+          title: 'none'
+        },
+      }
+    case UPDATE_MY_STORE:
+      console.log(action.payload)
+
+      return {
+        ...state
+      }
+    case TOGGLE_ACTION_MODE:      
       return {
         ...state,
         actionMode: {
@@ -75,28 +88,28 @@ const rootReducer = (state = initialState, action) => {
           itemEditContent: { ...action.payload.storeItem }
         }
       }
-    case UPDATE_STORE_DATA:
+    case UPDATE_STORE_DATA:     
       return {
         ...state,
-          myStore: {
-            ...state.myStore,
-              storeId: action.payload.storeId
-          },
+        myStore: {
+          ...state.myStore,
+            storeId: action.payload.storeId
+        },
       }
     case UPDATE_STORE_NAME:
       return {
         ...state,
-          myStore: {
-            ...state.myStore,
-            storeName: action.payload
-          }
+        myStore: {
+          ...state.myStore,
+          storeName: action.payload
+        }
       }
-    case UPDATE_CURRENT_SHOP:      
+    case UPDATE_CURRENT_SHOP:
       return {
         ...state,
         currentShop: action.payload
       }
-    case UPDATE_CURRENT_CHAT:      
+    case UPDATE_CURRENT_CHAT:
       return {
         ...state,
         currentChat: [ ...action.payload ]
@@ -104,14 +117,12 @@ const rootReducer = (state = initialState, action) => {
     case ADD_ONE_ITEM: // might need a serparate SET_ITEMS for login.
       return {
         ...state,
-          items: [ ...state.items, action.payload ]
-      }
-    case UPDATE_ONE_MSG:
-      return {
-        ...state,
-        allStores : [ ...action.payload ]
-      }
-    case UPDATE_CURRENT_MESSAGE:    
+        myStore: {
+          ...state.myStore,
+          items:  {...state.myStore.items, ...action.payload}
+        },
+      }    
+    case UPDATE_CURRENT_MESSAGE:
       return {
         ...state,
         currentShop: {
@@ -119,24 +130,24 @@ const rootReducer = (state = initialState, action) => {
           userStore: {...state.currentShop.userStore}
         }
       }
-    case UPDATE_ALL_ITEMS:
+    case UPDATE_ALL_ITEMS: // this needs to change, specifically the items spread.
       return {
         ...state,
-          myStore: {
-            ...state.myStore
-          },
-          items: [...action.payload],
-          actionMode: {
-            ...state.actionMode,
-            itemEditContent: {
-              ...state.actionMode.itemEditContent
-            }
+        myStore: {
+          ...state.myStore
+        },
+        items: [...action.payload],
+        actionMode: {
+          ...state.actionMode,
+          itemEditContent: {
+            ...state.actionMode.itemEditContent
           }
+        }
       }
-      case UPDATE_ALL_STORES_FEED:        
+      case UPDATE_ALL_STORESx:        
         return {
           ...state,
-            allStores: { ...action.payload }
+          allStores: { ...action.payload }
         }
     default:
       return state;

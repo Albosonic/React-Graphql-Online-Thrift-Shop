@@ -7,16 +7,17 @@ import { updateCurrentShop } from '../../redux/actions';
 
 import store from '../../redux/store';
 import MyStore from '../my-store/my-store';
+import { fetchFeed } from '../services/feed-service';
 
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      feed: this.props.allStores,
+    this.state = {      
       goShopping: false
     }
-    this.handleStoreClick = this.handleStoreClick.bind(this);    
+    this.handleStoreClick = this.handleStoreClick.bind(this);
+    fetchFeed()
   }
 
 
@@ -27,29 +28,29 @@ class Feed extends React.Component {
 
   renderStoresToFeed(feed) {
     const storeView = 'feed';
-    console.log('====sary', feed)
-    return feed.map((storeObj, i) => {
-      if(storeObj.storeItems.length > 0) {
+    return Object.keys(feed).map((key, i) => {
+      let storeObj = feed[key]      
+      if(Object.keys(storeObj.storeItems).length > 0) {
         return (
           <li onClick={ () => this.handleStoreClick(storeObj) } className="store-container" key={ i }>
             <MyStore
               className="store-component"
-              storeData={ storeObj.userStore }
+              userStore={ storeObj.userStore }
               storeItems={ storeObj.storeItems }
               view={ storeView }/>
           </li>
-        );
+        )
       }
-    });
+    })
   }
 
   render() {
-    const { feedView } = this.props;
+    const { feedView, allStores } = this.props;    
     if(this.state.goShopping) return <Redirect to="/shop"/>;
     return (
       <div className={`user-feed-container ${feedView}`}>
         <h1 className="feed-title">Feed</h1>
-        { this.renderStoresToFeed(this.state.feed) }
+        { this.renderStoresToFeed(allStores) }
       </div>
     )
   }

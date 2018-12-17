@@ -22,7 +22,7 @@ class MyStore extends React.Component {
     this.handleItemClick = this.handleItemClick.bind(this);
     this.handleStoreNameClick = this.handleStoreNameClick.bind(this);
     this.handleStoreNameEdit = this.handleStoreNameEdit.bind(this);
-    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);    
+    this.handleStoreNameSubmit = this.handleStoreNameSubmit.bind(this);
   }
 
   handleItemClick(imageData) {
@@ -32,18 +32,22 @@ class MyStore extends React.Component {
 
   renderStoreItems(items) {
     const { view } = this.props;
-    if(items.length >  0) {
-      return items.map((item, i) => {
-        return (
-          <StoreItem
-            key={ i }
-            storeItem={ item }
-            handleItemClick={ this.handleItemClick }
-            length={ items.length }
-            view={ view }
-            index={ i } />
-        )
-      })
+    if(items) {
+      let keys = Object.keys(items);
+      if(keys.length >  0) {
+        return keys.map((key, i) => {
+          const item = items[key];
+          return (
+            <StoreItem
+              key={ i }
+              storeItem={ item }
+              handleItemClick={ this.handleItemClick }
+              length={ items.length }
+              view={ view }
+              index={ i } />
+          )
+        })
+      }
     }
   }
 
@@ -61,7 +65,7 @@ class MyStore extends React.Component {
   }
 
   render() {
-    const { view } = this.props;
+    const { view, storeItems } = this.props;
     if(this.state.goShopping) {
       return <Redirect exact to="/shop"/>
     }
@@ -88,7 +92,7 @@ class MyStore extends React.Component {
             <img className="hero" src={ this.state.currentHeroImg }></img>
           </div>}
           { view === 'my-store' && <AddItem/> }
-          { this.renderStoreItems(this.state.items) }
+          { this.renderStoreItems(storeItems) }
         </div>
       </div>
     )

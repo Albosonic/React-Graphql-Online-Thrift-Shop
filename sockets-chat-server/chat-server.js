@@ -13,13 +13,14 @@ const port = 8000;
 
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', (sentMsgObj) => {
-      let time = helpers.generateTime();
-      sentMsgObj.messageData.time = time;
-      helpers.persistMessages(sentMsgObj)
-      .then(storeItem => {
-        client.emit('recieveMsg', storeItem);
-      }, err => client.emit('recieveMsg', 'ERROR: 500'))
+    client.on('sendMsg', 
+      (sentMsgObj) => {        
+        sentMsgObj.messageData.time = helpers.generateTime();
+
+        helpers.persistMessages(sentMsgObj).then(storeItem => {
+          client.emit('recieveMsg', storeItem);
+        }, 
+        err => client.emit('recieveMsg', 'ERROR: 500'))
     });
   });
 

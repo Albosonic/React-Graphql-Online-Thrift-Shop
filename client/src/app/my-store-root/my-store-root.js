@@ -12,15 +12,15 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
     super(props);
   }
   render() {
-    const { actionMode, storeData, storeItems } = this.props;
+    const { actionMode, myStore } = this.props;    
     const view = 'my-store';
     const feedView = 'side-bar'
     if(!actionMode.storeItemActionMode) {//TODO, this will need to come from the redux store.
       return (
         <div className="my-store-page-container">
           <MyStore
-            storeData={ storeData }
-            storeItems={ storeItems }
+            userStore={ myStore }
+            storeItems={ myStore.items }
             view={ view }/>
           <Feed feedView={ feedView }/>
         </div>
@@ -33,8 +33,7 @@ class MyStoreRoot extends React.Component { //TODO: refactor this at some point
 
 const mapStateToProps = state => ({
   actionMode: state.actionMode,
-  storeData: state.myStore,
-  storeItems: state.items,
+  myStore: state.myStore
 });
 
 export default connect(mapStateToProps)(MyStoreRoot);

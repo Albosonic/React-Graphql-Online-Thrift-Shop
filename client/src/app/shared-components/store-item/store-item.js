@@ -37,6 +37,7 @@ class StoreItem extends React.Component {
 
   handleMsgClick(e) {
     let state = this.state;
+    console.log('===>', this.props.storeItem)
     store.dispatch(updateCurrentChat(this.props.storeItem.messages));
     state.chatClass === 'hide' ? this.setState({chatClass: 'show'}) : this.setState({chatClass: 'hide'});
   }
@@ -62,8 +63,7 @@ class StoreItem extends React.Component {
   }
 
   render() {
-    const { storeItem, handleItemClick, view } = this.props;
-    console.log('storeItem', storeItem)
+    const { storeItem, handleItemClick, view } = this.props;    
     let showComIcons = view === 'activities' || view === 'shop';
     if(this.state.enterInfo) return <Redirect to="./account-settings"/>;
     return (
