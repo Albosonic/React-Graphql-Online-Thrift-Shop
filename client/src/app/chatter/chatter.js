@@ -1,15 +1,19 @@
 import React from 'react';
 import { connect } from "react-redux";
+import { fetchChatter } from '../services/chatter-service';
 
 class Chatter extends React.Component {
+  
   constructor(props) {
-    super(props);    
-    this.chatList = React.createRef();    
+    super(props);
+    this.chatList = React.createRef();
+    fetchChatter('5c157391799efa514728dfd9').then(data => console.log(data));
   }
+  
   componentDidUpdate() {
     let nodeList = this.chatList.current.childNodes;
-    if(nodeList > 0) {      
-      this.scrollToMsg(nodeList[nodeList.length - 1]);  
+    if(nodeList > 0) {
+      this.scrollToMsg(nodeList[nodeList.length - 1]);
     }
   }
 
@@ -18,10 +22,10 @@ class Chatter extends React.Component {
   }
 
   render() {
-    const { currentChat } = this.props;    
+    const { currentChat } = this.props;
     return (
       <div ref={ this.chatList } className="message-list-container">
-        {   
+        {
           currentChat.map((msgObj, i) => (
             <div className="message-container" key={ i }>
               <p className="handle">handle</p>

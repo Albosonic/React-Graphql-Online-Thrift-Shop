@@ -4,7 +4,7 @@ import store from '../../../redux/store';
 import { Redirect } from 'react-router-dom';
 
 import { storeItemEditMode, updateOneMessage, updateCurrentChat } from '../../../redux/actions';
-import { subscribeToChatter, sendToChatter } from '../../services/item-service';
+import { subscribeToChatter, sendToChatter } from '../../services/chatter-service';
 
 import Chatter from '../../chatter/chatter';
 
@@ -55,10 +55,8 @@ class StoreItem extends React.Component {
     e.preventDefault();
     const { storeItem } = this.props;
     sendToChatter({ messageData: { storeId: storeItem.storeId, itemId: storeItem._id, message: this.state.chatTxt }});
-    subscribeToChatter()
-    .then(storeItem => {
-      this.chatInput.current.value = "";
-      store.dispatch(updateOneMessage(storeItem));
+    subscribeToChatter().then(message => {      
+      this.chatInput.current.value = "";      
     })
   }
 

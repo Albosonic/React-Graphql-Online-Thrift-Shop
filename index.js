@@ -11,6 +11,8 @@ const userHandlers = require('./handlers/app-server/user-handlers');
 const storesHandlers = require('./handlers/app-server/store-handlers');
 const itemHandlers = require('./handlers/app-server/item-handlers');
 const paymentHandlers = require('./handlers/app-server/payments-handlers');
+// const chatHandlers = require('./handlers/app-server/chat-handlers');
+const chatHandlers = require('./sockets-chat-server/chat-helpers');
 
 const colors = require('colors');
 const app = express();
@@ -39,6 +41,8 @@ app.post('/stores/update/name', storesHandlers.updateStoreName);
 app.post('/stripe/payment', paymentHandlers.handlePayment);
 
 app.get('/stores/feed', storesHandlers.fetchAllStores);
+// app.get('/chatter/item/all', chatHandlers.fetchAllItemMessages);
+app.get('/chatter/item/all', chatHandlers.fetchItemMessages);
 
 // all in app routes defuault to react router...
 app.get('/*', (req, res) => res.sendFile(__dirname + '/client/index.html'));

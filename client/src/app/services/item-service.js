@@ -1,8 +1,5 @@
 import axios from 'axios';
 
-import openSocket from 'socket.io-client';
-const socket = openSocket('http://localhost:8000');
-
 import store from '../../redux/store';
 import { addOneItem, updateAllItems, toggleStoreItemActionMode } from '../../redux/actions';
 
@@ -27,15 +24,5 @@ export const persistItemEdit = item => {
     })
     store.dispatch(updateAllItems(newItemsList));
     store.dispatch(toggleStoreItemActionMode({ storeItemActionMode: false, title: '' }));    
-  })
-}
-
-export const sendToChatter = (outGoingMsg) => {  
-  socket.emit('sendMsg', outGoingMsg);
-}
-
-export const subscribeToChatter = () => {
-  return new Promise((resolve, reject) => {    
-    socket.on('recieveMsg', incoming => resolve(incoming));
   })
 }

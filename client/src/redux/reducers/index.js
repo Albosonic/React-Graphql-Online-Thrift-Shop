@@ -1,6 +1,6 @@
 import
 {
-  UPDATE_USER_INFO,  
+  UPDATE_USER_INFO,
   TOGGLE_ACTION_MODE,
   UPDATE_STORE_DATA,
   UPDATE_STORE_NAME,
@@ -9,7 +9,7 @@ import
   ADD_ONE_ITEM,
   UPDATE_ALL_ITEMS,
   UPDATE_CURRENT_SHOP,
-  UPDATE_ALL_STORES,  
+  UPDATE_ALL_STORES,
   UPDATE_CURRENT_MESSAGE,
   UPDATE_CURRENT_CHAT,
   UPDATE_MY_STORE
@@ -56,7 +56,7 @@ const rootReducer = (state = initialState, action) => {
   switch (action.type) {
     case CLEAR_STATE:
       return { ...initialState }
-    case UPDATE_USER_INFO:      
+    case UPDATE_USER_INFO:
       return {
         ...state,
         userInfo: [action.payload],
@@ -71,7 +71,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state
       }
-    case TOGGLE_ACTION_MODE:      
+    case TOGGLE_ACTION_MODE:
       return {
         ...state,
         actionMode: {
@@ -88,7 +88,7 @@ const rootReducer = (state = initialState, action) => {
           itemEditContent: { ...action.payload.storeItem }
         }
       }
-    case UPDATE_STORE_DATA:     
+    case UPDATE_STORE_DATA:
       return {
         ...state,
         myStore: {
@@ -121,7 +121,7 @@ const rootReducer = (state = initialState, action) => {
           ...state.myStore,
           items:  {...state.myStore.items, ...action.payload}
         },
-      }    
+      }
     case UPDATE_CURRENT_MESSAGE:
       return {
         ...state,
@@ -144,7 +144,7 @@ const rootReducer = (state = initialState, action) => {
           }
         }
       }
-      case UPDATE_ALL_STORESx:        
+      case UPDATE_ALL_STORES:
         return {
           ...state,
           allStores: { ...action.payload }

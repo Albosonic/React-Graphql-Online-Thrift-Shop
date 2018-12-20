@@ -13,19 +13,19 @@ const port = 8000;
 
 module.exports = () => {
   io.on('connection', (client) => {
-    client.on('sendMsg', 
-      (sentMsgObj) => {        
+    client.on(
+      'sendMsg',
+      (sentMsgObj) => {
         sentMsgObj.messageData.time = helpers.generateTime();
-
-        helpers.persistMessages(sentMsgObj).then(storeItem => {
-          client.emit('recieveMsg', storeItem);
-        }, 
-        err => client.emit('recieveMsg', 'ERROR: 500'))
-    });
+        helpers.persistMessages(sentMsgObj).then(messageData => {
+          client.emit('recieveMsg', messageData);
+        },
+        err => client.emit('recieveMsg', 'ERROR: 500 :' + err))
+      }
+    );
   });
 
   server.listen(port, () => {
-    const msg = `=== chat sokets awake === ${port}`
-    console.log(msg.dim)
+    console.log(`=== chat sokets awake === ${port}`)
   });
 }
